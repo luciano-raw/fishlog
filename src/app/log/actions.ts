@@ -32,9 +32,14 @@ export async function saveCatch(formData: FormData) {
     const fileExt = file.name.split('.').pop();
     const fileName = `${userId}-${Date.now()}.${fileExt}`;
     
+    // Convertir a Buffer para evitar errores de Node.js en Server Actions
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    
     const { data, error } = await supabase.storage
       .from('catches')
-      .upload(fileName, file, {
+      .upload(fileName, buffer, {
+        contentType: file.type,
         cacheControl: '3600',
         upsert: false
       });

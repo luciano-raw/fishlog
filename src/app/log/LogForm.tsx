@@ -2,17 +2,34 @@
 
 import { useState, useTransition } from "react";
 import { Camera, MapPin, Ruler, Weight, Fish, Loader2 } from "lucide-react";
+import imageCompression from "browser-image-compression";
 import { saveCatch } from "./actions";
 
 export default function LogForm() {
   const [preview, setPreview] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+      
+      // Mostrar preview inmediato
       setPreview(URL.createObjectURL(file));
+
+      // Comprimir la imagen para ahorrar espacio
+      try {
+        const compressedFile = await imageCompression(file, {
+          maxSizeMB: 1, // máximo 1 MB
+          maxWidthOrHeight: 1200,
+          useWebWorker: true,
+        });
+        setImageFile(compressedFile);
+      } catch (error) {
+        console.error("Error al comprimir la imagen", error);
+        setImageFile(file); // Si falla, guardamos la original
+      }
     }
   };
 
@@ -39,16 +56,19 @@ export default function LogForm() {
   const handleSubmit = (formData: FormData) => {
     startTransition(async () => {
       try {
+        if (imageFile) {
+          formData.set("image", imageFile);
+        }
         await saveCatch(formData);
-      } catch (error) {
-        alert("Hubo un error al guardar la pesca.");
+      } catch (error: any) {
+        alert(error.message || "Hubo un error desconocido al guardar la pesca.");
         console.error(error);
       }
     });
   };
 
   return (
-    <form action={handleSubmit} className="space-y-6 pb-12">
+    <form action={handleSubmit} className="space-y-5 pb-32">
       {/* Coordenadas Ocultas */}
       {coords && (
         <>
