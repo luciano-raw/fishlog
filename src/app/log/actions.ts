@@ -53,29 +53,38 @@ export async function saveCatch(formData: FormData) {
   }
 
   // 5. Sincronizar el usuario en nuestra BD (Upsert)
-  await prisma.user.upsert({
-    where: { id: userId },
-    update: {}, // Si ya existe, no hacemos nada (podríamos actualizar avatar)
-    create: {
-      id: userId,
-      email: clerkUser.emailAddresses[0].emailAddress,
-      username: clerkUser.username || clerkUser.firstName || "Angler",
-      avatarUrl: clerkUser.imageUrl,
-    }
-  });
+  const email = clerkUser.emailAddresses && clerkUser.emailAddresses.length > 0 
+    ? clerkUser.emailAddresses[0].emailAddress 
+    : `${userId}@no-email.com`;
 
-  // 6. Guardar la pesca en Postgres vía Prisma
-  await prisma.catch.create({
-    data: {
-      userId,
-      species,
-      length: length ? parseFloat(length) : null,
-      weight: weight ? parseFloat(weight) : null,
-      imageUrl,
-      locationLat: lat ? parseFloat(lat) : null,
-      locationLng: lng ? parseFloat(lng) : null,
-    }
-  });
+  try {
+    await prisma.user.upsert({
+      where: { id: userId },
+      update: {}, 
+      create: {
+        id: userId,
+        email: email,
+        username: clerkUser.username || clerkUser.firstName || "Angler",
+        avatarUrl: clerkUser.imageUrl,
+      }
+    });
+
+    // 6. Guardar la pesca en Postgres vía Prisma
+    await prisma.catch.create({
+      data: {
+        userId,
+        species,
+        length: length ? parseFloat(length) : null,
+        weight: weight ? parseFloat(weight) : null,
+        imageUrl,
+        locationLat: lat ? parseFloat(lat) : null,
+        locationLng: lng ? parseFloat(lng) : null,
+      }
+    });
+  } catch (error) {
+    console.error("Error en base de datos:", error);
+    throw new Error("Error al guardar en la base de datos.");
+  }
 
   // 7. Refrescar la página principal y redirigir
   revalidatePath("/");
