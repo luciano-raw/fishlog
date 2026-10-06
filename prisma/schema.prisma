@@ -13,6 +13,8 @@ model User {
   avatarUrl  String?
   createdAt  DateTime @default(now())
   catches    Catch[]
+  spots      Spot[]
+  hazards    Hazard[]
   
   // Relaciones de amigos
   friendsAdded  Friendship[] @relation("UserAdded")
@@ -41,6 +43,32 @@ model Catch {
   imageUrl    String?  // URL de la foto en Supabase Storage
   locationLat Float?
   locationLng Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
+model Spot {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  speciesSeen String?
+  imageUrl    String?
+  locationLat Float
+  locationLng Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Hazard {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  note        String?
+  locationLat Float
+  locationLng Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

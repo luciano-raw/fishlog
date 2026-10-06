@@ -16,4 +16,13 @@ const MapComponent = dynamic(
   }
 );
 
-export default MapComponent;
+interface MapProps {
+  catches: any[];
+  spots?: any[];
+  hazards?: any[];
+  interactive?: boolean;
+}
+
+export default function MapDynamicClient(props: MapProps) {
+  return <MapComponent {...props} />;
+}

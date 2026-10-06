@@ -8,6 +8,9 @@ export default async function MapPage() {
   const { userId } = await auth();
   
   let catches: any[] = [];
+  let spots: any[] = [];
+  let hazards: any[] = [];
+
   if (userId) {
     const friendships = await prisma.friendship.findMany({
       where: {
@@ -15,9 +18,22 @@ export default async function MapPage() {
       }
     });
     const friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
+    const allUsers = [userId, ...friendIds];
 
     catches = await prisma.catch.findMany({
-      where: { userId: { in: [userId, ...friendIds] } },
+      where: { userId: { in: allUsers } },
+      include: { user: true },
+      orderBy: { createdAt: "desc" },
+    });
+
+    spots = await prisma.spot.findMany({
+      where: { userId: { in: allUsers } },
+      include: { user: true },
+      orderBy: { createdAt: "desc" },
+    });
+
+    hazards = await prisma.hazard.findMany({
+      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
     });
@@ -35,7 +51,7 @@ export default async function MapPage() {
 
       {/* Mapa Interactivo */}
       <main className="flex-1">
-        <MapDynamic catches={catches} interactive={true} />
+        <MapDynamic catches={catches} spots={spots} hazards={hazards} interactive={true} />
       </main>
     </div>
   );

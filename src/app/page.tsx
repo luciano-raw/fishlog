@@ -27,13 +27,30 @@ export default async function Home() {
     friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
   }
 
-  // Fetch recent catches (User + Friends)
+  // Fetch recent data (User + Friends)
   let recentCatches: any[] = [];
+  let spots: any[] = [];
+  let hazards: any[] = [];
+
   if (userId) {
+    const allUsers = [userId, ...friendIds];
+    
     recentCatches = await prisma.catch.findMany({
-      where: {
-        userId: { in: [userId, ...friendIds] }
-      },
+      where: { userId: { in: allUsers } },
+      include: { user: true },
+      orderBy: { createdAt: "desc" },
+      take: 10,
+    });
+
+    spots = await prisma.spot.findMany({
+      where: { userId: { in: allUsers } },
+      include: { user: true },
+      orderBy: { createdAt: "desc" },
+      take: 10,
+    });
+
+    hazards = await prisma.hazard.findMany({
+      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
       take: 10,
@@ -110,7 +127,7 @@ export default async function Home() {
       <section className="relative w-full h-56 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 shrink-0">
         {/* Dynamic Client-Side Map */}
         <div className="absolute inset-0 z-0 opacity-60">
-          <MapDynamic catches={recentCatches} interactive={false} />
+          <MapDynamic catches={recentCatches} spots={spots} hazards={hazards} interactive={false} />
         </div>
         
         {/* Overlay gradient so text is readable */}
@@ -120,7 +137,7 @@ export default async function Home() {
           <MapPin size={32} className="text-lime mb-2 drop-shadow-[0_0_15px_rgba(164,255,61,0.8)]" />
           <h3 className="text-white font-semibold drop-shadow-md">Tus Hitos de Pesca</h3>
           <p className="text-light-gray text-sm mt-1 drop-shadow-md font-medium">
-            {recentCatches.filter(c => c.locationLat).length} lugares descubiertos
+            {recentCatches.filter(c => c.locationLat).length + spots.length + hazards.length} lugares descubiertos
           </p>
           <Link href="/map" className="pointer-events-auto mt-4 px-6 py-2 bg-charcoal/90 text-lime rounded-full border border-lime/50 shadow-[0_0_15px_rgba(164,255,61,0.2)] hover:scale-105 transition-transform backdrop-blur-sm">
              Abrir Mapa Interactivo

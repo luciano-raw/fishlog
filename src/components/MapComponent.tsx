@@ -6,12 +6,27 @@ import L from "leaflet";
 import { useEffect, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
 
-// ... [Iconos previos]
-const neonIcon = L.divIcon({
+// Ícono grande tipo "Pin" o "Lágrima" para las capturas
+const catchIcon = L.divIcon({
   className: "bg-transparent",
-  html: `<div style="width: 20px; height: 20px; background-color: #A4FF3D; border-radius: 50%; border: 3px solid #1A1F1B; box-shadow: 0 0 10px #A4FF3D;"></div>`,
-  iconSize: [20, 20],
-  iconAnchor: [10, 10],
+  html: `
+    <div style="
+      width: 32px; 
+      height: 32px; 
+      background-color: #A4FF3D; 
+      border-radius: 50% 50% 50% 0; 
+      transform: rotate(-45deg); 
+      border: 3px solid #1A1F1B; 
+      box-shadow: 2px 2px 10px rgba(164,255,61,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    ">
+      <div style="width: 12px; height: 12px; background-color: #1A1F1B; border-radius: 50%;"></div>
+    </div>
+  `,
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
 });
 
 // Ícono azul para la posición actual del usuario
@@ -22,8 +37,30 @@ const userIcon = L.divIcon({
   iconAnchor: [8, 8],
 });
 
+// Ícono azul para spots
+const spotIcon = L.divIcon({
+  className: "bg-transparent",
+  html: `
+    <div style="width: 24px; height: 24px; background-color: #3b82f6; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid #1A1F1B; box-shadow: 2px 2px 5px rgba(59,130,246,0.5);"></div>
+  `,
+  iconSize: [24, 24],
+  iconAnchor: [12, 24],
+});
+
+// Ícono rojo para peligros
+const hazardIcon = L.divIcon({
+  className: "bg-transparent",
+  html: `
+    <div style="width: 24px; height: 24px; background-color: #ef4444; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid #1A1F1B; box-shadow: 2px 2px 5px rgba(239,68,68,0.5);"></div>
+  `,
+  iconSize: [24, 24],
+  iconAnchor: [12, 24],
+});
+
 interface MapProps {
   catches: any[];
+  spots?: any[];
+  hazards?: any[];
   interactive?: boolean;
 }
 
@@ -38,8 +75,8 @@ function LocationFlyTo({ catches }: { catches: any[] }) {
       .on("locationfound", (e) => {
         setPosition([e.latlng.lat, e.latlng.lng]);
         // Si no hay capturas previas, volamos a donde está el usuario
-        if (catches.length === 0) {
-          map.flyTo(e.latlng, map.getZoom());
+        if (true) {
+          map.flyTo(e.latlng, 14);
         }
       });
   }, [map, catches.length]);
@@ -53,11 +90,13 @@ function LocationFlyTo({ catches }: { catches: any[] }) {
   ) : null;
 }
 
-export default function MapComponent({ catches, interactive = true }: MapProps) {
-  // Centro por defecto (o última captura)
+export default function MapComponent({ catches, spots = [], hazards = [], interactive = true }: MapProps) {
+  // Centro por defecto (o última captura/spot)
   const centerPosition: [number, number] = catches.length > 0 && catches[0].locationLat
     ? [catches[0].locationLat, catches[0].locationLng]
-    : [-33.4489, -70.6693]; // Default Santiago
+    : spots.length > 0 && spots[0].locationLat 
+      ? [spots[0].locationLat, spots[0].locationLng]
+      : [-33.4489, -70.6693]; // Default Santiago
 
   return (
     <div className={`w-full ${interactive ? 'h-[calc(100vh-100px)]' : 'h-full'} z-0`}>
@@ -85,7 +124,7 @@ export default function MapComponent({ catches, interactive = true }: MapProps) 
             <Marker 
               key={c.id || i} 
               position={[c.locationLat, c.locationLng]} 
-              icon={neonIcon}
+              icon={catchIcon}
             >
               {interactive && (
                 <Popup className="fishlog-popup">
@@ -104,6 +143,44 @@ export default function MapComponent({ catches, interactive = true }: MapProps) 
             </Marker>
           ) : null
         ))}
+
+        {spots.map((s, i) => (
+          s.locationLat && s.locationLng ? (
+            <Marker key={`spot-${s.id || i}`} position={[s.locationLat, s.locationLng]} icon={spotIcon}>
+              {interactive && (
+                <Popup className="fishlog-popup">
+                  <div className="text-center font-sans">
+                    <p className="font-bold text-lg leading-tight text-[#3b82f6]">{s.name}</p>
+                    <p className="text-xs text-[#3b82f6]/80 mb-1">Spot de {s.user?.username || "Amigo"}</p>
+                    {s.speciesSeen && <p className="text-sm text-gray-400 mb-2">Visto: {s.speciesSeen}</p>}
+                    {s.imageUrl && (
+                      <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden mt-2 border border-[#3b82f6]/30">
+                        <ImageWithFullscreen src={s.imageUrl} alt={s.name} className="w-full h-full object-cover" />
+                      </div>
+                    )}
+                  </div>
+                </Popup>
+              )}
+            </Marker>
+          ) : null
+        ))}
+
+        {hazards.map((h, i) => (
+          h.locationLat && h.locationLng ? (
+            <Marker key={`hazard-${h.id || i}`} position={[h.locationLat, h.locationLng]} icon={hazardIcon}>
+              {interactive && (
+                <Popup className="fishlog-popup">
+                  <div className="text-center font-sans">
+                    <p className="font-bold text-lg leading-tight text-[#ef4444]">{h.name}</p>
+                    <p className="text-xs text-[#ef4444]/80 mb-1">Reportado por {h.user?.username || "Amigo"}</p>
+                    {h.note && <p className="text-sm text-gray-300 mt-2 p-2 bg-deep-black rounded-lg border border-[#ef4444]/20">{h.note}</p>}
+                  </div>
+                </Popup>
+              )}
+            </Marker>
+          ) : null
+        ))}
+
       </MapContainer>
       
       {/* Añadimos estilos extra para el popup oscuro sobreescribiendo leaflet */}

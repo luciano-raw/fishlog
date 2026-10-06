@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Home, Map as MapIcon, Plus, BookOpen, User } from "lucide-react";
 import Link from "next/link";
+import AddMenu from "@/components/AddMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,12 +60,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-[10px] mt-1 font-medium">Map</span>
               </Link>
               
-              {/* Botón Central Flotante (Nuevo Registro) */}
-              <div className="relative -top-5">
-                <Link href="/log" className="flex items-center justify-center w-14 h-14 bg-lime rounded-full shadow-[0_0_15px_rgba(164,255,61,0.3)] text-deep-black hover:scale-105 transition-transform">
-                  <Plus size={32} strokeWidth={2.5} />
-                </Link>
-              </div>
+              {/* Botón Central Flotante Multiopción */}
+              <AddMenu />
 
               <Link href="/history" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                 <BookOpen size={24} />
