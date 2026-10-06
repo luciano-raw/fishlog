@@ -57,23 +57,13 @@ export default async function Home() {
       </header>
 
       {/* Stats / Weather Cards */}
-      <section className="grid grid-cols-2 gap-4">
-        <div className="bg-charcoal p-6 rounded-3xl border border-forest-green/20 flex flex-col justify-between">
-          <p className="text-light-gray/60 text-sm font-medium">Total Capturas</p>
-          <p className="text-white font-bold text-4xl mt-2">{recentCatches.length}</p>
+      <section className="grid grid-cols-2 gap-4 mt-2">
+        <div className="bg-charcoal p-5 rounded-3xl border border-forest-green/20 flex flex-col justify-center items-center text-center">
+          <p className="text-light-gray/60 text-xs font-medium uppercase tracking-wider mb-1">Total Capturas</p>
+          <p className="text-white font-bold text-4xl leading-none">{recentCatches.length}</p>
         </div>
         
         <WeatherWidget />
-      </section>
-
-      {/* Search Bar */}
-      <section className="bg-charcoal rounded-2xl p-1 flex items-center border border-forest-green/20 mt-4">
-        <input 
-          type="text" 
-          placeholder="Buscar especies, lugares..." 
-          className="flex-1 bg-transparent border-none outline-none text-white px-4 py-3 placeholder:text-light-gray/50 text-sm"
-        />
-        <button className="p-2 text-light-gray/60"><Search size={18} /></button>
       </section>
 
       {/* Latest Catch Section */}
@@ -117,7 +107,7 @@ export default async function Home() {
       </section>
 
       {/* Map Preview Area */}
-      <section className="relative flex-1 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 min-h-[300px]">
+      <section className="relative w-full h-56 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 shrink-0">
         {/* Dynamic Client-Side Map */}
         <div className="absolute inset-0 z-0 opacity-60">
           <MapDynamic catches={recentCatches} interactive={false} />

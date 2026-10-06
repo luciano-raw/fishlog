@@ -1,8 +1,8 @@
 import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Home, Map, Plus, BookOpen, User } from "lucide-react";
+import { Home, Map as MapIcon, Plus, BookOpen, User } from "lucide-react";
 import Link from "next/link";
 
 const geistSans = Geist({
@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   title: "Fishlog",
   description: "Registra tus capturas",
   manifest: "/manifest.json",
-  themeColor: "#000000",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -27,16 +26,24 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1, // Evita que iOS haga zoom al tocar
+  userScalable: false,
+  themeColor: "#000000",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-[100dvh] antialiased dark`}
     >
-      <body className="h-full flex flex-col bg-deep-black text-light-gray overflow-hidden">
+      <body className="h-[100dvh] flex flex-col bg-deep-black text-light-gray overflow-hidden">
         <ClerkProvider>
           {/* Contenido Principal */}
-          <main className="flex-1 overflow-y-auto pb-32">
+          <main className="flex-1 overflow-y-auto pb-40">
             {children}
           </main>
 
@@ -48,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-[10px] mt-1 font-medium">Home</span>
               </Link>
               <Link href="/map" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
-                <Map size={24} />
+                <MapIcon size={24} />
                 <span className="text-[10px] mt-1 font-medium">Map</span>
               </Link>
               
