@@ -22,8 +22,16 @@ export default function LogForm() {
       navigator.geolocation.getCurrentPosition((pos) => {
         setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         alert("Ubicación guardada con éxito.");
-      }, () => {
-        alert("No se pudo obtener la ubicación.");
+      }, (error) => {
+        let msg = "No se pudo obtener la ubicación.";
+        if (error.code === 1) msg = "Permiso denegado. Revisa los ajustes de tu navegador.";
+        else if (error.code === 2) msg = "Posición no disponible. Comprueba tu GPS.";
+        else if (error.code === 3) msg = "Tiempo de espera agotado al buscar el GPS.";
+        alert(msg);
+      }, {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
       });
     }
   };
