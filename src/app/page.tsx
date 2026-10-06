@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import MapDynamic from "@/components/MapDynamic";
 import ImageWithFullscreen from "@/components/ImageWithFullscreen";
+import WeatherWidget from "@/components/WeatherWidget";
 
 export default async function Home() {
   const { userId } = await auth();
