@@ -4,8 +4,8 @@ import { CheckCircle, Fish } from "lucide-react";
 import Link from "next/link";
 import { SignInButton } from "@clerk/nextjs";
 
-export default async function InvitePage({ params }: { params: { id: string } }) {
-  const { id: inviterId } = params;
+export default async function InvitePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: inviterId } = await params;
   const { userId } = await auth();
 
   // Buscar quién es el invitador para mostrar su nombre
