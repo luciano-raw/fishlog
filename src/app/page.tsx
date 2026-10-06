@@ -44,42 +44,34 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-full p-4 space-y-6">
       {/* Header section */}
-      <header className="flex justify-between items-start mt-4">
+      <header className="flex justify-between items-center mt-2">
         <div>
-          <p className="text-light-gray/70 text-sm">Good morning,</p>
-          <div className="flex items-center gap-2">
-            <h1 className="text-3xl font-bold text-white">{userName}</h1>
-            <Sun className="text-lime" size={24} />
-          </div>
-          <p className="text-light-gray/50 text-xs mt-1">Conditions look great on the water.</p>
+          <p className="text-light-gray/70 text-sm font-medium">Buena pesca,</p>
+          <h1 className="text-white text-2xl font-bold tracking-tight">{userName}</h1>
         </div>
-        <button className="p-2 bg-charcoal rounded-full border border-forest-green/30">
-          <Bell size={20} className="text-light-gray" />
+        <button className="relative p-2 bg-charcoal rounded-full border border-forest-green/30 hover:border-lime transition-colors">
+          <Bell size={20} className="text-white" />
+          <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-lime rounded-full border-2 border-charcoal"></span>
         </button>
       </header>
 
-      {/* Weather Card Placeholder */}
-      <section className="bg-charcoal p-4 rounded-3xl border border-forest-green/20 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <Sun className="text-[#F59E0B]" size={40} />
-          <div>
-            <span className="text-3xl font-light text-white">18°</span>
-            <p className="text-light-gray/60 text-sm">Clear</p>
-          </div>
+      {/* Stats / Weather Cards */}
+      <section className="grid grid-cols-2 gap-4">
+        <div className="bg-charcoal p-6 rounded-3xl border border-forest-green/20 flex flex-col justify-between">
+          <p className="text-light-gray/60 text-sm font-medium">Total Capturas</p>
+          <p className="text-white font-bold text-4xl mt-2">{recentCatches.length}</p>
         </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-light-gray/60">
-          <div>Wind</div><div className="text-white text-right">8 km/h NE</div>
-          <div>Pressure</div><div className="text-white text-right">1018 hPa</div>
-          <div>Moon</div><div className="text-white text-right">Waning</div>
-        </div>
+        
+        <WeatherWidget />
       </section>
 
-      {/* Filters */}
-      <section className="flex items-center gap-3">
-        <button className="px-4 py-1.5 bg-lime text-deep-black rounded-full text-sm font-semibold">Nearby</button>
-        <button className="px-4 py-1.5 text-light-gray/60 hover:text-white rounded-full text-sm">Favorites</button>
-        <button className="px-4 py-1.5 text-light-gray/60 hover:text-white rounded-full text-sm">Recent</button>
-        <div className="flex-1" />
+      {/* Search Bar */}
+      <section className="bg-charcoal rounded-2xl p-1 flex items-center border border-forest-green/20 mt-4">
+        <input 
+          type="text" 
+          placeholder="Buscar especies, lugares..." 
+          className="flex-1 bg-transparent border-none outline-none text-white px-4 py-3 placeholder:text-light-gray/50 text-sm"
+        />
         <button className="p-2 text-light-gray/60"><Search size={18} /></button>
       </section>
 
@@ -140,7 +132,7 @@ export default async function Home() {
             {recentCatches.filter(c => c.locationLat).length} lugares descubiertos
           </p>
           <Link href="/map" className="pointer-events-auto mt-4 px-6 py-2 bg-charcoal/90 text-lime rounded-full border border-lime/50 shadow-[0_0_15px_rgba(164,255,61,0.2)] hover:scale-105 transition-transform backdrop-blur-sm">
-            Abrir Mapa Interactivo
+             Abrir Mapa Interactivo
           </Link>
         </div>
       </section>

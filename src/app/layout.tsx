@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="h-full flex flex-col bg-deep-black text-light-gray overflow-hidden">
         <ClerkProvider>
           {/* Contenido Principal */}
-          <main className="flex-1 overflow-y-auto pb-24">
+          <main className="flex-1 overflow-y-auto pb-32">
             {children}
           </main>
 

@@ -17,7 +17,7 @@ export default async function InvitePage({ params }: { params: Promise<{ id: str
 
   if (!userId) {
     // Redirigir automáticamente a iniciar sesión, y luego volver aquí.
-    return <RedirectToSignIn forceRedirectUrl={`/invite/${inviterId}`} />;
+    return <RedirectToSignIn redirectUrl={`/invite/${inviterId}`} />;
   }
 
   if (userId === inviterId) {

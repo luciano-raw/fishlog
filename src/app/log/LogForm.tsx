@@ -112,11 +112,17 @@ export default function LogForm() {
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
           />
-          {/* Silueta de Pez (Guía visual) */}
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-10 opacity-30">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#A4FF3D" strokeWidth="1" className="w-[80%] h-[80%]">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 9c0 1.956-1.503 4.25-3.82 5.568-2.316 1.319-5.118 1.488-7.447.452L4 13.5l1.5-4 4-1.5c2.33-1.036 5.13-.867 7.446.452C17.997 9.75 19.5 12.044 19.5 14Z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M22 12l-4-4v8l4-4z" />
+          {/* Silueta de Pez Realista (Guía visual) */}
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-10 opacity-60">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#A4FF3D" strokeWidth="1.5" strokeDasharray="4 4" className="w-[85%] h-[85%] drop-shadow-[0_0_8px_rgba(164,255,61,0.8)]">
+              {/* Cuerpo y cola del pez realista */}
+              <path d="M 90,50 C 90,30 60,20 40,30 C 25,35 15,40 5,25 L 10,50 L 5,75 C 15,60 25,65 40,70 C 60,80 90,70 90,50 Z" />
+              {/* Aleta superior */}
+              <path d="M 45,28 C 55,15 70,18 75,25" />
+              {/* Ojo */}
+              <circle cx="75" cy="45" r="2" fill="#A4FF3D" />
+              {/* Agalla */}
+              <path d="M 65,40 C 62,45 62,55 65,60" />
             </svg>
           </div>
           <div className="absolute top-10 left-0 w-full text-center z-10 pointer-events-none">
@@ -146,7 +152,7 @@ export default function LogForm() {
   }
 
   return (
-    <form action={handleSubmit} className="space-y-5 pb-32">
+    <form action={handleSubmit} className="space-y-5 pb-10">
       {/* Coordenadas Ocultas */}
       {coords && (
         <>
@@ -163,7 +169,7 @@ export default function LogForm() {
         ) : (
           <div className="flex flex-col items-center text-forest-green">
             <Camera size={40} className="mb-2" />
-            <span className="text-sm font-medium">Add Photo</span>
+            <span className="text-sm font-medium">Añadir Foto</span>
           </div>
         )}
         <input 
@@ -177,7 +183,7 @@ export default function LogForm() {
 
       {/* Species */}
       <div className="space-y-2">
-        <label className="text-sm text-light-gray/70 font-medium">Species</label>
+        <label className="text-sm text-light-gray/70 font-medium">Especie</label>
         <div className="relative">
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-forest-green">
             <Fish size={20} />
@@ -186,7 +192,7 @@ export default function LogForm() {
             type="text" 
             name="species"
             required
-            placeholder="e.g. Largemouth Bass"
+            placeholder="ej. Trucha, Lenguado"
             className="w-full bg-charcoal text-white rounded-2xl py-4 pl-12 pr-4 outline-none border border-forest-green/20 focus:border-lime transition-colors"
           />
         </div>
@@ -195,7 +201,7 @@ export default function LogForm() {
       {/* Dimensions (Length & Weight) */}
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="text-sm text-light-gray/70 font-medium">Length</label>
+          <label className="text-sm text-light-gray/70 font-medium">Longitud</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-forest-green">
               <Ruler size={18} />
@@ -209,7 +215,7 @@ export default function LogForm() {
           </div>
         </div>
         <div className="space-y-2">
-          <label className="text-sm text-light-gray/70 font-medium">Weight</label>
+          <label className="text-sm text-light-gray/70 font-medium">Peso</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-forest-green">
               <Weight size={18} />
@@ -227,7 +233,7 @@ export default function LogForm() {
 
       {/* Location */}
       <div className="space-y-2">
-        <label className="text-sm text-light-gray/70 font-medium">Location</label>
+        <label className="text-sm text-light-gray/70 font-medium">Ubicación</label>
         <button 
           type="button"
           onClick={handleLocation}
@@ -251,7 +257,7 @@ export default function LogForm() {
       <button 
         type="submit" 
         disabled={isPending}
-        className="flex justify-center items-center gap-2 w-full bg-lime text-deep-black font-bold text-lg py-4 rounded-2xl shadow-[0_0_20px_rgba(164,255,61,0.2)] hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:hover:scale-100"
+        className="flex justify-center items-center gap-2 w-full bg-lime text-deep-black font-bold text-lg py-4 rounded-2xl shadow-[0_0_20px_rgba(164,255,61,0.2)] hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:hover:scale-100 mb-8"
       >
         {isPending ? (
           <>
@@ -259,7 +265,7 @@ export default function LogForm() {
             Guardando...
           </>
         ) : (
-          "Save Catch"
+          "Guardar Captura"
         )}
       </button>
     </form>
