@@ -43,14 +43,15 @@ export default function MapComponent({ catches, interactive = true }: MapProps) 
         zoom={interactive ? 13 : 11}
         scrollWheelZoom={interactive}
         dragging={interactive}
-        zoomControl={false} // Quitamos el default para ponerlo abajo si es interactivo
+        zoomControl={false}
         touchZoom={interactive}
         doubleClickZoom={interactive}
         className="w-full h-full z-0"
       >
         <TileLayer
-          attribution='&copy; <a href="https://carto.com/">CartoDB</a>'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          className="map-tiles-dark"
         />
         
         {interactive && <ZoomControl position="bottomright" />}
@@ -96,6 +97,10 @@ export default function MapComponent({ catches, interactive = true }: MapProps) 
         .leaflet-container {
           background-color: #000000;
           font-family: var(--font-sans);
+        }
+        /* Truco para volver el mapa estandar de OSM a Dark Mode */
+        .map-tiles-dark {
+          filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
         }
       `}</style>
     </div>

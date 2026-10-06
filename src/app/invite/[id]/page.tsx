@@ -2,7 +2,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { CheckCircle, Fish } from "lucide-react";
 import Link from "next/link";
-import { SignInButton } from "@clerk/nextjs";
+import { RedirectToSignIn } from "@clerk/nextjs";
 
 export default async function InvitePage({ params }: { params: Promise<{ id: string }> }) {
   const { id: inviterId } = await params;
@@ -16,25 +16,8 @@ export default async function InvitePage({ params }: { params: Promise<{ id: str
   const inviterName = inviter?.username || "Un amigo";
 
   if (!userId) {
-    // Si el amigo NO ha iniciado sesión, le mostramos la invitación bonita
-    return (
-      <div className="flex-1 flex flex-col items-center justify-center min-h-screen p-6 text-center bg-deep-black">
-        <div className="w-20 h-20 bg-charcoal rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(164,255,61,0.2)]">
-          <Fish size={40} className="text-lime" />
-        </div>
-        <h2 className="text-2xl font-bold text-white mb-3">¡{inviterName} te ha invitado!</h2>
-        <p className="text-light-gray/70 mb-8 max-w-sm">
-          Únete a Fishlog para compartir tus mejores spots de pesca, fotos y competir amistosamente.
-        </p>
-        
-        {/* Clerk Sign In con redirección de vuelta a esta misma página */}
-        <SignInButton mode="modal" fallbackRedirectUrl={`/invite/${inviterId}`}>
-          <button className="w-full max-w-xs px-8 py-4 bg-lime text-deep-black rounded-2xl font-bold shadow-[0_0_15px_rgba(164,255,61,0.3)] hover:scale-105 transition-transform">
-            Aceptar Invitación
-          </button>
-        </SignInButton>
-      </div>
-    );
+    // Redirigir automáticamente a iniciar sesión, y luego volver aquí.
+    return <RedirectToSignIn forceRedirectUrl={`/invite/${inviterId}`} />;
   }
 
   if (userId === inviterId) {
