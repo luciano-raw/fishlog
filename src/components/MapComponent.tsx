@@ -3,6 +3,7 @@
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
 import { useEffect, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
 
@@ -56,6 +57,15 @@ const hazardIcon = L.divIcon({
   iconSize: [24, 24],
   iconAnchor: [12, 24],
 });
+
+
+const createClusterCustomIcon = function (cluster: any) {
+  return L.divIcon({
+    html: `<div class="w-10 h-10 bg-[#a4ff3d] border-2 border-[#1A1F1B] text-[#1A1F1B] font-bold text-base rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(164,255,61,0.6)]"><span>${cluster.getChildCount()}</span></div>`,
+    className: 'custom-marker-cluster',
+    iconSize: L.point(40, 40, true),
+  });
+};
 
 interface MapProps {
   catches: any[];
@@ -118,6 +128,7 @@ export default function MapComponent({ catches, spots = [], hazards = [], intera
         
         {interactive && <ZoomControl position="bottomright" />}
         <LocationFlyTo catches={catches} />
+          <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon} maxClusterRadius={40}>
 
         {catches.map((c, i) => (
           c.locationLat && c.locationLng ? (
@@ -181,6 +192,7 @@ export default function MapComponent({ catches, spots = [], hazards = [], intera
           ) : null
         ))}
 
+          </MarkerClusterGroup>
       </MapContainer>
       
       {/* Añadimos estilos extra para el popup oscuro sobreescribiendo leaflet */}

@@ -103,7 +103,7 @@ export default function LogForm() {
   // Si hay imagen en crudo, mostramos pantalla completa de recorte
   if (rawImage) {
     return (
-      <div className="fixed inset-0 z-50 bg-black flex flex-col">
+      <div className="fixed inset-0 z-[3000] bg-black flex flex-col">
         <div className="relative flex-1">
           <Cropper
             image={rawImage}
@@ -133,7 +133,7 @@ export default function LogForm() {
             </p>
           </div>
         </div>
-        <div className="h-32 bg-deep-black flex items-center justify-between px-6 pb-safe">
+        <div className="h-32 bg-deep-black flex items-center justify-between px-6 pb-8">
           <button 
             type="button" 
             onClick={() => setRawImage(null)} 
