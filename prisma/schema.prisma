@@ -13,6 +13,22 @@ model User {
   avatarUrl  String?
   createdAt  DateTime @default(now())
   catches    Catch[]
+  
+  // Relaciones de amigos
+  friendsAdded  Friendship[] @relation("UserAdded")
+  friendsOf     Friendship[] @relation("UserFriendOf")
+}
+
+model Friendship {
+  id        String   @id @default(cuid())
+  userId    String
+  friendId  String
+  createdAt DateTime @default(now())
+
+  user   User @relation("UserAdded", fields: [userId], references: [id], onDelete: Cascade)
+  friend User @relation("UserFriendOf", fields: [friendId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, friendId])
 }
 
 model Catch {

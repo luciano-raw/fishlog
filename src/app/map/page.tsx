@@ -9,8 +9,16 @@ export default async function MapPage() {
   
   let catches: any[] = [];
   if (userId) {
+    const friendships = await prisma.friendship.findMany({
+      where: {
+        OR: [{ userId: userId }, { friendId: userId }]
+      }
+    });
+    const friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
+
     catches = await prisma.catch.findMany({
-      where: { userId },
+      where: { userId: { in: [userId, ...friendIds] } },
+      include: { user: true },
       orderBy: { createdAt: "desc" },
     });
   }

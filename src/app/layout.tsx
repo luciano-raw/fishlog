@@ -66,8 +66,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               
               <div className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                 <Show when="signed-in">
-                  <UserButton appearance={{ elements: { userButtonAvatarBox: "w-6 h-6" } }} />
-                  <span className="text-[10px] mt-1 font-medium text-forest-green">Profile</span>
+                  <Link href="/profile" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
+                    <UserButton appearance={{ elements: { userButtonAvatarBox: "w-6 h-6" } }} />
+                    <span className="text-[10px] mt-1 font-medium text-forest-green">Profile</span>
+                  </Link>
                 </Show>
                 <Show when="signed-out">
                   <SignInButton mode="modal">

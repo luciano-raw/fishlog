@@ -10,13 +10,32 @@ export default async function Home() {
   const user = await currentUser();
   const userName = user?.firstName || user?.username || "Angler";
 
-  // Fetch recent catches for this user
+  // Fetch friends first
+  let friendIds: string[] = [];
+  if (userId) {
+    const friendships = await prisma.friendship.findMany({
+      where: {
+        OR: [
+          { userId: userId },
+          { friendId: userId }
+        ]
+      }
+    });
+    
+    // Extraer los IDs únicos de los amigos
+    friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
+  }
+
+  // Fetch recent catches (User + Friends)
   let recentCatches: any[] = [];
   if (userId) {
     recentCatches = await prisma.catch.findMany({
-      where: { userId },
+      where: {
+        userId: { in: [userId, ...friendIds] }
+      },
+      include: { user: true },
       orderBy: { createdAt: "desc" },
-      take: 5,
+      take: 10,
     });
   }
 
@@ -88,7 +107,7 @@ export default async function Home() {
               <div>
                 <h3 className="text-white font-bold text-lg">{latestCatch.species}</h3>
                 <p className="text-light-gray/60 text-sm">
-                  {new Date(latestCatch.createdAt).toLocaleDateString()}
+                  {latestCatch.userId === userId ? "Pescado por ti" : `Pescado por ${latestCatch.user?.username || "Amigo"}`} • {new Date(latestCatch.createdAt).toLocaleDateString()}
                 </p>
               </div>
               <div className="text-right">

@@ -65,7 +65,8 @@ export default function MapComponent({ catches, interactive = true }: MapProps) 
               {interactive && (
                 <Popup className="fishlog-popup">
                   <div className="text-center font-sans">
-                    <p className="font-bold text-lg mb-1">{c.species}</p>
+                    <p className="font-bold text-lg leading-tight">{c.species}</p>
+                    <p className="text-xs text-lime mb-1">{c.user?.username || "Amigo"}</p>
                     <p className="text-sm text-gray-500 mb-2">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
                     {c.imageUrl && (
                       <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden mt-2 border border-forest-green/30">
