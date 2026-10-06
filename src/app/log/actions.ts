@@ -91,7 +91,7 @@ export async function saveCatch(formData: FormData) {
     throw new Error("Error al guardar en la base de datos.");
   }
 
-  // 7. Refrescar la página principal y redirigir
+  // 7. Refrescar la página principal y devolver éxito
   revalidatePath("/");
-  redirect("/");
+  return { success: true };
 }

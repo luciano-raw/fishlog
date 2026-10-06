@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Camera, MapPin, Ruler, Weight, Fish, Loader2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { saveCatch } from "./actions";
 
 export default function LogForm() {
+  const router = useRouter();
   const [preview, setPreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
@@ -59,7 +61,11 @@ export default function LogForm() {
         if (imageFile) {
           formData.set("image", imageFile);
         }
-        await saveCatch(formData);
+        const result = await saveCatch(formData);
+        if (result?.success) {
+          alert("¡Captura guardada con éxito!");
+          router.push("/");
+        }
       } catch (error: any) {
         alert(error.message || "Hubo un error desconocido al guardar la pesca.");
         console.error(error);

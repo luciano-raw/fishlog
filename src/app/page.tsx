@@ -1,9 +1,25 @@
-import { currentUser } from "@clerk/nextjs/server";
-import { Search, MapPin, Bell, Sun } from "lucide-react";
+import { currentUser, auth } from "@clerk/nextjs/server";
+import { Search, MapPin, Bell, Sun, ChevronRight } from "lucide-react";
+import { prisma } from "@/lib/prisma";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
+  const { userId } = await auth();
   const user = await currentUser();
   const userName = user?.firstName || user?.username || "Angler";
+
+  // Fetch recent catches for this user
+  let recentCatches: any[] = [];
+  if (userId) {
+    recentCatches = await prisma.catch.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      take: 5,
+    });
+  }
+
+  const latestCatch = recentCatches[0];
 
   return (
     <div className="flex flex-col min-h-full p-4 space-y-6">
@@ -47,15 +63,61 @@ export default async function Home() {
         <button className="p-2 text-light-gray/60"><Search size={18} /></button>
       </section>
 
+      {/* Latest Catch Section */}
+      <section className="space-y-3">
+        <div className="flex justify-between items-center">
+          <h2 className="text-white font-semibold">Última Captura</h2>
+          <Link href="/history" className="text-lime text-sm flex items-center">
+            Ver todas <ChevronRight size={16} />
+          </Link>
+        </div>
+
+        {latestCatch ? (
+          <div className="bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20">
+            {latestCatch.imageUrl && (
+              <div className="relative w-full h-48">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={latestCatch.imageUrl} 
+                  alt={latestCatch.species}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div className="p-4 flex justify-between items-center">
+              <div>
+                <h3 className="text-white font-bold text-lg">{latestCatch.species}</h3>
+                <p className="text-light-gray/60 text-sm">
+                  {new Date(latestCatch.createdAt).toLocaleDateString()}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-lime font-bold">{latestCatch.weight ? `${latestCatch.weight} kg` : '--'}</p>
+                <p className="text-light-gray/60 text-sm">{latestCatch.length ? `${latestCatch.length} cm` : '--'}</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-charcoal p-6 rounded-3xl border border-forest-green/20 text-center text-light-gray/60">
+            Aún no has registrado ninguna captura.
+          </div>
+        )}
+      </section>
+
       {/* Map Preview Area */}
       <section className="relative flex-1 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 min-h-[300px] flex items-center justify-center">
         {/* Decorative background simulating a map */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-lime via-deep-black to-deep-black"></div>
         
         <div className="text-center z-10 flex flex-col items-center">
-          <MapPin size={32} className="text-forest-green mb-2 opacity-50" />
-          <p className="text-light-gray/60 text-sm">Tu mapa personal está vacío.</p>
-          <p className="text-light-gray/40 text-xs mt-1">Registra una pesca para empezar.</p>
+          <MapPin size={32} className="text-lime mb-2 shadow-lime" />
+          <h3 className="text-white font-semibold">Tus Hitos de Pesca</h3>
+          <p className="text-light-gray/60 text-sm mt-1">
+            {recentCatches.filter(c => c.locationLat).length} lugares descubiertos
+          </p>
+          <Link href="/map" className="mt-4 px-6 py-2 bg-forest-green/30 text-lime rounded-full border border-forest-green hover:bg-forest-green/50 transition-colors">
+            Abrir Mapa Interactivo
+          </Link>
         </div>
       </section>
     </div>
