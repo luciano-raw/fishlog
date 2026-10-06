@@ -3,6 +3,7 @@ import { Search, MapPin, Bell, Sun, ChevronRight } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
+import MapDynamic from "@/components/MapDynamic";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -105,17 +106,22 @@ export default async function Home() {
       </section>
 
       {/* Map Preview Area */}
-      <section className="relative flex-1 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 min-h-[300px] flex items-center justify-center">
-        {/* Decorative background simulating a map */}
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-lime via-deep-black to-deep-black"></div>
+      <section className="relative flex-1 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 min-h-[300px]">
+        {/* Dynamic Client-Side Map */}
+        <div className="absolute inset-0 z-0 opacity-60">
+          <MapDynamic catches={recentCatches} interactive={false} />
+        </div>
         
-        <div className="text-center z-10 flex flex-col items-center">
-          <MapPin size={32} className="text-lime mb-2 shadow-lime" />
-          <h3 className="text-white font-semibold">Tus Hitos de Pesca</h3>
-          <p className="text-light-gray/60 text-sm mt-1">
+        {/* Overlay gradient so text is readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-transparent to-transparent z-0 pointer-events-none"></div>
+        
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+          <MapPin size={32} className="text-lime mb-2 drop-shadow-[0_0_15px_rgba(164,255,61,0.8)]" />
+          <h3 className="text-white font-semibold drop-shadow-md">Tus Hitos de Pesca</h3>
+          <p className="text-light-gray text-sm mt-1 drop-shadow-md font-medium">
             {recentCatches.filter(c => c.locationLat).length} lugares descubiertos
           </p>
-          <Link href="/map" className="mt-4 px-6 py-2 bg-forest-green/30 text-lime rounded-full border border-forest-green hover:bg-forest-green/50 transition-colors">
+          <Link href="/map" className="pointer-events-auto mt-4 px-6 py-2 bg-charcoal/90 text-lime rounded-full border border-lime/50 shadow-[0_0_15px_rgba(164,255,61,0.2)] hover:scale-105 transition-transform backdrop-blur-sm">
             Abrir Mapa Interactivo
           </Link>
         </div>
