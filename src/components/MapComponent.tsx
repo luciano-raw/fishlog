@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leafl
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useEffect } from "react";
+import ImageWithFullscreen from "./ImageWithFullscreen";
 
 // Arreglar ícono por defecto de Leaflet en Next.js
 const customIcon = L.icon({
@@ -67,8 +68,9 @@ export default function MapComponent({ catches, interactive = true }: MapProps) 
                     <p className="font-bold text-lg mb-1">{c.species}</p>
                     <p className="text-sm text-gray-500 mb-2">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
                     {c.imageUrl && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={c.imageUrl} alt={c.species} className="w-32 h-32 object-cover rounded-xl mx-auto" />
+                      <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden mt-2 border border-forest-green/30">
+                        <ImageWithFullscreen src={c.imageUrl} alt={c.species} className="w-full h-full object-cover" />
+                      </div>
                     )}
                   </div>
                 </Popup>

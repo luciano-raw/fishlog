@@ -1,9 +1,9 @@
 import { currentUser, auth } from "@clerk/nextjs/server";
 import { Search, MapPin, Bell, Sun, ChevronRight } from "lucide-react";
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
 import Link from "next/link";
 import MapDynamic from "@/components/MapDynamic";
+import ImageWithFullscreen from "@/components/ImageWithFullscreen";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -77,8 +77,7 @@ export default async function Home() {
           <div className="bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20">
             {latestCatch.imageUrl && (
               <div className="relative w-full h-48">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
+                <ImageWithFullscreen 
                   src={latestCatch.imageUrl} 
                   alt={latestCatch.species}
                   className="w-full h-full object-cover"

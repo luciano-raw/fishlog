@@ -1,37 +1,62 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Camera, MapPin, Ruler, Weight, Fish, Loader2 } from "lucide-react";
+import { Camera, MapPin, Ruler, Weight, Fish, Loader2, Check, X } from "lucide-react";
 import imageCompression from "browser-image-compression";
+import Cropper from "react-easy-crop";
+import getCroppedImg from "@/lib/cropImage";
 import { saveCatch } from "./actions";
 
 export default function LogForm() {
   const router = useRouter();
+  
+  // States para el formulario
   const [preview, setPreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  // States para el Cropper
+  const [rawImage, setRawImage] = useState<string | null>(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      
-      // Mostrar preview inmediato
-      setPreview(URL.createObjectURL(file));
+      setRawImage(URL.createObjectURL(file)); // Abrir el modal de recorte
+    }
+  };
 
-      // Comprimir la imagen para ahorrar espacio
-      try {
-        const compressedFile = await imageCompression(file, {
-          maxSizeMB: 1, // máximo 1 MB
-          maxWidthOrHeight: 1200,
-          useWebWorker: true,
-        });
-        setImageFile(compressedFile);
-      } catch (error) {
-        console.error("Error al comprimir la imagen", error);
-        setImageFile(file); // Si falla, guardamos la original
-      }
+  const onCropComplete = useCallback((croppedArea: any, croppedAreaPixels: any) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const handleCropSave = async () => {
+    if (!rawImage || !croppedAreaPixels) return;
+    
+    try {
+      // 1. Recortar la imagen en un Canvas (retorna File)
+      const croppedFile = await getCroppedImg(rawImage, croppedAreaPixels);
+      
+      // 2. Comprimir la imagen recortada
+      const compressedFile = await imageCompression(croppedFile, {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1200,
+        useWebWorker: true,
+      });
+
+      // 3. Guardar en el estado para enviarla
+      setImageFile(compressedFile);
+      setPreview(URL.createObjectURL(compressedFile));
+      
+      // 4. Cerrar Modal
+      setRawImage(null);
+    } catch (e) {
+      console.error(e);
+      alert("Error al recortar la imagen.");
     }
   };
 
@@ -72,6 +97,53 @@ export default function LogForm() {
       }
     });
   };
+
+  // Si hay imagen en crudo, mostramos pantalla completa de recorte
+  if (rawImage) {
+    return (
+      <div className="fixed inset-0 z-50 bg-black flex flex-col">
+        <div className="relative flex-1">
+          <Cropper
+            image={rawImage}
+            crop={crop}
+            zoom={zoom}
+            aspect={4 / 3}
+            onCropChange={setCrop}
+            onCropComplete={onCropComplete}
+            onZoomChange={setZoom}
+          />
+          {/* Silueta de Pez (Guía visual) */}
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-10 opacity-30">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A4FF3D" strokeWidth="1" className="w-[80%] h-[80%]">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 9c0 1.956-1.503 4.25-3.82 5.568-2.316 1.319-5.118 1.488-7.447.452L4 13.5l1.5-4 4-1.5c2.33-1.036 5.13-.867 7.446.452C17.997 9.75 19.5 12.044 19.5 14Z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M22 12l-4-4v8l4-4z" />
+            </svg>
+          </div>
+          <div className="absolute top-10 left-0 w-full text-center z-10 pointer-events-none">
+            <p className="text-white font-bold text-shadow drop-shadow-lg uppercase tracking-wider text-sm bg-black/30 inline-block px-4 py-1 rounded-full backdrop-blur-md">
+              Centra tu captura en el marco
+            </p>
+          </div>
+        </div>
+        <div className="h-32 bg-deep-black flex items-center justify-between px-6 pb-safe">
+          <button 
+            type="button" 
+            onClick={() => setRawImage(null)} 
+            className="w-14 h-14 bg-charcoal rounded-full flex items-center justify-center text-white border border-forest-green/30"
+          >
+            <X size={24} />
+          </button>
+          <button 
+            type="button" 
+            onClick={handleCropSave}
+            className="h-14 px-8 bg-lime text-deep-black font-bold rounded-full flex items-center gap-2 shadow-[0_0_15px_rgba(164,255,61,0.3)]"
+          >
+            <Check size={24} /> Recortar
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form action={handleSubmit} className="space-y-5 pb-32">
