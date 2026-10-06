@@ -27,33 +27,28 @@ export default async function Home() {
     friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
   }
 
-  // Fetch recent data (User + Friends)
+  // Fetch recent data (Todos los usuarios)
   let recentCatches: any[] = [];
   let spots: any[] = [];
   let hazards: any[] = [];
 
   if (userId) {
-    const allUsers = [userId, ...friendIds];
-    
     recentCatches = await prisma.catch.findMany({
-      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
-      take: 10,
+      take: 20, // Más datos para poblar el mapa
     });
 
     spots = await prisma.spot.findMany({
-      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
-      take: 10,
+      take: 20,
     });
 
     hazards = await prisma.hazard.findMany({
-      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
-      take: 10,
+      take: 20,
     });
   }
 

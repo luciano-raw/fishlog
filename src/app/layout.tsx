@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
 
           {/* Navegación Inferior (Bottom Bar) */}
-          <nav className="fixed bottom-0 left-0 w-full bg-deep-black/90 backdrop-blur-md border-t border-charcoal pb-safe">
+          <nav className="fixed bottom-0 left-0 w-full bg-deep-black/90 backdrop-blur-md border-t border-charcoal pb-safe z-[2000]">
             <div className="flex justify-around items-center px-2 py-3">
               <Link href="/" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                 <Home size={24} />

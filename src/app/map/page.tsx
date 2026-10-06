@@ -12,28 +12,17 @@ export default async function MapPage() {
   let hazards: any[] = [];
 
   if (userId) {
-    const friendships = await prisma.friendship.findMany({
-      where: {
-        OR: [{ userId: userId }, { friendId: userId }]
-      }
-    });
-    const friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
-    const allUsers = [userId, ...friendIds];
-
     catches = await prisma.catch.findMany({
-      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
     });
 
     spots = await prisma.spot.findMany({
-      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
     });
 
     hazards = await prisma.hazard.findMany({
-      where: { userId: { in: allUsers } },
       include: { user: true },
       orderBy: { createdAt: "desc" },
     });

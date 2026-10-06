@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Plus, Fish, MapPin, AlertTriangle, X } from "lucide-react";
 
@@ -17,16 +18,16 @@ export default function AddMenu() {
         <Plus size={32} strokeWidth={2.5} />
       </button>
 
-      {/* Menú Desplegable */}
-      {isOpen && (
+      {/* Menú Desplegable usando Portal para escapar del stacking context del navbar */}
+      {isOpen && typeof document !== 'undefined' && createPortal(
         <>
           {/* Fondo oscuro para cerrar al hacer clic afuera */}
           <div 
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[2010] bg-black/60 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
           
-          <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-50 transition-all">
+          <div className="fixed bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-[2020] transition-all">
             {/* Opción 1: Peligro */}
             <Link 
               href="/log/hazard"
@@ -63,7 +64,8 @@ export default function AddMenu() {
               </div>
             </Link>
           </div>
-        </>
+        </>,
+        document.body
       )}
     </div>
   );
