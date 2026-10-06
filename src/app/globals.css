@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors from Reference */
+  --deep-black: #000000;
+  --charcoal: #1A1F1B;
+  --moss-green: #2C4A32;
+  --forest-green: #3E6B46;
+  --olive: #7A8F5B;
+  --lime: #A4FF3D;
+  --pink: #FF4D6B;
+  --light-gray: #E6E6E6;
+
+  /* App Theme Variables */
+  --background: var(--deep-black);
+  --foreground: var(--light-gray);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  --color-deep-black: var(--deep-black);
+  --color-charcoal: var(--charcoal);
+  --color-moss-green: var(--moss-green);
+  --color-forest-green: var(--forest-green);
+  --color-olive: var(--olive);
+  --color-lime: var(--lime);
+  --color-pink: var(--pink);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  /* Prevent scrolling bounce on mobile for app feel */
+  overscroll-behavior-y: none;
 }
