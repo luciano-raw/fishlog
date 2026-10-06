@@ -1,23 +1,12 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
 
-// Arreglar ícono por defecto de Leaflet en Next.js
-const customIcon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-// Ícono verde neón para que combine con Fishlog
+// ... [Iconos previos]
 const neonIcon = L.divIcon({
   className: "bg-transparent",
   html: `<div style="width: 20px; height: 20px; background-color: #A4FF3D; border-radius: 50%; border: 3px solid #1A1F1B; box-shadow: 0 0 10px #A4FF3D;"></div>`,
@@ -25,16 +14,50 @@ const neonIcon = L.divIcon({
   iconAnchor: [10, 10],
 });
 
+// Ícono azul para la posición actual del usuario
+const userIcon = L.divIcon({
+  className: "bg-transparent",
+  html: `<div style="width: 16px; height: 16px; background-color: #3b82f6; border-radius: 50%; border: 3px solid #ffffff; box-shadow: 0 0 15px #3b82f6;"></div>`,
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+});
+
 interface MapProps {
   catches: any[];
   interactive?: boolean;
+}
+
+// Subcomponente para manejar la geolocalización de Leaflet
+function LocationFlyTo({ catches }: { catches: any[] }) {
+  const map = useMap();
+  const [position, setPosition] = useState<[number, number] | null>(null);
+
+  useEffect(() => {
+    // Pedir permisos y buscar ubicación
+    map.locate({ setView: false, maxZoom: 13 })
+      .on("locationfound", (e) => {
+        setPosition([e.latlng.lat, e.latlng.lng]);
+        // Si no hay capturas previas, volamos a donde está el usuario
+        if (catches.length === 0) {
+          map.flyTo(e.latlng, map.getZoom());
+        }
+      });
+  }, [map, catches.length]);
+
+  return position ? (
+    <Marker position={position} icon={userIcon}>
+      <Popup className="fishlog-popup">
+        <div className="text-center font-bold text-sm">Estás aquí</div>
+      </Popup>
+    </Marker>
+  ) : null;
 }
 
 export default function MapComponent({ catches, interactive = true }: MapProps) {
   // Centro por defecto (o última captura)
   const centerPosition: [number, number] = catches.length > 0 && catches[0].locationLat
     ? [catches[0].locationLat, catches[0].locationLng]
-    : [-33.4489, -70.6693]; // Default Santiago, Chile (ejemplo)
+    : [-33.4489, -70.6693]; // Default Santiago
 
   return (
     <div className={`w-full ${interactive ? 'h-[calc(100vh-100px)]' : 'h-full'} z-0`}>
@@ -49,12 +72,13 @@ export default function MapComponent({ catches, interactive = true }: MapProps) 
         className="w-full h-full z-0"
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           className="map-tiles-dark"
         />
         
         {interactive && <ZoomControl position="bottomright" />}
+        <LocationFlyTo catches={catches} />
 
         {catches.map((c, i) => (
           c.locationLat && c.locationLng ? (
