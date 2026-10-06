@@ -7,6 +7,7 @@ import imageCompression from "browser-image-compression";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "@/lib/cropImage";
 import { saveCatch } from "./actions";
+import LocationPickerDynamic from "@/components/LocationPickerDynamic";
 
 export default function LogForm() {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function LogForm() {
   const [preview, setPreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [isManualLocation, setIsManualLocation] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   // States para el Cropper
@@ -232,26 +234,37 @@ export default function LogForm() {
       </div>
 
       {/* Location */}
-      <div className="space-y-2">
-        <label className="text-sm text-light-gray/70 font-medium">Ubicación</label>
-        <button 
-          type="button"
-          onClick={handleLocation}
-          className="w-full flex items-center justify-between bg-charcoal rounded-2xl p-4 border border-forest-green/20 hover:border-lime transition-colors"
-        >
-          <div className="flex items-center gap-3">
-            <MapPin className={coords ? "text-lime" : "text-light-gray/50"} size={20} />
-            <div className="text-left">
-              <p className="text-white text-sm">
-                {coords ? "Ubicación guardada ✓" : "Obtener ubicación actual"}
-              </p>
-              <p className="text-light-gray/50 text-xs mt-0.5">
-                {coords ? `${coords.lat.toFixed(4)}, ${coords.lng.toFixed(4)}` : "Requiere permisos de GPS"}
-              </p>
-            </div>
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <label className="text-sm text-light-gray/70 font-medium">Ubicación</label>
+            <button 
+              type="button" 
+              onClick={() => setIsManualLocation(!isManualLocation)}
+              className="text-xs text-lime font-medium underline"
+            >
+              {isManualLocation ? "Usar mi GPS" : "Elegir en mapa"}
+            </button>
           </div>
-        </button>
-      </div>
+
+          {!isManualLocation ? (
+            <button 
+              type="button"
+              onClick={handleLocation}
+              className="w-full flex items-center justify-between bg-charcoal rounded-2xl p-4 border border-forest-green/20 hover:border-lime transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <MapPin className={coords ? "text-lime" : "text-light-gray/50"} size={20} />
+                <div className="text-left">
+                  <p className="text-white text-sm">
+                    {coords ? "Ubicación fijada ✓" : "Obtener ubicación actual"}
+                  </p>
+                  <p className="text-light-gray/50 text-xs mt-0.5">
+                    {coords ? `${coords.lat.toFixed(4)}, ${coords.lng.toFixed(4)}` : "Toca para leer GPS"}
+                  </p>
+                </div>
+              </div>
+            </button>
+          ) : ( <LocationPickerDynamic position={coords} setPosition={setCoords} /> )} </div>
 
       {/* Save Button */}
       <button 
