@@ -1,5 +1,5 @@
 import { currentUser, auth } from "@clerk/nextjs/server";
-import { Search, MapPin, Bell, Sun, ChevronRight, Fish } from "lucide-react";
+import { Search, MapPin, Bell, Sun, ChevronRight, Fish, Scale } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import MapDynamic from "@/components/MapDynamic";
