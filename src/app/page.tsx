@@ -1,5 +1,5 @@
 import { currentUser, auth } from "@clerk/nextjs/server";
-import { Search, MapPin, Bell, Sun, ChevronRight, Fish, Scale } from "lucide-react";
+import { Search, MapPin, Bell, Sun, ChevronRight, Fish, Scale, BookOpen } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import MapDynamic from "@/components/MapDynamic";
@@ -77,6 +77,20 @@ export default async function Home() {
         
         <WeatherWidget />
       </section>
+
+      {/* Banner de Reglamentos */}
+      <Link href="/regulations" className="bg-charcoal p-4 rounded-3xl border border-[#3b82f6]/30 flex items-center justify-between group hover:border-[#3b82f6] transition-colors shadow-lg">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-[#3b82f6]/10 flex items-center justify-center text-[#3b82f6]">
+            <BookOpen size={24} />
+          </div>
+          <div>
+            <h3 className="text-white font-bold text-sm">Reglamentos de Pesca</h3>
+            <p className="text-light-gray/60 text-xs mt-0.5">Normativas y temporadas vigentes</p>
+          </div>
+        </div>
+        <ChevronRight size={20} className="text-[#3b82f6] group-hover:translate-x-1 transition-transform" />
+      </Link>
 
             {/* Latest 4 Catches (2x2 Grid) */}
       <section className="space-y-3">
