@@ -4,7 +4,7 @@ import { ChevronLeft, CalendarDays, Fish, Download, MapPin, Scale } from "lucide
 import { regulationsData } from "@/lib/regulationsData";
 import AccordionItem from "./AccordionItem"; // Crearemos esto
 
-export default async function RegionRegulationPage({ params }: { params: { id: string } }) {
+export default async function RegionRegulationPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   
   const region = regulationsData.find((r) => r.id === id);

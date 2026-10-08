@@ -4,7 +4,7 @@ import { ChevronLeft, Info, MapPin, Anchor, Fish } from "lucide-react";
 import { encyclopediaData } from "@/lib/encyclopediaData";
 import ImageWithFullscreen from "@/components/ImageWithFullscreen";
 
-export default async function SpeciesDetailPage({ params }: { params: { id: string } }) {
+export default async function SpeciesDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   
   const species = encyclopediaData.find((s) => s.id === id);
