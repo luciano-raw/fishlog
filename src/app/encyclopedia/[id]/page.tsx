@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, Info, MapPin, Anchor, Fish } from "lucide-react";
 import { encyclopediaData } from "@/lib/encyclopediaData";
+import ImageWithFullscreen from "@/components/ImageWithFullscreen";
 
 export default async function SpeciesDetailPage({ params }: { params: { id: string } }) {
   const { id } = await params;
@@ -24,8 +25,7 @@ export default async function SpeciesDetailPage({ params }: { params: { id: stri
       {/* Hero Image */}
       <div className="relative w-full h-80 bg-charcoal border-b border-forest-green/30">
         {species.imageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={species.imageUrl} alt={species.name} className="w-full h-full object-cover" />
+          <ImageWithFullscreen src={species.imageUrl} alt={species.name} className="w-full h-full object-cover cursor-pointer" />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center text-forest-green/50">
             <Fish size={80} className="mb-4" />
