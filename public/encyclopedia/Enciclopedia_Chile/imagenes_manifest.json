@@ -1,0 +1,292 @@
+[
+  {
+    "especie_id": "trucha_fario",
+    "archivo": "imagenes_publicables/trucha_fario.jpg",
+    "publicable": true,
+    "licencia": "Public Domain (declarado por USFWS)",
+    "credito": "USFWS",
+    "fuente_url": "https://www.fws.gov/media/brown-trout-2",
+    "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/banner_images/2022-02/1-BrownTrout-USFWS.jpg?itok=0_Tmwr66",
+    "fecha_consulta": "2026-10-08"
+  },
+  {
+    "especie_id": "trucha_arcoiris",
+    "archivo": "imagenes_publicables/trucha_arcoiris.jpg",
+    "publicable": true,
+    "licencia": "Public Domain (declarado por USFWS)",
+    "credito": "Ryan Hagerty / USFWS",
+    "fuente_url": "https://www.fws.gov/media/rainbow-trout-34",
+    "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/images/2024-03-6/30693.jpg?itok=0crRf7D_",
+    "fecha_consulta": "2026-10-08"
+  },
+  {
+    "especie_id": "trucha_arroyo",
+    "archivo": "imagenes_publicables/trucha_arroyo.jpg",
+    "publicable": true,
+    "licencia": "Public Domain (declarado por USFWS)",
+    "credito": "Ryan Hagerty / USFWS",
+    "fuente_url": "https://www.fws.gov/media/brook-trout-7",
+    "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/images/2024-03-6/23439.jpg?itok=uOFTezpr",
+    "fecha_consulta": "2026-10-08"
+  },
+  {
+    "especie_id": "salmon_chinook",
+    "archivo": "imagenes_publicables/salmon_chinook.jpg",
+    "publicable": true,
+    "licencia": "Public Domain (declarado por USFWS)",
+    "credito": "Ryan Hagerty / USFWS",
+    "fuente_url": "https://www.fws.gov/media/chinook",
+    "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/banner_images/2021-08/Chinook-salmon-Ryan-Hagerty-usfws.jpg?itok=k-oCnZ3m",
+    "fecha_consulta": "2026-10-08"
+  },
+  {
+    "especie_id": "salmon_coho",
+    "archivo": "imagenes_publicables/salmon_coho.jpg",
+    "publicable": true,
+    "licencia": "Public Domain (declarado por USFWS)",
+    "credito": "USFWS",
+    "fuente_url": "https://www.fws.gov/media/coho-salmon-6",
+    "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/banner_images/2022-03/coho-salmon-banner-size-credit-usfws.jpg?itok=F9R7wIfF",
+    "fecha_consulta": "2026-10-08"
+  },
+  {
+    "especie_id": "salmon_atlantico",
+    "archivo": "imagenes_publicables/salmon_atlantico.jpg",
+    "publicable": true,
+    "licencia": "Public Domain (declarado por USFWS)",
+    "credito": "USFWS",
+    "fuente_url": "https://www.fws.gov/media/atlantic-salmon-cbnfh-usfwsjpg",
+    "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/2021-01/atlantic-salmon-cbnfh-usfws.JPG?itok=XA5TjAS9",
+    "fecha_consulta": "2026-10-08"
+  },
+  {
+    "especie_id": "carpa",
+    "archivo": "imagenes_publicables/carpa.jpg",
+    "publicable": true,
+    "licencia": "Public Domain (declarado por USFWS)",
+    "credito": "Duane Raver / USFWS",
+    "fuente_url": "https://www.fws.gov/media/common-carp-9",
+    "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/images/2005-05/25312.jpg?itok=yx_QLJFw",
+    "fecha_consulta": "2026-10-08"
+  },
+  {
+    "especie_id": "pejerrey_chileno",
+    "archivo": "imagenes_referencia/pejerrey_chileno.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_2_especies_dulceacuicolas.pdf",
+    "pagina_pdf": 17,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "pejerrey_argentino",
+    "archivo": "imagenes_referencia/pejerrey_argentino.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_2_especies_dulceacuicolas.pdf",
+    "pagina_pdf": 16,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "cauque_maule",
+    "archivo": "imagenes_referencia/cauque_maule.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 27,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "pejerrey_norte",
+    "archivo": "imagenes_referencia/pejerrey_norte.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 34,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "bagrecito",
+    "archivo": "imagenes_referencia/bagrecito.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 24,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "carmelita_concepcion",
+    "archivo": "imagenes_referencia/carmelita_concepcion.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 26,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "bagre_grande",
+    "archivo": "imagenes_referencia/bagre_grande.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 18,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "pocha",
+    "archivo": "imagenes_referencia/pocha.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 36,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "pocha_lagos",
+    "archivo": "imagenes_referencia/pocha_lagos.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 40,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "perca_negra",
+    "archivo": "imagenes_referencia/perca_negra.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 45,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "tollo_agua_dulce",
+    "archivo": "imagenes_referencia/tollo_agua_dulce.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+    "pagina_pdf": 15,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "puye",
+    "archivo": "imagenes_referencia/puye.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Nicole Colin; MMA–ONU, guía 2025",
+    "fuente_url": "https://gef.mma.gob.cl/humedales/wp-content/uploads/2025/01/GUIA_PECES_E_INSECTOS_2024_BAJA_RES.pdf",
+    "pagina_pdf": 12,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "puye_rojo",
+    "archivo": "imagenes_referencia/puye_rojo.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Nicole Colin; MMA–ONU, guía 2025",
+    "fuente_url": "https://gef.mma.gob.cl/humedales/wp-content/uploads/2025/01/GUIA_PECES_E_INSECTOS_2024_BAJA_RES.pdf",
+    "pagina_pdf": 13,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "carmelita",
+    "archivo": "imagenes_referencia/carmelita.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Nicole Colin; MMA–ONU, guía 2025",
+    "fuente_url": "https://gef.mma.gob.cl/humedales/wp-content/uploads/2025/01/GUIA_PECES_E_INSECTOS_2024_BAJA_RES.pdf",
+    "pagina_pdf": 16,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "corvina",
+    "archivo": "imagenes_referencia/corvina.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+    "pagina_pdf": 23,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "pejerrey_mar",
+    "archivo": "imagenes_referencia/pejerrey_mar.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+    "pagina_pdf": 27,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "robalo",
+    "archivo": "imagenes_referencia/robalo.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+    "pagina_pdf": 28,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "rollizo",
+    "archivo": "imagenes_referencia/rollizo.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+    "pagina_pdf": 29,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "sierra",
+    "archivo": "imagenes_referencia/sierra.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+    "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+    "pagina_pdf": 33,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  },
+  {
+    "especie_id": "pejegallo",
+    "archivo": "imagenes_referencia/pejegallo.png",
+    "publicable": false,
+    "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+    "credito": "IFOP, guía marina; autor de imagen por verificar",
+    "fuente_url": "https://www.ifop.cl/wp-content/contenidos/uploads/mi_guia_de_especies_marinas.pdf",
+    "pagina_pdf": 41,
+    "fecha_consulta": "2026-10-08",
+    "nota": "Referencia documental para revisión interna; no activar en producción."
+  }
+]

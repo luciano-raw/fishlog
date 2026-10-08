@@ -1,0 +1,402 @@
+[
+  {
+    "region_id": "AP",
+    "nombre": "Arica y Parinacota",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_arcoiris",
+      "karachi_chungara",
+      "karachi"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo",
+      "tollo_comun"
+    ]
+  },
+  {
+    "region_id": "TA",
+    "nombre": "Tarapacá",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "karachi"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo",
+      "tollo_comun"
+    ]
+  },
+  {
+    "region_id": "AN",
+    "nombre": "Antofagasta",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_arcoiris",
+      "pejerrey_loa"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo",
+      "tollo_comun"
+    ]
+  },
+  {
+    "region_id": "AT",
+    "nombre": "Atacama",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "pejerrey_norte",
+      "pocha"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo",
+      "tollo_comun"
+    ]
+  },
+  {
+    "region_id": "CO",
+    "nombre": "Coquimbo",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_arcoiris",
+      "carpa",
+      "pejerrey_norte",
+      "bagrecito",
+      "pocha"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "VA",
+    "nombre": "Valparaíso",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "trucha_arroyo",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "pejerrey_argentino",
+      "carpa",
+      "cauque_maule",
+      "pejerrey_norte",
+      "bagrecito",
+      "carmelita",
+      "bagre_grande",
+      "pocha",
+      "puye"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "RM",
+    "nombre": "Metropolitana de Santiago",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "pejerrey_argentino",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "bagre_grande",
+      "pocha",
+      "perca_negra",
+      "puye"
+    ],
+    "marinas": []
+  },
+  {
+    "region_id": "OH",
+    "nombre": "O’Higgins",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "pejerrey_argentino",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "bagre_grande",
+      "pocha",
+      "perca_negra",
+      "puye"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "MA",
+    "nombre": "Maule",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "bagre_grande",
+      "pocha_lagos",
+      "perca_negra",
+      "puye",
+      "puye_rojo",
+      "tollo_agua_dulce"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "NU",
+    "nombre": "Ñuble",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "bagre_grande",
+      "pocha_lagos",
+      "perca_negra",
+      "puye",
+      "puye_rojo",
+      "tollo_agua_dulce"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "BI",
+    "nombre": "Biobío",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "pejerrey_argentino",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "carmelita_concepcion",
+      "bagre_grande",
+      "pocha_lagos",
+      "perca_negra",
+      "puye",
+      "peladilla",
+      "puye_rojo",
+      "tollo_agua_dulce"
+    ],
+    "marinas": [
+      "corvina",
+      "lenguado",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "AR",
+    "nombre": "La Araucanía",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "salmon_chinook",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "carmelita_concepcion",
+      "bagre_grande",
+      "pocha_lagos",
+      "puye",
+      "peladilla",
+      "puye_rojo",
+      "tollo_agua_dulce"
+    ],
+    "marinas": [
+      "corvina",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "LR",
+    "nombre": "Los Ríos",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "salmon_chinook",
+      "salmon_atlantico",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "puye",
+      "puye_grande",
+      "peladilla",
+      "puye_rojo"
+    ],
+    "marinas": [
+      "corvina",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "LL",
+    "nombre": "Los Lagos",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "salmon_chinook",
+      "salmon_coho",
+      "salmon_atlantico",
+      "perca_trucha",
+      "pejerrey_chileno",
+      "carpa",
+      "cauque_maule",
+      "bagrecito",
+      "carmelita",
+      "puye",
+      "puye_grande",
+      "peladilla",
+      "puye_rojo"
+    ],
+    "marinas": [
+      "corvina",
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "AY",
+    "nombre": "Aysén",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "salmon_chinook",
+      "salmon_coho",
+      "salmon_atlantico",
+      "perca_trucha",
+      "puye",
+      "puye_grande",
+      "peladilla"
+    ],
+    "marinas": [
+      "robalo",
+      "pejerrey_mar",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  },
+  {
+    "region_id": "MG",
+    "nombre": "Magallanes y de la Antártica Chilena",
+    "criterio": "Lista orientativa por rango o localidad bibliográfica; no confirmación de presencia actual.",
+    "continentales": [
+      "trucha_fario",
+      "trucha_arcoiris",
+      "trucha_arroyo",
+      "salmon_chinook",
+      "salmon_atlantico",
+      "perca_trucha",
+      "puye",
+      "puye_grande",
+      "peladilla"
+    ],
+    "marinas": [
+      "robalo",
+      "sierra",
+      "rollizo",
+      "pejegallo"
+    ]
+  }
+]

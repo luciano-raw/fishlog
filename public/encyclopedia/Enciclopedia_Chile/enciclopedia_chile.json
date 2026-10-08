@@ -1,0 +1,2030 @@
+{
+  "metadata": {
+    "titulo": "Enciclopedia de peces de Chile para app de pesca",
+    "version": "1.0",
+    "fecha_revision": "2026-10-08",
+    "alcance": "35 fichas: 27 continentales y 8 marinas; incluye un taxón de identificación provisional. Selección inicial, no inventario exhaustivo.",
+    "prioridad": "Ríos y aguas continentales",
+    "advertencia_distribucion": "Rango bibliográfico o registro histórico no demuestra presencia actual en cada río, lago o región intermedia. No equivale a permiso de pesca.",
+    "tratamiento_legal": "Las fichas enlazan reglamentos; no copian temporadas o cuotas de guías antiguas. La inclusión como interés recreativo no autoriza captura.",
+    "criterio_imagenes": "Sólo imagen_publicable puede activarse automáticamente. Las referencias documentales requieren autorización de reutilización; null implica pendiente, sin sustitución por otra especie.",
+    "conservacion": "Perfil de conservación es una decisión editorial de la app, no una categoría legal RCE ni una declaración universal de prohibición."
+  },
+  "regiones": [
+    {
+      "id": "AP",
+      "nombre": "Arica y Parinacota"
+    },
+    {
+      "id": "TA",
+      "nombre": "Tarapacá"
+    },
+    {
+      "id": "AN",
+      "nombre": "Antofagasta"
+    },
+    {
+      "id": "AT",
+      "nombre": "Atacama"
+    },
+    {
+      "id": "CO",
+      "nombre": "Coquimbo"
+    },
+    {
+      "id": "VA",
+      "nombre": "Valparaíso"
+    },
+    {
+      "id": "RM",
+      "nombre": "Metropolitana de Santiago"
+    },
+    {
+      "id": "OH",
+      "nombre": "O’Higgins"
+    },
+    {
+      "id": "MA",
+      "nombre": "Maule"
+    },
+    {
+      "id": "NU",
+      "nombre": "Ñuble"
+    },
+    {
+      "id": "BI",
+      "nombre": "Biobío"
+    },
+    {
+      "id": "AR",
+      "nombre": "La Araucanía"
+    },
+    {
+      "id": "LR",
+      "nombre": "Los Ríos"
+    },
+    {
+      "id": "LL",
+      "nombre": "Los Lagos"
+    },
+    {
+      "id": "AY",
+      "nombre": "Aysén"
+    },
+    {
+      "id": "MG",
+      "nombre": "Magallanes y de la Antártica Chilena"
+    }
+  ],
+  "especies": [
+    {
+      "id": "trucha_fario",
+      "nombre_comun": "Trucha fario / café",
+      "nombre_cientifico": "Salmo trutta",
+      "otros_nombres": [
+        "Trucha marrón",
+        "Brown trout"
+      ],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Trucha de tonos pardos, dorados o plateados. Suele mostrar puntos oscuros y rojos, algunos con halo claro; tiene aleta adiposa. La coloración cambia con el ambiente.",
+      "donde_encontrarlo": "Ríos y esteros fríos, claros y oxigenados; pozones, orillas con raíces y refugios junto a piedras. También ocupa lagos.",
+      "distribucion_chile": "Rango publicado: cuenca del Aconcagua a Tierra del Fuego.",
+      "habitats": [
+        "rio_frio",
+        "estero",
+        "lago"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Ninfas de insectos acuáticos; moscas secas durante actividad superficial; streamers y pequeños señuelos artificiales según corriente y profundidad.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": null,
+      "fuentes": [
+        "M17914"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": {
+        "especie_id": "trucha_fario",
+        "archivo": "imagenes_publicables/trucha_fario.jpg",
+        "publicable": true,
+        "licencia": "Public Domain (declarado por USFWS)",
+        "credito": "USFWS",
+        "fuente_url": "https://www.fws.gov/media/brown-trout-2",
+        "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/banner_images/2022-02/1-BrownTrout-USFWS.jpg?itok=0_Tmwr66",
+        "fecha_consulta": "2026-10-08"
+      },
+      "imagen_referencia": null,
+      "estado_imagen": "publicable"
+    },
+    {
+      "id": "trucha_arcoiris",
+      "nombre_comun": "Trucha arcoíris",
+      "nombre_cientifico": "Oncorhynchus mykiss",
+      "otros_nombres": [
+        "Rainbow trout"
+      ],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "CO",
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG",
+        "AP",
+        "AN"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Cuerpo con numerosos puntos negros y, con frecuencia, una banda rosada en los flancos. La cola suele tener puntos; posee aleta adiposa.",
+      "donde_encontrarlo": "Corrientes frías y oxigenadas, correderas, entradas de pozones y lagos. La intensidad del flujo y la temperatura ayudan a ubicar hábitats compatibles.",
+      "distribucion_chile": "Rango principal: Coquimbo a Tierra del Fuego; las fuentes mencionan registros aislados en el Loa y Chungará.",
+      "habitats": [
+        "rio_frio",
+        "estero",
+        "lago"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Ninfas y moscas secas de insectos; streamers y señuelos pequeños. Adaptar presentación a la profundidad.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "Los registros norteños son localizados. La presencia en Chungará no implica que se permita pescar allí.",
+      "fuentes": [
+        "M12182"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": {
+        "especie_id": "trucha_arcoiris",
+        "archivo": "imagenes_publicables/trucha_arcoiris.jpg",
+        "publicable": true,
+        "licencia": "Public Domain (declarado por USFWS)",
+        "credito": "Ryan Hagerty / USFWS",
+        "fuente_url": "https://www.fws.gov/media/rainbow-trout-34",
+        "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/images/2024-03-6/30693.jpg?itok=0crRf7D_",
+        "fecha_consulta": "2026-10-08"
+      },
+      "imagen_referencia": null,
+      "estado_imagen": "publicable"
+    },
+    {
+      "id": "trucha_arroyo",
+      "nombre_comun": "Trucha de arroyo",
+      "nombre_cientifico": "Salvelinus fontinalis",
+      "otros_nombres": [
+        "Brook trout"
+      ],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Dorso con dibujos claros sinuosos, puntos rojos con halos azulados y bordes blancos en aletas inferiores. Es un salvelino, aunque se conoce como trucha.",
+      "donde_encontrarlo": "Aguas especialmente frías y bien oxigenadas; arroyos y ambientes lacustres adecuados.",
+      "distribucion_chile": "SERNAPESCA destaca Aconcagua y Magallanes. SIMBIO cita un rango más amplio, pero no permite afirmar presencia continua.",
+      "habitats": [
+        "rio_frio",
+        "estero",
+        "lago"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Pequeñas ninfas, secas y streamers; priorizar presentaciones discretas.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "Índice regional conservador: no se asigna a todas las regiones intermedias sin registros locales.",
+      "fuentes": [
+        "M3953",
+        "SD"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": {
+        "especie_id": "trucha_arroyo",
+        "archivo": "imagenes_publicables/trucha_arroyo.jpg",
+        "publicable": true,
+        "licencia": "Public Domain (declarado por USFWS)",
+        "credito": "Ryan Hagerty / USFWS",
+        "fuente_url": "https://www.fws.gov/media/brook-trout-7",
+        "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/images/2024-03-6/23439.jpg?itok=uOFTezpr",
+        "fecha_consulta": "2026-10-08"
+      },
+      "imagen_referencia": null,
+      "estado_imagen": "publicable"
+    },
+    {
+      "id": "salmon_chinook",
+      "nombre_comun": "Salmón chinook / rey",
+      "nombre_cientifico": "Oncorhynchus tshawytscha",
+      "otros_nombres": [],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Salmón robusto de gran talla. Presenta puntos oscuros en el dorso y la cola; los machos reproductivos pueden desarrollar mandíbula curvada y tonos oscuros.",
+      "donde_encontrarlo": "Ríos conectados al mar, grandes pozones y tramos de migración; su presencia en agua dulce depende del ciclo de vida y de la cuenca.",
+      "distribucion_chile": "Rango señalado por SERNAPESCA: La Araucanía a Patagonia austral.",
+      "habitats": [
+        "rio_conectado_mar",
+        "estuario",
+        "mar"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Streamers y señuelos artificiales adecuados al caudal; la ficha no fija una época de retorno local.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "No se lo considera una especie disponible todo el año en cualquier río del sur.",
+      "fuentes": [
+        "SD",
+        "CHIN"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": {
+        "especie_id": "salmon_chinook",
+        "archivo": "imagenes_publicables/salmon_chinook.jpg",
+        "publicable": true,
+        "licencia": "Public Domain (declarado por USFWS)",
+        "credito": "Ryan Hagerty / USFWS",
+        "fuente_url": "https://www.fws.gov/media/chinook",
+        "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/banner_images/2021-08/Chinook-salmon-Ryan-Hagerty-usfws.jpg?itok=k-oCnZ3m",
+        "fecha_consulta": "2026-10-08"
+      },
+      "imagen_referencia": null,
+      "estado_imagen": "publicable"
+    },
+    {
+      "id": "salmon_coho",
+      "nombre_comun": "Salmón coho / plateado",
+      "nombre_cientifico": "Oncorhynchus kisutch",
+      "otros_nombres": [],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "LL",
+        "AY"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Salmón de flancos plateados fuera de reproducción; al madurar puede oscurecerse y mostrar tonos rojizos. El aspecto de los juveniles difiere del adulto.",
+      "donde_encontrarlo": "Costa, estuarios y algunos cursos conectados al mar del sur. Distinguir presencia asociada a escapes de poblaciones que se reproducen naturalmente.",
+      "distribucion_chile": "La guía SERNAPESCA destaca lagos y ríos de Los Lagos y Aysén.",
+      "habitats": [
+        "rio_conectado_mar",
+        "estuario",
+        "mar"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Streamers y señuelos artificiales; comprobar primero presencia y reglas de la cuenca.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "No usar esta ficha para dar por establecida una población reproductiva en cada región.",
+      "fuentes": [
+        "SD",
+        "COHOFWS"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": {
+        "especie_id": "salmon_coho",
+        "archivo": "imagenes_publicables/salmon_coho.jpg",
+        "publicable": true,
+        "licencia": "Public Domain (declarado por USFWS)",
+        "credito": "USFWS",
+        "fuente_url": "https://www.fws.gov/media/coho-salmon-6",
+        "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/banner_images/2022-03/coho-salmon-banner-size-credit-usfws.jpg?itok=F9R7wIfF",
+        "fecha_consulta": "2026-10-08"
+      },
+      "imagen_referencia": null,
+      "estado_imagen": "publicable"
+    },
+    {
+      "id": "salmon_atlantico",
+      "nombre_comun": "Salmón del Atlántico",
+      "nombre_cientifico": "Salmo salar",
+      "otros_nombres": [
+        "Salar"
+      ],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Salmón de cuerpo alargado, flancos plateados y manchas oscuras. Tiene aleta adiposa; no basta una fotografía distante para diferenciar todos los salmones.",
+      "donde_encontrarlo": "Ambientes marinos y cursos continentales del sur donde existen registros. Parte de la presencia silvestre puede relacionarse con escapes de cultivo.",
+      "distribucion_chile": "SERNAPESCA describe registros desde el río San Pedro, Los Ríos, hacia Patagonia.",
+      "habitats": [
+        "rio_conectado_mar",
+        "estuario",
+        "mar"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Streamers y señuelos artificiales, sujetos a identificación y normativa local.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "Registro de ejemplares asilvestrados no equivale a población estable en todos los ríos.",
+      "fuentes": [
+        "SD",
+        "SALFWS"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": {
+        "especie_id": "salmon_atlantico",
+        "archivo": "imagenes_publicables/salmon_atlantico.jpg",
+        "publicable": true,
+        "licencia": "Public Domain (declarado por USFWS)",
+        "credito": "USFWS",
+        "fuente_url": "https://www.fws.gov/media/atlantic-salmon-cbnfh-usfwsjpg",
+        "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/2021-01/atlantic-salmon-cbnfh-usfws.JPG?itok=XA5TjAS9",
+        "fecha_consulta": "2026-10-08"
+      },
+      "imagen_referencia": null,
+      "estado_imagen": "publicable"
+    },
+    {
+      "id": "perca_trucha",
+      "nombre_comun": "Perca trucha",
+      "nombre_cientifico": "Percichthys trucha",
+      "otros_nombres": [
+        "Trucha criolla",
+        "Percatrucha"
+      ],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez nativo de cuerpo relativamente alto, escamas visibles y dorsal con una sección espinosa y otra blanda. Carece de la pequeña aleta adiposa de los salmonídeos.",
+      "donde_encontrarlo": "Lagos y tramos medios o bajos de ríos; fondos pedregosos, bordes de corriente y refugios. Consume invertebrados y peces.",
+      "distribucion_chile": "Rango bibliográfico amplio: Valparaíso a Tierra del Fuego, con registros históricos en el Maule.",
+      "habitats": [
+        "rio_medio_bajo",
+        "lago"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Pequeños streamers, imitaciones de invertebrados y señuelos artificiales. Consultar restricciones antes de dirigir la pesca.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "Es nativa y su condición de conservación varía por zona. El nombre “trucha” no la convierte en un salmonídeo.",
+      "fuentes": [
+        "M4003"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    },
+    {
+      "id": "pejerrey_chileno",
+      "nombre_comun": "Pejerrey chileno",
+      "nombre_cientifico": "Basilichthys australis",
+      "otros_nombres": [
+        "Pejerrey de río"
+      ],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez alargado con franja longitudinal oscura y plateada. La boca no se proyecta hacia adelante como en los cauques del género Odontesthes.",
+      "donde_encontrarlo": "Sectores transparentes de corriente suave, pozones y lagos, frecuentemente cerca de vegetación acuática.",
+      "distribucion_chile": "Aconcagua a Puerto Montt; fuentes incluyen Chiloé. Algunos registros centrales son históricos o señalan posibles pérdidas locales.",
+      "habitats": [
+        "rio_medio_bajo",
+        "lago",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Imitaciones pequeñas de insectos e invertebrados; revisar si el método propuesto está permitido.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "No confundir “pejerrey” con una única especie. El índice regional no confirma presencia actual en Mapocho o Maipo.",
+      "fuentes": [
+        "M4355"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "pejerrey_chileno",
+        "archivo": "imagenes_referencia/pejerrey_chileno.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_2_especies_dulceacuicolas.pdf",
+        "pagina_pdf": 17,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "pejerrey_argentino",
+      "nombre_comun": "Pejerrey argentino",
+      "nombre_cientifico": "Odontesthes bonariensis",
+      "otros_nombres": [],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "BI"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pejerrey de cuerpo delgado, franja plateada y boca protráctil. Forma grupos y puede parecerse a pejerreyes nativos; confirmar rasgos antes de asignar especie.",
+      "donde_encontrarlo": "Principalmente lagos, lagunas y embalses; aguas abiertas y márgenes según alimento y condiciones.",
+      "distribucion_chile": "La ficha MMA documenta localidades de Valparaíso, Santiago, Rapel y lagos de Biobío. El índice conserva estas localidades, sin extrapolar a todos los embalses.",
+      "habitats": [
+        "lago",
+        "embalse"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Imitaciones pequeñas de alimento y montajes adecuados a la profundidad; verificar aparejos y carnadas autorizados.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "No se confirma automáticamente su presencia en Colbún ni en cualquier embalse del Maule con esta selección de fuentes.",
+      "fuentes": [
+        "M4358"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "pejerrey_argentino",
+        "archivo": "imagenes_referencia/pejerrey_argentino.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_2_especies_dulceacuicolas.pdf",
+        "pagina_pdf": 16,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "carpa",
+      "nombre_comun": "Carpa común",
+      "nombre_cientifico": "Cyprinus carpio",
+      "otros_nombres": [],
+      "origen_chile": "introducida",
+      "ambiente": "continental",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "CO",
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Cuerpo robusto con escamas grandes y barbillas junto a la boca. Busca alimento cerca del fondo y tolera aguas más cálidas que las truchas.",
+      "donde_encontrarlo": "Ríos lentos, lagunas, embalses y humedales con fondos blandos o vegetación.",
+      "distribucion_chile": "Rango bibliográfico principal: Coquimbo a Los Lagos.",
+      "habitats": [
+        "rio_lento",
+        "lago",
+        "embalse",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Moscas de fondo que imiten pequeños invertebrados; revisar reglas para otros montajes y cebos.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "Evitar traslados de ejemplares: es una especie introducida.",
+      "fuentes": [
+        "M10743"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": {
+        "especie_id": "carpa",
+        "archivo": "imagenes_publicables/carpa.jpg",
+        "publicable": true,
+        "licencia": "Public Domain (declarado por USFWS)",
+        "credito": "Duane Raver / USFWS",
+        "fuente_url": "https://www.fws.gov/media/common-carp-9",
+        "url_imagen": "https://www.fws.gov/sites/default/files/styles/max_1300x1300/public/images/2005-05/25312.jpg?itok=yx_QLJFw",
+        "fecha_consulta": "2026-10-08"
+      },
+      "imagen_referencia": null,
+      "estado_imagen": "publicable"
+    },
+    {
+      "id": "cauque_maule",
+      "nombre_comun": "Cauque del Maule",
+      "nombre_cientifico": "Odontesthes mauleanum",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pejerrey nativo de cuerpo alargado y franja lateral plateada, con boca protráctil. El nombre cauque también se aplica informalmente a otros pejerreyes.",
+      "donde_encontrarlo": "Tramos bajos de ríos, lagos y ambientes conectados a estuarios.",
+      "distribucion_chile": "Rango descrito: Valparaíso a Maullín, Los Lagos.",
+      "habitats": [
+        "rio_medio_bajo",
+        "lago",
+        "estuario"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Ficha de reconocimiento. No tratar a todos los cauques como pejerrey argentino.",
+      "fuentes": [
+        "M4357"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "cauque_maule",
+        "archivo": "imagenes_referencia/cauque_maule.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 27,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "pejerrey_norte",
+      "nombre_comun": "Pejerrey del norte",
+      "nombre_cientifico": "Basilichthys microlepidotus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "AT",
+        "CO",
+        "VA"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pejerrey pequeño a mediano, alargado, de escamas pequeñas y banda longitudinal. La identificación requiere separarlo de otros Basilichthys.",
+      "donde_encontrarlo": "Ríos y cursos de la zona norte y central, con sectores de corriente moderada o lenta.",
+      "distribucion_chile": "Registros históricos desde Huasco, Atacama, hacia cuencas de Coquimbo y Valparaíso; comprobar continuidad actual.",
+      "habitats": [
+        "rio_medio_bajo",
+        "estero"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Distribución y límites entre especies del género requieren atención; no asignar por nombre común solamente.",
+      "fuentes": [
+        "M4354"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "pejerrey_norte",
+        "archivo": "imagenes_referencia/pejerrey_norte.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 34,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "pejerrey_loa",
+      "nombre_comun": "Pejerrey del Loa (taxón por resolver)",
+      "nombre_cientifico": "Basilichthys sp. aff. semotilus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "AN"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pejerrey alargado con franja lateral, asociado a aguas del desierto. La ficha histórica utiliza Basilichthys semotilus, pero advierte una diferenciación taxonómica de los ejemplares chilenos.",
+      "donde_encontrarlo": "Sistema del río Loa y sectores con vegetación acuática; hábitat muy localizado.",
+      "distribucion_chile": "Loa: cuenca compartida por Tarapacá y Antofagasta. Se indexa Antofagasta de forma conservadora; no se atribuyen registros a cada tramo de Tarapacá.",
+      "habitats": [
+        "rio_desertico",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Nombre científico provisional. No presentar semotilus como identificación definitiva del taxón chileno.",
+      "fuentes": [
+        "Rloa"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    },
+    {
+      "id": "bagrecito",
+      "nombre_comun": "Bagrecito",
+      "nombre_cientifico": "Trichomycterus areolatus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "CO",
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez alargado, sin escamas, con tres pares de barbillas y coloración moteada. Permanece cerca del fondo y puede pasar inadvertido entre piedras.",
+      "donde_encontrarlo": "Ríos y esteros; fondos de grava y piedras, refugios y sectores con corriente.",
+      "distribucion_chile": "Rango conservador de la ficha MMA: Coquimbo a Los Lagos; otras publicaciones amplían algunos límites norteños.",
+      "habitats": [
+        "rio_frio",
+        "rio_medio_bajo",
+        "estero"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "No confundirlo con bagre grande ni con otros bagrecitos; observar y evitar captura dirigida.",
+      "fuentes": [
+        "M3872"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "bagrecito",
+        "archivo": "imagenes_referencia/bagrecito.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 24,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "carmelita",
+      "nombre_comun": "Carmelita",
+      "nombre_cientifico": "Percilia gillissi",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez nativo pequeño, de cuerpo corto, con dos aletas dorsales y manchas o bandas oscuras. Su tamaño reducido puede llevar a confundirlo con juveniles de otras especies.",
+      "donde_encontrarlo": "Ríos, esteros, lagos y humedales; cerca de piedras y vegetación en el fondo o las orillas.",
+      "distribucion_chile": "Valparaíso a Los Lagos, según el rango bibliográfico.",
+      "habitats": [
+        "rio_medio_bajo",
+        "estero",
+        "lago",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Ficha para reconocer fauna nativa. No ofrecer señuelos ni presentarla como objetivo de pesca.",
+      "fuentes": [
+        "M4080"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "carmelita",
+        "archivo": "imagenes_referencia/carmelita.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Nicole Colin; MMA–ONU, guía 2025",
+        "fuente_url": "https://gef.mma.gob.cl/humedales/wp-content/uploads/2025/01/GUIA_PECES_E_INSECTOS_2024_BAJA_RES.pdf",
+        "pagina_pdf": 16,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "carmelita_concepcion",
+      "nombre_comun": "Carmelita de Concepción",
+      "nombre_cientifico": "Percilia irwini",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "BI",
+        "AR"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pequeño pez con dos dorsales y patrón de bandas. Diferenciarlo de P. gillissi puede requerir examen especializado; la región por sí sola no basta.",
+      "donde_encontrarlo": "Cuencas del centro sur, cerca de sustratos y refugios en ríos y ambientes lacustres.",
+      "distribucion_chile": "Registros en la cuenca del Biobío y sistemas asociados; las fichas antiguas usan límites regionales anteriores a Ñuble.",
+      "habitats": [
+        "rio_medio_bajo",
+        "estero",
+        "lago"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "No se extrapola a todo Ñuble. La identificación debe conservar la posibilidad de Percilia sp.",
+      "fuentes": [
+        "M4079"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "carmelita_concepcion",
+        "archivo": "imagenes_referencia/carmelita_concepcion.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 26,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "bagre_grande",
+      "nombre_comun": "Bagre grande",
+      "nombre_cientifico": "Nematogenys inermis",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Bagre de cabeza ancha, cuerpo sin escamas y barbillas alrededor de la boca. Se distingue de bagrecitos, aunque juveniles pueden ser difíciles de separar.",
+      "donde_encontrarlo": "Sectores de ríos y esteros con refugios y vegetación; las poblaciones actuales son localizadas y fragmentadas.",
+      "distribucion_chile": "Rango histórico Aconcagua a Osorno; la ficha también describe reducción y registros actuales más restringidos del centro sur.",
+      "habitats": [
+        "rio_medio_bajo",
+        "estero"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "El índice Valparaíso–Araucanía es referencial. No anunciar presencia actual en un río del Maule sin registro reciente.",
+      "fuentes": [
+        "M3868"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "bagre_grande",
+        "archivo": "imagenes_referencia/bagre_grande.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 18,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "pocha",
+      "nombre_comun": "Pocha",
+      "nombre_cientifico": "Cheirodon pisciculus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "CO",
+        "VA",
+        "RM",
+        "AT",
+        "OH"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez pequeño de cuerpo comprimido, plateado y con aleta adiposa. Separar especies de Cheirodon exige revisar rasgos finos, no sólo el color.",
+      "donde_encontrarlo": "Ríos, esteros y canales de la zona central; sectores tranquilos con vegetación.",
+      "distribucion_chile": "Rango histórico Huasco a Maipo, con localidades adicionales citadas en Colchagua. La ficha tiene registros antiguos que necesitan actualización.",
+      "habitats": [
+        "rio_lento",
+        "estero",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Atacama y O’Higgins se incluyen por referencias históricas; no se afirma presencia actual en todos sus cursos.",
+      "fuentes": [
+        "Rpocha"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "pocha",
+        "archivo": "imagenes_referencia/pocha.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 36,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "pocha_lagos",
+      "nombre_comun": "Pocha de los lagos",
+      "nombre_cientifico": "Cheirodon galusdae",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "MA",
+        "NU",
+        "BI",
+        "AR"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pequeño pez plateado, comprimido lateralmente y con aleta adiposa. Puede confundirse con otras pochas.",
+      "donde_encontrarlo": "Ríos, esteros y canales, generalmente en sectores de baja velocidad y vegetación.",
+      "distribucion_chile": "Maule a La Araucanía; fuentes citan Loncomilla, Itata, Biobío, Andalién e Imperial.",
+      "habitats": [
+        "rio_lento",
+        "estero",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Aunque el nombre diga “de los lagos”, no se asigna automáticamente a la Región de Los Lagos.",
+      "fuentes": [
+        "Rgalus"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "pocha_lagos",
+        "archivo": "imagenes_referencia/pocha_lagos.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 40,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "perca_negra",
+      "nombre_comun": "Perca negra",
+      "nombre_cientifico": "Percichthys melanops",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Perca nativa de tonos oscuros, con dorsal espinosa y blanda. Puede confundirse con P. trucha; un color oscuro por sí solo no identifica la especie.",
+      "donde_encontrarlo": "Ríos y ambientes lacustres del centro sur; fondos y refugios sumergidos.",
+      "distribucion_chile": "Rango central descrito: Santiago a Concepción. La misma ficha cita referencias más australes, con contradicciones y vacíos que impiden extrapolar presencia actual.",
+      "habitats": [
+        "rio_medio_bajo",
+        "lago"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Distribución regional referencial, con pérdida de registros en algunos sistemas; requiere identificación especializada.",
+      "fuentes": [
+        "Rperca"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "perca_negra",
+        "archivo": "imagenes_referencia/perca_negra.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 45,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "puye",
+      "nombre_comun": "Puye",
+      "nombre_cientifico": "Galaxias maculatus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "RM",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez pequeño, alargado y sin escamas; las aletas dorsal y anal se sitúan hacia la parte posterior. Puede mostrar cuerpo translúcido y manchas.",
+      "donde_encontrarlo": "Orillas de ríos, lagos y estuarios. Existen poblaciones con migración al mar y otras que completan su ciclo en agua dulce.",
+      "distribucion_chile": "Rango principal Valparaíso a Magallanes; existen referencias norteñas aisladas que no se usan como rango continuo.",
+      "habitats": [
+        "rio_medio_bajo",
+        "lago",
+        "estuario"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "“Puye” es un nombre colectivo frecuente: no identifica por sí solo a Galaxias maculatus.",
+      "fuentes": [
+        "M12238"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "puye",
+        "archivo": "imagenes_referencia/puye.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Nicole Colin; MMA–ONU, guía 2025",
+        "fuente_url": "https://gef.mma.gob.cl/humedales/wp-content/uploads/2025/01/GUIA_PECES_E_INSECTOS_2024_BAJA_RES.pdf",
+        "pagina_pdf": 12,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "puye_grande",
+      "nombre_comun": "Puye grande",
+      "nombre_cientifico": "Galaxias platei",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Puye alargado, sin escamas, de coloración parda y moteada. Alcanza tamaños mayores que otros pequeños galáxidos.",
+      "donde_encontrarlo": "Lagos y ríos patagónicos; juveniles en márgenes y adultos frecuentemente en ambientes más profundos.",
+      "distribucion_chile": "Cuenca de Valdivia a Aysén y Magallanes.",
+      "habitats": [
+        "lago",
+        "rio_medio_bajo"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "No confundir con G. maculatus; reconocer fauna nativa y evitar captura dirigida.",
+      "fuentes": [
+        "Rplatei"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    },
+    {
+      "id": "peladilla",
+      "nombre_comun": "Peladilla",
+      "nombre_cientifico": "Aplochiton zebra",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez alargado con aleta adiposa y bandas oscuras en los flancos. Puede parecer un pequeño salmonídeo, pero pertenece a la fauna nativa.",
+      "donde_encontrarlo": "Ríos y lagos del sur; ambientes fríos y conectados según la población.",
+      "distribucion_chile": "Rango bibliográfico desde Biobío hacia Magallanes.",
+      "habitats": [
+        "rio_frio",
+        "lago"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Aplochiton tiene otras especies: no etiquetar cualquier peladilla como A. zebra.",
+      "fuentes": [
+        "M4321"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    },
+    {
+      "id": "puye_rojo",
+      "nombre_comun": "Puye rojo",
+      "nombre_cientifico": "Brachygalaxias bullocki",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez nativo muy pequeño, sin escamas, con tonalidades que pueden incluir una franja rojiza. No es un alevín de trucha.",
+      "donde_encontrarlo": "Esteros, humedales y márgenes con vegetación y corriente lenta.",
+      "distribucion_chile": "La ficha histórica cita Maule a Los Lagos, incluyendo Biobío, Imperial, Valdivia y Chiloé.",
+      "habitats": [
+        "rio_lento",
+        "estero",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Las poblaciones pueden ser muy localizadas; no trasladar ni recolectar como carnada.",
+      "fuentes": [
+        "Rbullocki"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "puye_rojo",
+        "archivo": "imagenes_referencia/puye_rojo.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Nicole Colin; MMA–ONU, guía 2025",
+        "fuente_url": "https://gef.mma.gob.cl/humedales/wp-content/uploads/2025/01/GUIA_PECES_E_INSECTOS_2024_BAJA_RES.pdf",
+        "pagina_pdf": 13,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "karachi_chungara",
+      "nombre_comun": "Karachi de Chungará",
+      "nombre_cientifico": "Orestias chungarensis",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "AP"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pequeño pez altiplánico del género Orestias, sin aletas pélvicas. Su identificación debe considerar el lago de origen y rasgos especializados.",
+      "donde_encontrarlo": "Lago Chungará, en el altiplano de Arica y Parinacota.",
+      "distribucion_chile": "Distribución restringida al lago Chungará. La antigua “I Región” de la ficha corresponde aquí a Arica y Parinacota.",
+      "habitats": [
+        "lago_altiplanico"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Contenido de biodiversidad y conservación; no promover pesca recreativa ni extracción en este sitio.",
+      "fuentes": [
+        "Rchungara"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    },
+    {
+      "id": "karachi",
+      "nombre_comun": "Karachi",
+      "nombre_cientifico": "Orestias agassii",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez pequeño del altiplano, de cuerpo con escamas y sin aletas pélvicas. Separar especies de Orestias suele requerir especialistas.",
+      "donde_encontrarlo": "Cursos, bofedales y humedales altoandinos; la ficha cita Collacagua, Isluga y salar de Huasco, entre otras localidades históricas.",
+      "distribucion_chile": "Registros del extremo norte altoandino; se traducen los antiguos límites regionales a Arica y Parinacota y Tarapacá.",
+      "habitats": [
+        "rio_altiplanico",
+        "humedal"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Identificación y límites poblacionales deben revisarse con fuentes actuales; no extrapolar a todos los salares.",
+      "fuentes": [
+        "Rcarachi"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    },
+    {
+      "id": "tollo_agua_dulce",
+      "nombre_comun": "Tollo de agua dulce",
+      "nombre_cientifico": "Diplomystes nahuelbutaensis",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "continental",
+      "perfil": "reconocimiento_y_conservacion",
+      "regiones_en_rango_bibliografico": [
+        "MA",
+        "NU",
+        "BI",
+        "AR"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Bagre nativo sin escamas, con un par de barbillas maxilares y aleta adiposa. El nombre “tollo” aquí no corresponde a un tiburón marino.",
+      "donde_encontrarlo": "Ríos del centro sur; fondos pedregosos y sectores bien oxigenados, con refugios.",
+      "distribucion_chile": "Fuentes citan sistemas de Maule, Itata, Biobío e Imperial; varios registros son históricos.",
+      "habitats": [
+        "rio_frio",
+        "rio_medio_bajo"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Reconocimiento y conservación. No confundir con otras especies de Diplomystes ni ofrecer captura dirigida.",
+      "fuentes": [
+        "M3871"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "tollo_agua_dulce",
+        "archivo": "imagenes_referencia/tollo_agua_dulce.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+        "pagina_pdf": 15,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "corvina",
+      "nombre_comun": "Corvina",
+      "nombre_cientifico": "Cilus gilberti",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA",
+        "AN",
+        "AT",
+        "CO",
+        "VA",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez plateado, de cuerpo alargado y aletas dorsales continuas con una hendidura.",
+      "donde_encontrarlo": "Playas arenosas y fondos blandos costeros; desembocaduras y zonas con alimento.",
+      "distribucion_chile": "Costa del norte de Chile a Puerto Montt en la referencia seleccionada.",
+      "habitats": [
+        "playa_arena",
+        "estuario"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Señuelos que imiten peces pequeños, adecuados al oleaje y fondo.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": null,
+      "fuentes": [
+        "COR",
+        "SM"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "corvina",
+        "archivo": "imagenes_referencia/corvina.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+        "pagina_pdf": 23,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "lenguado",
+      "nombre_comun": "Lenguado chileno / de tres manchas",
+      "nombre_cientifico": "Paralichthys adspersus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA",
+        "AN",
+        "AT",
+        "CO",
+        "VA",
+        "OH",
+        "MA",
+        "NU",
+        "BI"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez plano, con ambos ojos en un lado del cuerpo y coloración de camuflaje. Las manchas no bastan siempre para separarlo de otros lenguados.",
+      "donde_encontrarlo": "Fondos arenosos costeros; se camufla sobre el sustrato.",
+      "distribucion_chile": "Rango descrito en la revisión: Paita, Perú, al golfo de Arauco, Biobío; incluye Juan Fernández.",
+      "habitats": [
+        "playa_arena"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Señuelos pequeños presentados cerca del fondo.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": "No se reutiliza la imagen de “lenguado ojos chicos” de SERNAPESCA: no corresponde atribuirla a esta especie.",
+      "fuentes": [
+        "LEN"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    },
+    {
+      "id": "robalo",
+      "nombre_comun": "Róbalo",
+      "nombre_cientifico": "Eleginops maclovinus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "VA",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez de cuerpo alargado y dos aletas dorsales, de tonos pardos o grisáceos.",
+      "donde_encontrarlo": "Costa, estuarios y tramos bajos de ríos conectados al mar.",
+      "distribucion_chile": "Desde la desembocadura del Aconcagua hacia el extremo austral.",
+      "habitats": [
+        "estuario",
+        "costa",
+        "rio_conectado_mar"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Imitaciones de pequeños peces e invertebrados; adaptar a corriente y profundidad.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": null,
+      "fuentes": [
+        "M4043",
+        "MARFIPA"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "robalo",
+        "archivo": "imagenes_referencia/robalo.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+        "pagina_pdf": 28,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "pejerrey_mar",
+      "nombre_comun": "Pejerrey de mar",
+      "nombre_cientifico": "Odontesthes regia",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA",
+        "AN",
+        "AT",
+        "CO",
+        "VA",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pejerrey alargado de flancos plateados, que forma cardúmenes.",
+      "donde_encontrarlo": "Bahías, estuarios y aguas costeras; observar grupos cerca de la orilla.",
+      "distribucion_chile": "Desde el norte de Chile hasta Chonos o Guaitecas, Aysén.",
+      "habitats": [
+        "costa",
+        "estuario"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Imitaciones pequeñas; comprobar reglas de aparejos.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": null,
+      "fuentes": [
+        "M4356",
+        "IFOP"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "pejerrey_mar",
+        "archivo": "imagenes_referencia/pejerrey_mar.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+        "pagina_pdf": 27,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "sierra",
+      "nombre_comun": "Sierra",
+      "nombre_cientifico": "Thyrsites atun",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA",
+        "AN",
+        "AT",
+        "CO",
+        "VA",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez muy alargado, de mandíbula prominente y dientes notorios.",
+      "donde_encontrarlo": "Aguas costeras y cardúmenes a distintas profundidades.",
+      "distribucion_chile": "Rango amplio en aguas frías del Pacífico sur; la disponibilidad costera varía con los cardúmenes.",
+      "habitats": [
+        "costa",
+        "mar"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Señuelos que imiten pequeños peces; manipulación cuidadosa por los dientes.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": null,
+      "fuentes": [
+        "SM",
+        "IFOP"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "sierra",
+        "archivo": "imagenes_referencia/sierra.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+        "pagina_pdf": 33,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "rollizo",
+      "nombre_comun": "Rollizo",
+      "nombre_cientifico": "Pinguipes chilensis",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA",
+        "AN",
+        "AT",
+        "CO",
+        "VA",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez alargado de labios gruesos; puede mostrar bandas de manchas claras.",
+      "donde_encontrarlo": "Roqueríos costeros, grietas y fondo marino.",
+      "distribucion_chile": "Rango publicado por SERNAPESCA: Arica a Magallanes.",
+      "habitats": [
+        "roquerio"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": true,
+        "texto": "Imitaciones de peces o invertebrados cerca del fondo.",
+        "naturaleza": "Orientación editorial general, no prescripción oficial ni autorización de pesca."
+      },
+      "observaciones": null,
+      "fuentes": [
+        "SM"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "rollizo",
+        "archivo": "imagenes_referencia/rollizo.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "Reproducida en ficha SERNAPESCA; titular original por verificar",
+        "fuente_url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+        "pagina_pdf": 29,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "pejegallo",
+      "nombre_comun": "Pejegallo",
+      "nombre_cientifico": "Callorhinchus callorynchus",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA",
+        "AN",
+        "AT",
+        "CO",
+        "VA",
+        "OH",
+        "MA",
+        "NU",
+        "BI",
+        "AR",
+        "LR",
+        "LL",
+        "AY",
+        "MG"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Pez cartilaginoso con hocico prominente semejante a una pequeña trompa; no es un pez óseo ni una raya.",
+      "donde_encontrarlo": "Fondos costeros blandos, donde busca invertebrados.",
+      "distribucion_chile": "Distribución amplia en costas chilenas; confirmar localidades y especie.",
+      "habitats": [
+        "costa",
+        "playa_arena"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "Ficha de reconocimiento; consultar las reglas específicas de condrictios antes de cualquier actividad dirigida.",
+      "fuentes": [
+        "M4412",
+        "IFOP"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": {
+        "especie_id": "pejegallo",
+        "archivo": "imagenes_referencia/pejegallo.png",
+        "publicable": false,
+        "licencia": "No verificada para publicación en app; solicitar autorización al titular",
+        "credito": "IFOP, guía marina; autor de imagen por verificar",
+        "fuente_url": "https://www.ifop.cl/wp-content/contenidos/uploads/mi_guia_de_especies_marinas.pdf",
+        "pagina_pdf": 41,
+        "fecha_consulta": "2026-10-08",
+        "nota": "Referencia documental para revisión interna; no activar en producción."
+      },
+      "estado_imagen": "requiere_autorizacion"
+    },
+    {
+      "id": "tollo_comun",
+      "nombre_comun": "Tollo común del norte",
+      "nombre_cientifico": "Mustelus whitneyi",
+      "otros_nombres": [],
+      "origen_chile": "nativa",
+      "ambiente": "marino",
+      "perfil": "interes_recreativo",
+      "regiones_en_rango_bibliografico": [
+        "AP",
+        "TA",
+        "AN",
+        "AT"
+      ],
+      "tipo_evidencia_regional": "Traducción editorial de un rango o localidades bibliográficas a regiones actuales; no inventario completo ni presencia confirmada en cada río.",
+      "descripcion": "Tiburón costero de cuerpo esbelto y dos dorsales. La separación de otros Mustelus requiere revisar rasgos especializados.",
+      "donde_encontrarlo": "Fondos de la plataforma costera del norte.",
+      "distribucion_chile": "La ficha MMA actualiza el rango chileno: Arica a Carrizal Bajo, Atacama.",
+      "habitats": [
+        "costa"
+      ],
+      "senuelos_y_moscas": {
+        "mostrar": false,
+        "texto": null,
+        "naturaleza": "No corresponde recomendar captura dirigida en esta ficha."
+      },
+      "observaciones": "No extrapolarlo al Maule: “tollo común” también puede designar Mustelus mento. Consultar reglas específicas de condrictios.",
+      "fuentes": [
+        "M4423"
+      ],
+      "reglamentos_url": "https://www.sernapesca.cl/area-trabajo/pesca-recreativa/",
+      "revision": "2026-10-08",
+      "imagen_publicable": null,
+      "imagen_referencia": null,
+      "estado_imagen": "pendiente"
+    }
+  ],
+  "fuentes": [
+    {
+      "id": "M12182",
+      "titulo": "MMA, SIMBIO: ficha de especie 12182",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/12182",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M17914",
+      "titulo": "MMA, SIMBIO: ficha de especie 17914",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/17914",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M3953",
+      "titulo": "MMA, SIMBIO: ficha de especie 3953",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/3953",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4355",
+      "titulo": "MMA, SIMBIO: ficha de especie 4355",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4355",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4358",
+      "titulo": "MMA, SIMBIO: ficha de especie 4358",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4358",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4003",
+      "titulo": "MMA, SIMBIO: ficha de especie 4003",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4003",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M10743",
+      "titulo": "MMA, SIMBIO: ficha de especie 10743",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/10743",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M3868",
+      "titulo": "MMA, SIMBIO: ficha de especie 3868",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/3868",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4080",
+      "titulo": "MMA, SIMBIO: ficha de especie 4080",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4080",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4357",
+      "titulo": "MMA, SIMBIO: ficha de especie 4357",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4357",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M3872",
+      "titulo": "MMA, SIMBIO: ficha de especie 3872",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/3872",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M12238",
+      "titulo": "MMA, SIMBIO: ficha de especie 12238",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/12238",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4321",
+      "titulo": "MMA, SIMBIO: ficha de especie 4321",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4321",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4079",
+      "titulo": "MMA, SIMBIO: ficha de especie 4079",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4079",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M3871",
+      "titulo": "MMA, SIMBIO: ficha de especie 3871",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/3871",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4354",
+      "titulo": "MMA, SIMBIO: ficha de especie 4354",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4354",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4412",
+      "titulo": "MMA, SIMBIO: ficha de especie 4412",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4412",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4423",
+      "titulo": "MMA, SIMBIO: ficha de especie 4423",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4423",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4043",
+      "titulo": "MMA, SIMBIO: ficha de especie 4043",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4043",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "M4356",
+      "titulo": "MMA, SIMBIO: ficha de especie 4356",
+      "url": "https://simbio.mma.gob.cl/Especies/Details/4356",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rloa",
+      "titulo": "MMA, antecedentes RCE: Pejerrey del Loa",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Basilichthys_semotilus_P03R2_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rpocha",
+      "titulo": "MMA, antecedentes RCE: Cheirodon pisciculus",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Cheirodon_pisciculus_PO3R2_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rcarachi",
+      "titulo": "MMA, antecedentes RCE: Orestias agassii",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Orestias_agassii_P03R1_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rchungara",
+      "titulo": "MMA, antecedentes RCE: Orestias chungarensis",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Orestias_chungarensis_P03R1_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rperca",
+      "titulo": "MMA, antecedentes RCE: Percichthys melanops",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Percichthys_melanops_P03R5_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rgalus",
+      "titulo": "MMA, antecedentes RCE: Cheirodon galusdae",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Cheirodon_galusdae_P03R6_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rbullocki",
+      "titulo": "MMA, antecedentes RCE: Brachygalaxias bullocki",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Brachygalaxias_bullocki_PO3R3_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "Rplatei",
+      "titulo": "MMA, antecedentes RCE: Galaxias platei",
+      "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Galaxias_platei_RO3R4_RCE_CORREGIDO.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "SD",
+      "titulo": "SERNAPESCA, Fichas ícticas: Especies dulceacuícolas (edición 2012)",
+      "url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_2_especies_dulceacuicolas.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "SN",
+      "titulo": "SERNAPESCA, Fichas ícticas: Especies dulceacuícolas protegidas (edición 2012)",
+      "url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_1_especies_dulceacuicolas_protegidas.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "SM",
+      "titulo": "SERNAPESCA, Fichas ícticas: Especies marinas (edición 2012)",
+      "url": "https://www.sernapesca.cl/app/uploads/2023/11/fichas_icticas_de_especies_para_la_pesca_recreativa_parte_3_especies_marinas.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "H25",
+      "titulo": "MMA–ONU (2025), guía de peces continentales y macroinvertebrados",
+      "url": "https://gef.mma.gob.cl/humedales/wp-content/uploads/2025/01/GUIA_PECES_E_INSECTOS_2024_BAJA_RES.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "IFOP",
+      "titulo": "IFOP, Mi guía de especies marinas",
+      "url": "https://www.ifop.cl/wp-content/contenidos/uploads/mi_guia_de_especies_marinas.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "SALFWS",
+      "titulo": "USFWS, Atlantic salmon: biología",
+      "url": "https://www.fws.gov/species/atlantic-salmon-salmo-salar",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "COHOFWS",
+      "titulo": "USFWS, Coho salmon: biología",
+      "url": "https://www.fws.gov/species/coho-salmon-oncorhynchus-kisutch",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "CHIN",
+      "titulo": "Soto et al. (2007), establecimiento de chinook en Sudamérica",
+      "url": "https://www.scielo.cl/scielo.php?lng=es&nrm=iso&pid=S0716-078X2007000100007&script=sci_arttext",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "COR",
+      "titulo": "SUBPESCA, antecedentes de corvina",
+      "url": "https://www.subpesca.cl/portal/618/articles-92936_recurso_1.pdf",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "LEN",
+      "titulo": "Investigación: Paralichthys adspersus y P. microps (2010)",
+      "url": "https://www.scielo.cl/scielo.php?pid=S0718-560X2010000300003&script=sci_arttext",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "MARFIPA",
+      "titulo": "FIPA, caracterización y propuesta de manejo de recursos",
+      "url": "https://www.subpesca.cl/fipa/613/articles-116995_informe_final.pdf",
+      "fecha_consulta": "2026-10-08"
+    }
+  ]
+}
