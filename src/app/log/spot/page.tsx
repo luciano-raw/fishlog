@@ -42,7 +42,7 @@ export default function SpotForm() {
     setIsPending(true);
     try {
       if (imageFile) {
-        formData.append("file", imageFile);
+        formData.set("image", imageFile);
       }
       const result = await saveSpot(formData);
       if (result.success) {
@@ -51,9 +51,9 @@ export default function SpotForm() {
       } else {
         alert("Hubo un error al guardar el lugar.");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Error inesperado.");
+      alert(error?.message || "Error inesperado al guardar el lugar.");
     } finally {
       setIsPending(false);
     }

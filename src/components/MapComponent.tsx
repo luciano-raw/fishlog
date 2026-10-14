@@ -144,8 +144,11 @@ export default function MapComponent({ catches, spots = [], hazards = [], intera
                     <p className="text-xs text-lime mb-1">{c.user?.username || "Amigo"}</p>
                     <p className="text-sm text-gray-500 mb-2">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
                     {c.imageUrl && (
-                      <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden mt-2 border border-forest-green/30">
-                        <ImageWithFullscreen src={c.imageUrl} alt={c.species} className="w-full h-full object-cover" />
+                      <div className="mt-2">
+                        <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden border border-forest-green/30">
+                          <ImageWithFullscreen src={c.imageUrl} alt={c.species} className="w-full h-full object-cover" />
+                        </div>
+                        <p className="text-[10px] text-light-gray/60 mt-1">Toca para ampliar</p>
                       </div>
                     )}
                   </div>
@@ -165,8 +168,11 @@ export default function MapComponent({ catches, spots = [], hazards = [], intera
                     <p className="text-xs text-[#3b82f6]/80 mb-1">Spot de {s.user?.username || "Amigo"}</p>
                     {s.speciesSeen && <p className="text-sm text-gray-400 mb-2">Visto: {s.speciesSeen}</p>}
                     {s.imageUrl && (
-                      <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden mt-2 border border-[#3b82f6]/30">
-                        <ImageWithFullscreen src={s.imageUrl} alt={s.name} className="w-full h-full object-cover" />
+                      <div className="mt-2">
+                        <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden border border-[#3b82f6]/30">
+                          <ImageWithFullscreen src={s.imageUrl} alt={s.name} className="w-full h-full object-cover" />
+                        </div>
+                        <p className="text-[10px] text-light-gray/60 mt-1">Toca para ampliar</p>
                       </div>
                     )}
                   </div>

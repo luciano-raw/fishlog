@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "Fishlog",
   description: "Registra tus capturas",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/icons/favicon-32x32.png",
+    apple: "/icons/apple-touch-icon.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

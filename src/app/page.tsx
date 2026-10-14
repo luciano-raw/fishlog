@@ -62,10 +62,10 @@ export default async function Home() {
           <p className="text-light-gray/70 text-sm font-medium">Buena pesca,</p>
           <h1 className="text-white text-2xl font-bold tracking-tight">{userName}</h1>
         </div>
-        <button className="relative p-2 bg-charcoal rounded-full border border-forest-green/30 hover:border-lime transition-colors">
+        <Link href="/notifications" className="relative p-2 bg-charcoal rounded-full border border-forest-green/30 hover:border-lime transition-colors">
           <Bell size={20} className="text-white" />
           <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-lime rounded-full border-2 border-charcoal"></span>
-        </button>
+        </Link>
       </header>
 
       {/* Stats / Weather Cards */}
