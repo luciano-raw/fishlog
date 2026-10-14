@@ -1,8 +1,13 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { RedirectToSignIn } from "@clerk/nextjs";
-import { Users, Fish, MapPin, UserCheck, Shield } from "lucide-react";
-import { InviteButtons, ClerkSettingsToggle } from "@/components/ProfileClientComponents";
+import { Users, Shield } from "lucide-react";
+import { 
+  InviteButtons, 
+  ClerkSettingsToggle, 
+  FriendItemRow, 
+  PushNotificationManager 
+} from "@/components/ProfileClientComponents";
 
 export default async function ProfilePage() {
   const { userId } = await auth();
@@ -97,6 +102,11 @@ export default async function ProfilePage() {
       </div>
 
       <main className="p-4 space-y-6">
+        {/* Sección: Alertas Push en Teléfono */}
+        <section>
+          <PushNotificationManager />
+        </section>
+
         {/* Sección: Invitar Amigos */}
         <section className="bg-charcoal p-5 rounded-3xl border border-forest-green/20 space-y-3 shadow-lg">
           <div className="flex items-center gap-2">
@@ -109,7 +119,7 @@ export default async function ProfilePage() {
           <InviteButtons userId={userId} />
         </section>
 
-        {/* Sección: Lista de Amigos */}
+        {/* Sección: Lista de Amigos con Opción de Eliminar */}
         <section className="space-y-3">
           <div className="flex items-center justify-between px-1">
             <h2 className="text-xs font-semibold text-light-gray/60 uppercase tracking-wider flex items-center gap-2">
@@ -121,38 +131,7 @@ export default async function ProfilePage() {
           {friends.length > 0 ? (
             <div className="space-y-2">
               {friends.map((friend) => (
-                <div
-                  key={friend.id}
-                  className="flex items-center justify-between p-4 bg-charcoal rounded-2xl border border-forest-green/20 shadow-md"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-11 h-11 rounded-full overflow-hidden bg-deep-black border border-forest-green/40 flex items-center justify-center shrink-0">
-                      {friend.avatarUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={friend.avatarUrl} alt={friend.username || "Amigo"} className="w-full h-full object-cover" />
-                      ) : (
-                        <span className="text-sm font-bold text-forest-green">
-                          {(friend.username || "A").charAt(0).toUpperCase()}
-                        </span>
-                      )}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-white font-bold text-sm truncate">{friend.username || "Amigo"}</p>
-                      <div className="flex items-center gap-3 text-[11px] text-light-gray/60 mt-0.5">
-                        <span className="flex items-center gap-1">
-                          <Fish size={12} className="text-lime" /> {friend._count.catches} capturas
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <MapPin size={12} className="text-[#3b82f6]" /> {friend._count.spots} spots
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <span className="flex items-center gap-1 text-[11px] text-lime font-medium bg-lime/10 px-2.5 py-1 rounded-full border border-lime/20 shrink-0">
-                    <UserCheck size={12} /> Conectado
-                  </span>
-                </div>
+                <FriendItemRow key={friend.id} friend={friend} />
               ))}
             </div>
           ) : (

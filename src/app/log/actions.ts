@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { supabase } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { sendPushToFriends } from "@/lib/pushNotifications";
 
 export async function saveCatch(formData: FormData) {
   // 1. Verificar Autenticación
@@ -86,6 +87,13 @@ export async function saveCatch(formData: FormData) {
         locationLng: lng ? parseFloat(lng) : null,
       }
     });
+
+    // Enviar notificación Push a los amigos conectados
+    sendPushToFriends(userId, {
+      title: "🎣 ¡Nueva captura de un amigo!",
+      body: `${clerkUser.username || clerkUser.firstName || "Un amigo"} registró una captura de ${species}${weight ? ` (${weight} kg)` : ""}.`,
+      url: "/map",
+    }).catch((err) => console.error("Error enviando push de captura:", err));
   } catch (error) {
     console.error("Error en base de datos:", error);
     throw new Error("Error al guardar en la base de datos.");

@@ -19,6 +19,8 @@ model User {
   // Relaciones de amigos
   friendsAdded  Friendship[] @relation("UserAdded")
   friendsOf     Friendship[] @relation("UserFriendOf")
+
+  pushSubscriptions PushSubscription[]
 }
 
 model Friendship {
@@ -47,7 +49,6 @@ model Catch {
   updatedAt   DateTime @updatedAt
 }
 
-
 model Spot {
   id          String   @id @default(cuid())
   userId      String
@@ -71,4 +72,16 @@ model Hazard {
   locationLng Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+
+  @@index([userId])
 }

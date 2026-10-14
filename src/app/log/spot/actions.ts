@@ -4,6 +4,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { supabase } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
+import { sendPushToFriends } from "@/lib/pushNotifications";
 
 export async function saveSpot(formData: FormData) {
   const { userId } = await auth();
@@ -76,6 +77,13 @@ export async function saveSpot(formData: FormData) {
       locationLng: lng,
     },
   });
+
+  // Enviar push a los amigos conectados
+  sendPushToFriends(userId, {
+    title: "📍 Nuevo Spot marcado",
+    body: `${clerkUser.username || clerkUser.firstName || "Un amigo"} compartió el spot "${name}" en el mapa.`,
+    url: "/map",
+  }).catch((err) => console.error("Error enviando push de spot:", err));
 
   revalidatePath("/");
   revalidatePath("/map");

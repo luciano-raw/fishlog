@@ -3,6 +3,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { sendPushToFriends } from "@/lib/pushNotifications";
 
 export async function saveHazard(formData: FormData) {
   const { userId } = await auth();
@@ -42,6 +43,13 @@ export async function saveHazard(formData: FormData) {
       locationLng: lng,
     },
   });
+
+  // Enviar push a los amigos conectados
+  sendPushToFriends(userId, {
+    title: "⚠️ Peligro reportado en la zona",
+    body: `${clerkUser.username || clerkUser.firstName || "Un amigo"} reportó: "${name}"${note ? ` (${note})` : ""}.`,
+    url: "/map",
+  }).catch((err) => console.error("Error enviando push de peligro:", err));
 
   revalidatePath("/");
   revalidatePath("/map");
