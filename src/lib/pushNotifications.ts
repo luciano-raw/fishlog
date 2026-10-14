@@ -1,12 +1,9 @@
 import webpush from "web-push";
 import { prisma } from "@/lib/prisma";
+import { VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT } from "./vapidConstants";
 
-const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
-const vapidPrivateKey = process.env.VAPID_PRIVATE_KEY;
-const vapidSubject = process.env.VAPID_SUBJECT || "mailto:luciano.raw04@gmail.com";
-
-if (vapidPublicKey && vapidPrivateKey) {
-  webpush.setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey);
+if (VAPID_PUBLIC_KEY && VAPID_PRIVATE_KEY) {
+  webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 }
 
 export async function sendPushToFriends(
@@ -17,7 +14,7 @@ export async function sendPushToFriends(
     url?: string;
   }
 ) {
-  if (!vapidPublicKey || !vapidPrivateKey) {
+  if (!VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY) {
     console.warn("VAPID keys no están configuradas. No se puede enviar push.");
     return;
   }

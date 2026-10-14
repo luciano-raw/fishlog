@@ -5,6 +5,7 @@ import { Share2, Copy, Check, Settings, Trash2, Bell, BellOff, Loader2, Fish, Ma
 import { UserProfile } from "@clerk/nextjs";
 import { removeFriend } from "@/app/actions/friends";
 import { savePushSubscription, removePushSubscription } from "@/app/actions/pushSubscription";
+import { VAPID_PUBLIC_KEY } from "@/lib/vapidConstants";
 
 function urlBase64ToUint8Array(base64String: string) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -193,12 +194,7 @@ export function PushNotificationManager() {
           return;
         }
 
-        const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
-        if (!vapidPublicKey) {
-          throw new Error("Clave VAPID pública no configurada.");
-        }
-
-        const convertedKey = urlBase64ToUint8Array(vapidPublicKey);
+        const convertedKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
         const newSub = await reg.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: convertedKey,
