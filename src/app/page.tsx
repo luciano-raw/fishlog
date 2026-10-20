@@ -1,12 +1,26 @@
 import { currentUser, auth } from "@clerk/nextjs/server";
-import { Search, MapPin, Bell, Sun, ChevronRight, Fish, Scale, BookOpen } from "lucide-react";
+import { MapPin, Bell, ChevronRight, Fish, BookOpen } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import MapDynamic from "@/components/MapDynamic";
 import ImageWithFullscreen from "@/components/ImageWithFullscreen";
 import WeatherWidget from "@/components/WeatherWidget";
+import HomeTabs from "@/components/HomeTabs";
+import FriendsActivity from "@/components/FriendsActivity";
+import { mergeFriendActivity, type FriendActivity } from "@/lib/activityFeed";
+import MapPointLink from "@/components/MapPointLink";
+import type { Prisma } from "@prisma/client";
 
-export default async function Home() {
+const publicAuthor = { select: { username: true, avatarUrl: true } } as const;
+type CatchRecord = Prisma.CatchGetPayload<{ include: { user: typeof publicAuthor } }>;
+type SpotRecord = Prisma.SpotGetPayload<{ include: { user: typeof publicAuthor } }>;
+type HazardRecord = Prisma.HazardGetPayload<{ include: { user: typeof publicAuthor } }>;
+
+export default async function Home({ searchParams }: { searchParams: Promise<{ activityPage?: string }> }) {
+  const query = await searchParams;
+  const requestedPage = Number(query.activityPage);
+  const activityPage = Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, 100) : 1;
+  const activityLimit = activityPage * 30;
   const { userId } = await auth();
   const user = await currentUser();
   const userName = user?.firstName || user?.username || "Angler";
@@ -24,32 +38,42 @@ export default async function Home() {
     });
     
     // Extraer los IDs únicos de los amigos
-    friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
+    friendIds = [...new Set(friendships.map(f => f.userId === userId ? f.friendId : f.userId))].filter(id => id !== userId);
   }
 
   // Fetch recent data (Todos los usuarios)
-  let recentCatches: any[] = [];
-  let spots: any[] = [];
-  let hazards: any[] = [];
+  let recentCatches: CatchRecord[] = [];
+  let spots: SpotRecord[] = [];
+  let hazards: HazardRecord[] = [];
+  let activities: FriendActivity[] = [];
 
   if (userId) {
-    recentCatches = await prisma.catch.findMany({
-      include: { user: true },
+    [recentCatches, spots, hazards] = await Promise.all([prisma.catch.findMany({
+      include: { user: publicAuthor },
       orderBy: { createdAt: "desc" },
       take: 20, // Más datos para poblar el mapa
-    });
-
-    spots = await prisma.spot.findMany({
-      include: { user: true },
+    }), prisma.spot.findMany({
+      include: { user: publicAuthor },
       orderBy: { createdAt: "desc" },
       take: 20,
-    });
-
-    hazards = await prisma.hazard.findMany({
-      include: { user: true },
+    }), prisma.hazard.findMany({
+      include: { user: publicAuthor },
       orderBy: { createdAt: "desc" },
       take: 20,
-    });
+    })]);
+  }
+
+  if (userId && friendIds.length > 0) {
+    const options = {
+      where: { userId: { in: friendIds } },
+      include: { user: publicAuthor },
+      orderBy: [{ createdAt: "desc" as const }, { id: "desc" as const }],
+      take: activityLimit + 1,
+    };
+    const [friendCatches, friendSpots, friendHazards] = await Promise.all([
+      prisma.catch.findMany(options), prisma.spot.findMany(options), prisma.hazard.findMany(options),
+    ]);
+    activities = mergeFriendActivity(friendCatches, friendSpots, friendHazards);
   }
 
   
@@ -68,6 +92,7 @@ export default async function Home() {
         </Link>
       </header>
 
+      <HomeTabs friends={<FriendsActivity activities={activities.slice(0, activityLimit)} signedIn={!!userId} hasFriends={friendIds.length > 0} nextPage={activities.length > activityLimit && activityPage < 100 ? activityPage + 1 : null} />}>
       {/* Stats / Weather Cards */}
       <section className="grid grid-cols-2 gap-4 mt-2">
         <div className="bg-charcoal p-5 rounded-3xl border border-forest-green/20 flex flex-col justify-center items-center text-center">
@@ -123,6 +148,7 @@ export default async function Home() {
                     <p className="text-lime text-[10px] font-medium">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
                 </div>
               )}
+              <div className="px-2 pb-2"><MapPointLink type="catch" point={c} /></div>
             </div>
           ))}
           {recentCatches.length === 0 && <div className="col-span-2 text-center p-4 text-light-gray/60">No hay capturas aún.</div>}
@@ -164,6 +190,7 @@ export default async function Home() {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-white font-bold truncate">{c.species}</h3>
                   <p className="text-light-gray/60 text-xs truncate">{c.userId === userId ? "Pescado por ti" : `Pescado por ${c.user?.username || 'Amigo'}`}</p>
+                  <div className="mt-2"><MapPointLink type="catch" point={c} /></div>
                 </div>
                 {c.imageUrl && (
                   <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
@@ -175,6 +202,7 @@ export default async function Home() {
           </div>
         </section>
       )}
+      </HomeTabs>
     </div>
   );
 }

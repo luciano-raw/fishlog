@@ -6,8 +6,9 @@ import L from "leaflet";
 import "@tomickigrzegorz/leaflet-rotate";
 import { LocateFixed, Loader2, Navigation2 } from "lucide-react";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
+import { hasCoordinates, type MapTarget, type MapPointType } from "@/lib/mapLinks";
 
 // Ícono grande tipo "Pin" o "Lágrima" para las capturas
 const catchIcon = L.divIcon({
@@ -61,7 +62,7 @@ const hazardIcon = L.divIcon({
 });
 
 
-const createClusterCustomIcon = function (cluster: any) {
+const createClusterCustomIcon = function (cluster: { getChildCount(): number }) {
   return L.divIcon({
     html: `<div class="w-10 h-10 bg-[#a4ff3d] border-2 border-[#1A1F1B] text-[#1A1F1B] font-bold text-base rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(164,255,61,0.6)]"><span>${cluster.getChildCount()}</span></div>`,
     className: 'custom-marker-cluster',
@@ -70,26 +71,38 @@ const createClusterCustomIcon = function (cluster: any) {
 };
 
 interface MapProps {
-  catches: any[];
-  spots?: any[];
-  hazards?: any[];
+  catches: PointRecord[];
+  spots?: PointRecord[];
+  hazards?: PointRecord[];
   interactive?: boolean;
+  target?: MapTarget;
 }
 
 // Subcomponente para manejar la geolocalización de Leaflet
-function LocationControls({ interactive }: { interactive: boolean }) {
+function LocationControls({ interactive, hasTarget }: { interactive: boolean; hasTarget: boolean }) {
   const map = useMap();
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [locating, setLocating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [bearing, setBearing] = useState(0);
+  const recenterRequested = useRef(!hasTarget);
 
   useEffect(() => {
+    const container = map.getContainer();
+    const observer = new ResizeObserver(() => {
+      if (container.clientWidth && container.clientHeight) map.invalidateSize({ pan: false });
+    });
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [map]);
+
+  useEffect(() => {
+    recenterRequested.current = !hasTarget;
     const onLocationFound = (event: L.LocationEvent) => {
       setPosition([event.latlng.lat, event.latlng.lng]);
       setLocating(false);
       setError(null);
-      if (interactive) map.flyTo(event.latlng, Math.max(map.getZoom(), 14));
+      if (interactive && recenterRequested.current) map.flyTo(event.latlng, Math.max(map.getZoom(), 14));
     };
     const onLocationError = (event: L.ErrorEvent) => {
       setLocating(false);
@@ -110,7 +123,7 @@ function LocationControls({ interactive }: { interactive: boolean }) {
       map.off("rotate", onRotate);
       map.stopLocate();
     };
-  }, [map, interactive]);
+  }, [map, interactive, hasTarget]);
 
   return <>
     {position && (
@@ -133,6 +146,7 @@ function LocationControls({ interactive }: { interactive: boolean }) {
         <button type="button" aria-label={locating ? "Buscando tu ubicación" : "Volver a mi ubicación"} title="Volver a mi ubicación"
           disabled={locating} aria-busy={locating}
           onClick={() => {
+            recenterRequested.current = true;
             setLocating(true);
             setError(null);
             map.locate({ setView: false, enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
@@ -145,19 +159,77 @@ function LocationControls({ interactive }: { interactive: boolean }) {
   </>;
 }
 
-export default function MapComponent({ catches, spots = [], hazards = [], interactive = true }: MapProps) {
+interface PointRecord {
+  id: string;
+  locationLat: number | null;
+  locationLng: number | null;
+  name?: string;
+  species?: string;
+  weight?: number | null;
+  length?: number | null;
+  speciesSeen?: string | null;
+  note?: string | null;
+  imageUrl?: string | null;
+  user?: { username: string | null };
+}
+
+function PointMarker({ point, type, interactive, focused = false }: {
+  point: PointRecord; type: MapPointType; interactive: boolean; focused?: boolean;
+}) {
+  const map = useMap();
+  const marker = useRef<L.Marker>(null);
+  const { id, locationLat, locationLng } = point;
+  useEffect(() => {
+    if (!focused || locationLat == null || locationLng == null) return;
+    map.setView([locationLat, locationLng], 16, { animate: false });
+    const open = () => marker.current?.openPopup();
+    const current = marker.current;
+    current?.on("add", open);
+    open();
+    return () => { current?.off("add", open); };
+  }, [map, focused, id, locationLat, locationLng]);
+
+  if (!hasCoordinates(point)) return null;
+  const title = type === "catch" ? point.species : point.name;
+  const color = type === "catch" ? "text-lime" : type === "spot" ? "text-blue-400" : "text-red-400";
+  const author = point.user?.username || "Pescador";
+  return <Marker ref={marker} position={[locationLat!, locationLng!]} icon={type === "catch" ? catchIcon : type === "spot" ? spotIcon : hazardIcon}>
+    {interactive && <Popup className="fishlog-popup">
+      <div className="text-center font-sans">
+        <p className={`text-lg font-bold leading-tight ${color}`}>{title}</p>
+        <p className={`mb-1 text-xs ${color}`}>{type === "spot" ? `Spot de ${author}` : type === "hazard" ? `Reportado por ${author}` : author}</p>
+        {type === "catch" && <p className="mb-2 text-sm text-gray-400">{[point.weight != null ? `${point.weight} kg` : null, point.length != null ? `${point.length} cm` : null].filter(Boolean).join(" · ")}</p>}
+        {type === "spot" && point.speciesSeen && <p className="mb-2 text-sm text-gray-400">Visto: {point.speciesSeen}</p>}
+        {point.note && <p className="mt-2 whitespace-pre-wrap break-words rounded-lg bg-deep-black p-2 text-sm text-gray-300">{point.note}</p>}
+        {point.imageUrl && <div className="mt-2">
+          <div className="mx-auto h-32 w-32 overflow-hidden rounded-xl border border-forest-green/30">
+            <ImageWithFullscreen src={point.imageUrl} alt={title || "Foto del registro"} className="h-full w-full object-cover" />
+          </div>
+          <p className="mt-1 text-[10px] text-light-gray/60">Toca para ampliar</p>
+        </div>}
+      </div>
+    </Popup>}
+  </Marker>;
+}
+
+export default function MapComponent({ catches, spots = [], hazards = [], interactive = true, target }: MapProps) {
+  const records = [
+    ...catches.map(point => ({ type: "catch" as const, point })),
+    ...spots.map(point => ({ type: "spot" as const, point })),
+    ...hazards.map(point => ({ type: "hazard" as const, point })),
+  ].filter(({ point }) => hasCoordinates(point));
+  const selected = interactive ? records.find(({ type, point }) => type === target?.type && point.id === target.id) : undefined;
   // Centro por defecto (o última captura/spot)
-  const centerPosition: [number, number] = catches.length > 0 && catches[0].locationLat
-    ? [catches[0].locationLat, catches[0].locationLng]
-    : spots.length > 0 && spots[0].locationLat 
-      ? [spots[0].locationLat, spots[0].locationLng]
+  const firstPoint = selected?.point ?? records[0]?.point;
+  const centerPosition: [number, number] = firstPoint
+    ? [firstPoint.locationLat!, firstPoint.locationLng!]
       : [-33.4489, -70.6693]; // Default Santiago
 
   return (
     <div className={`w-full ${interactive ? 'h-[calc(100vh-100px)]' : 'h-full'} z-0`}>
       <MapContainer
         center={centerPosition}
-        zoom={interactive ? 13 : 11}
+        zoom={selected ? 16 : interactive ? 13 : 11}
         scrollWheelZoom={interactive}
         dragging={interactive}
         zoomControl={false}
@@ -177,78 +249,14 @@ export default function MapComponent({ catches, spots = [], hazards = [], intera
         />
         
         {interactive && <ZoomControl position="bottomright" />}
-        <LocationControls interactive={interactive} />
-          <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon} maxClusterRadius={40}>
-
-        {catches.map((c, i) => (
-          c.locationLat && c.locationLng ? (
-            <Marker 
-              key={c.id || i} 
-              position={[c.locationLat, c.locationLng]} 
-              icon={catchIcon}
-            >
-              {interactive && (
-                <Popup className="fishlog-popup">
-                  <div className="text-center font-sans">
-                    <p className="font-bold text-lg leading-tight">{c.species}</p>
-                    <p className="text-xs text-lime mb-1">{c.user?.username || "Amigo"}</p>
-                    <p className="text-sm text-gray-500 mb-2">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
-                    {c.imageUrl && (
-                      <div className="mt-2">
-                        <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden border border-forest-green/30">
-                          <ImageWithFullscreen src={c.imageUrl} alt={c.species} className="w-full h-full object-cover" />
-                        </div>
-                        <p className="text-[10px] text-light-gray/60 mt-1">Toca para ampliar</p>
-                      </div>
-                    )}
-                  </div>
-                </Popup>
-              )}
-            </Marker>
-          ) : null
-        ))}
-
-        {spots.map((s, i) => (
-          s.locationLat && s.locationLng ? (
-            <Marker key={`spot-${s.id || i}`} position={[s.locationLat, s.locationLng]} icon={spotIcon}>
-              {interactive && (
-                <Popup className="fishlog-popup">
-                  <div className="text-center font-sans">
-                    <p className="font-bold text-lg leading-tight text-[#3b82f6]">{s.name}</p>
-                    <p className="text-xs text-[#3b82f6]/80 mb-1">Spot de {s.user?.username || "Amigo"}</p>
-                    {s.speciesSeen && <p className="text-sm text-gray-400 mb-2">Visto: {s.speciesSeen}</p>}
-                    {s.imageUrl && (
-                      <div className="mt-2">
-                        <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden border border-[#3b82f6]/30">
-                          <ImageWithFullscreen src={s.imageUrl} alt={s.name} className="w-full h-full object-cover" />
-                        </div>
-                        <p className="text-[10px] text-light-gray/60 mt-1">Toca para ampliar</p>
-                      </div>
-                    )}
-                  </div>
-                </Popup>
-              )}
-            </Marker>
-          ) : null
-        ))}
-
-        {hazards.map((h, i) => (
-          h.locationLat && h.locationLng ? (
-            <Marker key={`hazard-${h.id || i}`} position={[h.locationLat, h.locationLng]} icon={hazardIcon}>
-              {interactive && (
-                <Popup className="fishlog-popup">
-                  <div className="text-center font-sans">
-                    <p className="font-bold text-lg leading-tight text-[#ef4444]">{h.name}</p>
-                    <p className="text-xs text-[#ef4444]/80 mb-1">Reportado por {h.user?.username || "Amigo"}</p>
-                    {h.note && <p className="text-sm text-gray-300 mt-2 p-2 bg-deep-black rounded-lg border border-[#ef4444]/20">{h.note}</p>}
-                  </div>
-                </Popup>
-              )}
-            </Marker>
-          ) : null
-        ))}
-
-          </MarkerClusterGroup>
+        <LocationControls interactive={interactive} hasTarget={!!selected} />
+        <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon} maxClusterRadius={40}>
+          {records.filter(record => record !== selected).map(({ type, point }) => (
+            <PointMarker key={`${type}-${point.id}`} type={type} point={point} interactive={interactive} />
+          ))}
+        </MarkerClusterGroup>
+        {selected && <PointMarker key={`${selected.type}-${selected.point.id}`} type={selected.type} point={selected.point} interactive focused />}
+        {target && !selected && interactive && <div role="status" className="absolute left-4 right-4 top-20 z-[1000] rounded-xl border border-forest-green/40 bg-charcoal p-3 text-sm text-white">Este registro ya no está disponible o no tiene ubicación.</div>}
       </MapContainer>
       
       {/* Añadimos estilos extra para el popup oscuro sobreescribiendo leaflet */}

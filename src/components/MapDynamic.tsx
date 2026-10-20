@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from 'next/dynamic';
+import type { MapTarget } from '@/lib/mapLinks';
 
 const MapComponent = dynamic(
   () => import('./MapComponent'),
@@ -21,6 +22,7 @@ interface MapProps {
   spots?: any[];
   hazards?: any[];
   interactive?: boolean;
+  target?: MapTarget;
 }
 
 export default function MapDynamicClient(props: MapProps) {

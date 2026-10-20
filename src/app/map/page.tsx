@@ -3,8 +3,16 @@ import { prisma } from "@/lib/prisma";
 import MapDynamic from "@/components/MapDynamic";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import type { MapTarget } from "@/lib/mapLinks";
 
-export default async function MapPage() {
+export default async function MapPage({ searchParams }: {
+  searchParams: Promise<{ catchId?: string; spotId?: string; hazardId?: string; from?: string }>;
+}) {
+  const query = await searchParams;
+  let target: MapTarget | undefined;
+  if (typeof query.catchId === "string") target = { type: "catch", id: query.catchId };
+  else if (typeof query.spotId === "string") target = { type: "spot", id: query.spotId };
+  else if (typeof query.hazardId === "string") target = { type: "hazard", id: query.hazardId };
   const { userId } = await auth();
   
   let catches: any[] = [];
@@ -32,7 +40,7 @@ export default async function MapPage() {
     <div className="flex flex-col min-h-screen bg-deep-black relative">
       {/* Header flotante */}
       <header className="absolute top-0 left-0 w-full p-4 z-10 flex items-center bg-gradient-to-b from-deep-black/80 to-transparent pointer-events-none">
-        <Link href="/" className="pointer-events-auto p-2 bg-charcoal/80 rounded-full text-lime backdrop-blur-sm border border-forest-green/50">
+        <Link href={query.from === "friends" ? "/?feed=friends" : "/"} aria-label={query.from === "friends" ? "Volver a Amigos" : "Volver al inicio"} className="pointer-events-auto p-2 bg-charcoal/80 rounded-full text-lime backdrop-blur-sm border border-forest-green/50">
           <ChevronLeft size={24} />
         </Link>
         <h1 className="text-lg font-bold text-white drop-shadow-md ml-3">Explorar Hitos</h1>
@@ -40,7 +48,7 @@ export default async function MapPage() {
 
       {/* Mapa Interactivo */}
       <main className="flex-1">
-        <MapDynamic catches={catches} spots={spots} hazards={hazards} interactive={true} />
+        <MapDynamic catches={catches} spots={spots} hazards={hazards} interactive={true} target={target} />
       </main>
     </div>
   );
