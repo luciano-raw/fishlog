@@ -3,6 +3,8 @@
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import "@tomickigrzegorz/leaflet-rotate";
+import { LocateFixed, Loader2, Navigation2 } from "lucide-react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { useEffect, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
@@ -75,29 +77,72 @@ interface MapProps {
 }
 
 // Subcomponente para manejar la geolocalización de Leaflet
-function LocationFlyTo({ catches }: { catches: any[] }) {
+function LocationControls({ interactive }: { interactive: boolean }) {
   const map = useMap();
   const [position, setPosition] = useState<[number, number] | null>(null);
+  const [locating, setLocating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [bearing, setBearing] = useState(0);
 
   useEffect(() => {
-    // Pedir permisos y buscar ubicación
-    map.locate({ setView: false, maxZoom: 13 })
-      .on("locationfound", (e) => {
-        setPosition([e.latlng.lat, e.latlng.lng]);
-        // Si no hay capturas previas, volamos a donde está el usuario
-        if (true) {
-          map.flyTo(e.latlng, 14);
-        }
-      });
-  }, [map, catches.length]);
+    const onLocationFound = (event: L.LocationEvent) => {
+      setPosition([event.latlng.lat, event.latlng.lng]);
+      setLocating(false);
+      setError(null);
+      if (interactive) map.flyTo(event.latlng, Math.max(map.getZoom(), 14));
+    };
+    const onLocationError = (event: L.ErrorEvent) => {
+      setLocating(false);
+      if (interactive) {
+        setError(event.code === 1
+          ? "Permite el acceso a tu ubicación en el navegador y vuelve a intentarlo."
+          : "No pudimos obtener tu ubicación. Vuelve a intentarlo.");
+      }
+    };
+    const onRotate = () => setBearing(map.getBearing());
+    map.on("locationfound", onLocationFound);
+    map.on("locationerror", onLocationError);
+    map.on("rotate", onRotate);
+    map.locate({ setView: false, enableHighAccuracy: true, timeout: 10000 });
+    return () => {
+      map.off("locationfound", onLocationFound);
+      map.off("locationerror", onLocationError);
+      map.off("rotate", onRotate);
+      map.stopLocate();
+    };
+  }, [map, interactive]);
 
-  return position ? (
+  return <>
+    {position && (
     <Marker position={position} icon={userIcon}>
       <Popup className="fishlog-popup">
         <div className="text-center font-bold text-sm">Estás aquí</div>
       </Popup>
     </Marker>
-  ) : null;
+    )}
+    {interactive && (
+      <div className="absolute bottom-28 right-3 z-[1000] flex flex-col items-end gap-2"
+        onPointerDown={(event) => event.stopPropagation()}
+        onDoubleClick={(event) => event.stopPropagation()}>
+        {error && <p role="alert" className="max-w-60 rounded-xl border border-red-400/40 bg-[#1A1F1B] p-3 text-sm text-white shadow-lg">{error}</p>}
+        <button type="button" aria-label="Orientar mapa al norte" title="Orientar al norte"
+          onClick={() => map.setBearing(0)}
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-forest-green/50 bg-charcoal text-lime shadow-lg hover:bg-forest-green focus-visible:outline-2 focus-visible:outline-lime">
+          <Navigation2 size={22} style={{ transform: `rotate(${bearing}deg)` }} />
+        </button>
+        <button type="button" aria-label={locating ? "Buscando tu ubicación" : "Volver a mi ubicación"} title="Volver a mi ubicación"
+          disabled={locating} aria-busy={locating}
+          onClick={() => {
+            setLocating(true);
+            setError(null);
+            map.locate({ setView: false, enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+          }}
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-forest-green/50 bg-charcoal text-lime shadow-lg hover:bg-forest-green disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-lime">
+          {locating ? <Loader2 size={22} className="animate-spin" /> : <LocateFixed size={22} />}
+        </button>
+      </div>
+    )}
+  </>;
 }
 
 export default function MapComponent({ catches, spots = [], hazards = [], interactive = true }: MapProps) {
@@ -118,6 +163,11 @@ export default function MapComponent({ catches, spots = [], hazards = [], intera
         zoomControl={false}
         touchZoom={interactive}
         doubleClickZoom={interactive}
+        rotate={interactive}
+        touchRotate={interactive}
+        shiftKeyRotate={interactive}
+        dragRotate={interactive}
+        rotateControl={false}
         className="w-full h-full z-0"
       >
         <TileLayer
@@ -127,7 +177,7 @@ export default function MapComponent({ catches, spots = [], hazards = [], intera
         />
         
         {interactive && <ZoomControl position="bottomright" />}
-        <LocationFlyTo catches={catches} />
+        <LocationControls interactive={interactive} />
           <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon} maxClusterRadius={40}>
 
         {catches.map((c, i) => (
