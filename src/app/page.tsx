@@ -154,11 +154,13 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
       </section>
 
       <section aria-label="Guías de pesca" className="grid grid-cols-2 gap-3">
-        <Link href="/regulations" className="flex min-h-12 items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-xs text-light-gray transition-colors hover:border-lime">
-          <BookOpen size={18} className="shrink-0 text-blue-400" />Reglamentos
+        <Link href="/regulations" className="flex min-h-28 flex-col items-start justify-center gap-2 rounded-2xl border border-white/10 bg-charcoal px-4 py-3 transition-colors hover:border-lime">
+          <BookOpen size={23} className="shrink-0 text-blue-400" aria-hidden="true" />
+          <div><h3 className="text-sm font-semibold text-white">Reglamentos</h3><p className="mt-1 text-xs leading-relaxed text-light-gray/60">Conoce las normas antes de lanzar.</p></div>
         </Link>
-        <Link href="/encyclopedia" className="flex min-h-12 items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-xs text-light-gray transition-colors hover:border-lime">
-          <Fish size={18} className="shrink-0 text-lime" />Enciclopedia
+        <Link href="/encyclopedia" className="flex min-h-28 flex-col items-start justify-center gap-2 rounded-2xl border border-white/10 bg-charcoal px-4 py-3 transition-colors hover:border-lime">
+          <Fish size={23} className="shrink-0 text-lime" aria-hidden="true" />
+          <div><h3 className="text-sm font-semibold text-white">Enciclopedia</h3><p className="mt-1 text-xs leading-relaxed text-light-gray/60">Descubre especies y señuelos.</p></div>
         </Link>
       </section>
 
