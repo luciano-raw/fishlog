@@ -13,6 +13,7 @@ import type { Prisma, Shop } from "@prisma/client";
 import { lureLabel } from "@/lib/lures";
 import Welcome from "@/components/Welcome";
 import CatchSocial from "@/components/CatchSocial";
+import { hasCoordinates, mapPointHref } from "@/lib/mapLinks";
 
 const publicAuthor = { select: { username: true, avatarUrl: true } } as const;
 type CatchRecord = Prisma.CatchGetPayload<{ include: { user: typeof publicAuthor } }>;
@@ -138,9 +139,9 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
         </div>
         <div className="grid grid-cols-2 gap-3">
           {recentCatches.slice(0, 4).map(c => (
-            <div key={c.id} className="bg-charcoal rounded-2xl overflow-hidden border border-forest-green/20 relative group">
+            <div key={c.id} className="flex flex-col bg-charcoal rounded-2xl overflow-hidden border border-forest-green/20 relative group">
               {c.imageUrl ? (
-                <div className="w-full h-24 relative">
+                <div className="aspect-[4/3] w-full relative">
                   <ImageWithFullscreen src={c.imageUrl} alt={c.species} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-deep-black/90 to-transparent pointer-events-none"></div>
                   <div className="absolute bottom-2 left-2 right-2">
@@ -149,12 +150,12 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
                   </div>
                 </div>
               ) : (
-                <div className="w-full h-24 flex flex-col justify-end p-3">
+                <div className="aspect-[4/3] w-full flex flex-col justify-end p-3">
                     <p className="text-white font-bold text-sm truncate">{c.species}</p>
                     <p className="text-lime text-[10px] font-medium">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
                 </div>
               )}
-              <div className="space-y-2 px-2 pb-2">{lureLabel(c.lureType) && <p className="truncate text-[10px] text-light-gray/60">Con: {lureLabel(c.lureType)}</p>}<MapPointLink type="catch" point={c} /><CatchSocial id={c.id} /></div>
+              <div className="mt-auto px-1.5 pb-1 pt-1">{lureLabel(c.lureType) && <p className="truncate px-2 pb-1 text-[10px] text-light-gray/60">Con: {lureLabel(c.lureType)}</p>}<CatchSocial id={c.id} mapHref={hasCoordinates(c) ? mapPointHref("catch", c.id) : undefined} /></div>
             </div>
           ))}
           {recentCatches.length === 0 && <div className="col-span-2 text-center p-4 text-light-gray/60">No hay capturas aún.</div>}

@@ -39,3 +39,30 @@ body {
   /* Prevent scrolling bounce on mobile for app feel */
   overscroll-behavior-y: none;
 }
+
+@keyframes fish-reaction-pop {
+  0% { transform: scale(1) rotate(0); }
+  30% { transform: translateY(-4px) scale(1.3) rotate(-16deg); }
+  60% { transform: translateY(1px) scale(.92) rotate(8deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes fish-reaction-ring {
+  0% { transform: scale(.55); opacity: .75; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.fish-reaction-pop { animation: fish-reaction-pop 450ms ease-out; }
+.fish-reaction-ring {
+  position: absolute;
+  inset: -4px;
+  border: 1.5px solid var(--lime);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: fish-reaction-ring 500ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fish-reaction-pop, .fish-reaction-ring { animation: none; }
+  .fish-reaction-ring { display: none; }
+}
