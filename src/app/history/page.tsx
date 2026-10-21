@@ -65,7 +65,7 @@ export default async function HistoryPage() {
   return (
     <div className="min-h-screen p-4 flex flex-col space-y-6">
       <header className="mt-2">
-        <h1 className="text-white text-2xl font-bold tracking-tight">Tu Bitácora</h1>
+        <h1 className="text-white text-2xl font-bold tracking-tight">Mi actividad</h1>
         <p className="text-light-gray/70 text-sm font-medium">Historial y estadísticas de pesca</p>
       </header>
 

@@ -86,12 +86,12 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
   
 
   return (
-    <div className="flex flex-col min-h-full p-4 space-y-6">
+    <div className="flex flex-col min-h-full p-4 space-y-4">
       {/* Header section */}
-      <header className="flex justify-between items-center mt-2">
+      <header className="flex justify-between items-center">
         <div>
           <p className="text-light-gray/70 text-sm font-medium">Buena pesca,</p>
-          <h1 className="text-white text-2xl font-bold tracking-tight">{userName}</h1>
+          <h1 className="text-white text-xl font-bold tracking-tight">{userName}</h1>
         </div>
         <Link href="/notifications" className="relative p-2 bg-charcoal rounded-full border border-forest-green/30 hover:border-lime transition-colors">
           <Bell size={20} className="text-white" />
@@ -100,33 +100,24 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
       </header>
 
       <HomeTabs friends={<FriendsActivity activities={activities.slice(0, activityLimit)} signedIn={!!userId} hasFriends={friendIds.length > 0} nextPage={activities.length > activityLimit && activityPage < 100 ? activityPage + 1 : null} />}>
-      {/* Stats / Weather Cards */}
-      <section className="grid grid-cols-2 gap-4 mt-2">
-        <div className="bg-charcoal p-5 rounded-3xl border border-forest-green/20 flex flex-col justify-center items-center text-center">
-          <p className="text-light-gray/60 text-xs font-medium uppercase tracking-wider mb-1">Mis capturas</p>
-          <p className="text-white font-bold text-4xl leading-none">{personalCatchCount}</p>
+      {/* Map first: the whole preview opens the interactive map. */}
+      <section aria-label="Explorar el mapa" className="relative h-56 w-full shrink-0 overflow-hidden rounded-3xl border border-forest-green/30 bg-charcoal">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true" inert>
+          <MapDynamic catches={recentCatches} spots={spots} hazards={hazards} shops={shops} interactive={false} />
         </div>
-        
-        <WeatherWidget />
+        <Link href="/map" className="absolute inset-0 z-10 flex flex-col justify-end bg-gradient-to-t from-deep-black/95 via-transparent to-transparent p-4 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-lime">
+          <span className="mb-1 flex items-center gap-2 text-lg font-bold text-white"><MapPin size={21} className="text-lime" />Explora el río</span>
+          <span className="text-xs text-light-gray">Capturas, spots y peligros de la comunidad</span>
+          <span className="mt-3 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-lime px-4 text-sm font-semibold text-deep-black">Explorar mapa<ChevronRight size={18} /></span>
+        </Link>
       </section>
 
-      {/* Botones de Utilidad (Reglamentos y Enciclopedia) */}
-      <section className="grid grid-cols-2 gap-4">
-        <Link href="/regulations" className="bg-charcoal p-4 rounded-3xl border border-[#3b82f6]/30 flex flex-col justify-center items-center text-center group hover:border-[#3b82f6] transition-colors shadow-lg">
-          <div className="w-12 h-12 rounded-full bg-[#3b82f6]/10 flex items-center justify-center text-[#3b82f6] mb-2">
-            <BookOpen size={24} />
-          </div>
-          <h3 className="text-white font-bold text-sm">Reglamentos</h3>
-          <p className="text-light-gray/60 text-xs mt-0.5">Normativas vigentes</p>
+      <section aria-label="Tus capturas y el clima" className="grid grid-cols-2 gap-3">
+        <Link href="/history" className="flex min-h-24 items-center gap-3 rounded-2xl border border-forest-green/20 bg-charcoal p-3 transition-colors hover:border-lime">
+          <Fish size={24} className="shrink-0 text-lime" />
+          <div><p className="text-2xl font-bold leading-none text-white">{personalCatchCount}</p><p className="mt-1 text-xs text-light-gray/70">Mis capturas</p></div>
         </Link>
-        
-        <Link href="/encyclopedia" className="bg-charcoal p-4 rounded-3xl border border-lime/30 flex flex-col justify-center items-center text-center group hover:border-lime transition-colors shadow-lg">
-          <div className="w-12 h-12 rounded-full bg-lime/10 flex items-center justify-center text-lime mb-2">
-            <Fish size={24} />
-          </div>
-          <h3 className="text-white font-bold text-sm">Enciclopedia</h3>
-          <p className="text-light-gray/60 text-xs mt-0.5">Especies y señuelos</p>
-        </Link>
+        <WeatherWidget />
       </section>
 
             {/* Latest 4 Catches (2x2 Grid) */}
@@ -162,26 +153,13 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
         </div>
       </section>
 
-{/* Map Preview Area */}
-      <section className="relative w-full h-56 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 shrink-0">
-        {/* Dynamic Client-Side Map */}
-        <div className="absolute inset-0 z-0 opacity-60">
-          <MapDynamic catches={recentCatches} spots={spots} hazards={hazards} shops={shops} interactive={false} />
-        </div>
-        
-        {/* Overlay gradient so text is readable */}
-        <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-transparent to-transparent z-0 pointer-events-none"></div>
-        
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-          <MapPin size={32} className="text-lime mb-2 drop-shadow-[0_0_15px_rgba(164,255,61,0.8)]" />
-          <h3 className="text-white font-semibold drop-shadow-md">Tus Hitos de Pesca</h3>
-          <p className="text-light-gray text-sm mt-1 drop-shadow-md font-medium">
-            {recentCatches.filter(c => c.locationLat).length + spots.length + hazards.length} lugares descubiertos
-          </p>
-          <Link href="/map" className="pointer-events-auto mt-4 px-6 py-2 bg-charcoal/90 text-lime rounded-full border border-lime/50 shadow-[0_0_15px_rgba(164,255,61,0.2)] hover:scale-105 transition-transform backdrop-blur-sm">
-             Abrir Mapa Interactivo
-          </Link>
-        </div>
+      <section aria-label="Guías de pesca" className="grid grid-cols-2 gap-3">
+        <Link href="/regulations" className="flex min-h-12 items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-xs text-light-gray transition-colors hover:border-lime">
+          <BookOpen size={18} className="shrink-0 text-blue-400" />Reglamentos
+        </Link>
+        <Link href="/encyclopedia" className="flex min-h-12 items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-xs text-light-gray transition-colors hover:border-lime">
+          <Fish size={18} className="shrink-0 text-lime" />Enciclopedia
+        </Link>
       </section>
 
       {/* Feed Restante */}

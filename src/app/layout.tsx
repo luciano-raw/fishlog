@@ -57,11 +57,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex justify-around items-center px-2 py-3">
               <Link href="/" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                 <Home size={24} />
-                <span className="text-[10px] mt-1 font-medium">Home</span>
+                <span className="text-[10px] mt-1 font-medium">Inicio</span>
               </Link>
               <Link href="/map" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                 <MapIcon size={24} />
-                <span className="text-[10px] mt-1 font-medium">Map</span>
+                <span className="text-[10px] mt-1 font-medium">Mapa</span>
               </Link>
               
               {/* Botón Central Flotante Multiopción */}
@@ -69,14 +69,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               <Link href="/history" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                 <BookOpen size={24} />
-                <span className="text-[10px] mt-1 font-medium">Log</span>
+                <span className="text-[10px] mt-1 font-medium">Bitácora</span>
               </Link>
               
               <div className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                 <Show when="signed-in">
                   <Link href="/profile" className="flex flex-col items-center text-forest-green hover:text-lime transition-colors">
                     <User size={24} />
-                    <span className="text-[10px] mt-1 font-medium text-forest-green">Profile</span>
+                    <span className="text-[10px] mt-1 font-medium text-forest-green">Perfil</span>
                   </Link>
                 </Show>
                 <Show when="signed-out">

@@ -6,7 +6,7 @@ import { Sun, Moon, CloudSun, CloudMoon, CloudRain, Cloud, CloudFog, CloudDrizzl
 import { parseWeather, weatherCondition, weatherUrl, type WeatherForecast } from "@/lib/weather";
 
 const icons = { sun: Sun, moon: Moon, cloudSun: CloudSun, cloudMoon: CloudMoon, cloud: Cloud, fog: CloudFog, drizzle: CloudDrizzle, rain: CloudRain, snow: CloudSnow, storm: CloudLightning };
-const cardClass = "relative flex flex-col items-center justify-center overflow-hidden rounded-3xl border border-forest-green/20 bg-charcoal p-5 text-center transition-colors hover:border-lime";
+const cardClass = "relative flex min-h-24 flex-col items-center justify-center overflow-hidden rounded-2xl border border-forest-green/20 bg-charcoal p-3 text-center transition-colors hover:border-lime";
 
 export default function WeatherWidget() {
   const [weather, setWeather] = useState<WeatherForecast | null>(null);
@@ -99,12 +99,11 @@ export default function WeatherWidget() {
         if (Date.now() - fetchedAt.current > 10 * 60 * 1000 || (weather.hours[0] && weather.hours[0].time * 1000 <= Date.now())) loadWeather();
       }}>
       {weather ? <>
-        <Icon className="mb-2 text-lime" size={32} aria-hidden="true" />
-        <p className="text-2xl font-bold leading-none text-white">{Math.round(weather.current.temperature)}°C</p>
+        <span className="flex items-center gap-2"><Icon className="text-lime" size={23} aria-hidden="true" /><span className="text-xl font-bold leading-none text-white">{Math.round(weather.current.temperature)}°C</span></span>
         <p className="mt-1 text-xs font-medium text-lime">{condition?.label}</p>
-        <span className="mt-2 text-[10px] text-light-gray/50">Ver próximas horas</span>
+        <span className="mt-1 text-[10px] text-light-gray/60">Ver próximas horas</span>
       </> : loading ? <><Loader2 className="mb-2 animate-spin text-lime" size={24} /><span className="text-xs text-light-gray/60">Consultando clima...</span></> : <>
-        <Cloud className="mb-2 text-light-gray/50" size={26} /><span className="text-xs text-light-gray/70">{error}</span><span className="mt-2 text-xs text-lime">Reintentar</span>
+        <Cloud className="mb-1 text-light-gray/50" size={20} /><span className="text-xs text-light-gray/70" title={error ?? undefined}>Clima no disponible</span><span className="mt-2 text-xs text-lime">Reintentar</span>
       </>}
     </button>
     {isOpen && weather && createPortal(

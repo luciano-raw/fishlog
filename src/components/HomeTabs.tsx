@@ -52,7 +52,7 @@ export default function HomeTabs({ children, friends }: { children: ReactNode; f
 
   return (
     <div ref={root} onTouchStart={touchStart} onTouchEnd={touchEnd} onTouchCancel={() => { start.current = null; }}>
-      <div role="tablist" aria-label="Feeds" className="sticky top-0 z-20 mb-6 flex gap-2 rounded-2xl border border-forest-green/30 bg-deep-black/95 p-1.5 backdrop-blur-md">
+      <div role="tablist" aria-label="Feeds" className="sticky top-0 z-20 mb-4 flex gap-2 rounded-2xl border border-forest-green/30 bg-deep-black/95 p-1.5 backdrop-blur-md">
         {(["home", "friends"] as const).map(feed => {
           const Icon = feed === "home" ? House : Users;
           return <button key={feed} id={`tab-${feed}`} role="tab" type="button"
@@ -71,7 +71,7 @@ export default function HomeTabs({ children, friends }: { children: ReactNode; f
           </button>;
         })}
       </div>
-      <div id="panel-home" role="tabpanel" aria-labelledby="tab-home" hidden={active !== "home"} className="space-y-6">{children}</div>
+      <div id="panel-home" role="tabpanel" aria-labelledby="tab-home" hidden={active !== "home"} className="space-y-4">{children}</div>
       <div id="panel-friends" role="tabpanel" aria-labelledby="tab-friends" hidden={active !== "friends"}>{friends}</div>
     </div>
   );
