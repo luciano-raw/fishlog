@@ -46,9 +46,10 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
   let spots: SpotRecord[] = [];
   let hazards: HazardRecord[] = [];
   let activities: FriendActivity[] = [];
+  let personalCatchCount = 0;
 
   if (userId) {
-    [recentCatches, spots, hazards] = await Promise.all([prisma.catch.findMany({
+    [recentCatches, spots, hazards, personalCatchCount] = await Promise.all([prisma.catch.findMany({
       include: { user: publicAuthor },
       orderBy: { createdAt: "desc" },
       take: 20, // Más datos para poblar el mapa
@@ -60,7 +61,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
       include: { user: publicAuthor },
       orderBy: { createdAt: "desc" },
       take: 20,
-    })]);
+    }), prisma.catch.count({ where: { userId } })]);
   }
 
   if (userId && friendIds.length > 0) {
@@ -96,8 +97,8 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
       {/* Stats / Weather Cards */}
       <section className="grid grid-cols-2 gap-4 mt-2">
         <div className="bg-charcoal p-5 rounded-3xl border border-forest-green/20 flex flex-col justify-center items-center text-center">
-          <p className="text-light-gray/60 text-xs font-medium uppercase tracking-wider mb-1">Total Capturas</p>
-          <p className="text-white font-bold text-4xl leading-none">{recentCatches.length}</p>
+          <p className="text-light-gray/60 text-xs font-medium uppercase tracking-wider mb-1">Mis capturas</p>
+          <p className="text-white font-bold text-4xl leading-none">{personalCatchCount}</p>
         </div>
         
         <WeatherWidget />
