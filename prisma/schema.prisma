@@ -23,6 +23,8 @@ model User {
 
   pushSubscriptions PushSubscription[]
   shopsCreated Shop[]
+  reactions CatchReaction[]
+  comments PointComment[]
 }
 
 model Friendship {
@@ -50,6 +52,7 @@ model Catch {
   locationLng Float?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  reactions   CatchReaction[]
 }
 
 model Spot {
@@ -63,6 +66,7 @@ model Spot {
   locationLng Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  comments    PointComment[]
 }
 
 model Hazard {
@@ -75,6 +79,7 @@ model Hazard {
   locationLng Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  comments    PointComment[]
 }
 
 model PushSubscription {
@@ -101,4 +106,29 @@ model Shop {
   createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Restrict)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model CatchReaction {
+  catchId String
+  userId String
+  catch Catch @relation(fields: [catchId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  @@id([catchId, userId])
+  @@index([userId])
+}
+
+model PointComment {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  spotId String?
+  spot Spot? @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  hazardId String?
+  hazard Hazard? @relation(fields: [hazardId], references: [id], onDelete: Cascade)
+  body String
+  createdAt DateTime @default(now())
+  @@index([spotId, createdAt])
+  @@index([hazardId, createdAt])
+  @@index([userId, createdAt])
 }

@@ -4,6 +4,7 @@ import ImageWithFullscreen from "./ImageWithFullscreen";
 import MapPointLink from "./MapPointLink";
 import type { FriendActivity } from "@/lib/activityFeed";
 import { lureLabel } from "@/lib/lures";
+import CatchSocial from "./CatchSocial";
 
 const dateFormat = new Intl.DateTimeFormat("es-CL", { timeZone: "America/Santiago", day: "numeric", month: "long", year: "numeric" });
 const timeFormat = new Intl.DateTimeFormat("es-CL", { timeZone: "America/Santiago", hour: "2-digit", minute: "2-digit" });
@@ -42,6 +43,7 @@ export default function FriendsActivity({ activities, signedIn, hasFriends, next
                 {lureLabel(activity.lureType) && <p className="text-xs text-lime/80">Con: {lureLabel(activity.lureType)}</p>}
                 {activity.imageUrl && <div className="overflow-hidden rounded-xl"><ImageWithFullscreen src={activity.imageUrl} alt={activity.name} className="aspect-[4/3] max-h-72 w-full object-cover" /></div>}
                 <MapPointLink type={activity.type} point={activity} fromFriends />
+                {activity.type === "catch" ? <CatchSocial id={activity.id} /> : <Link href={`/points/${activity.type}/${encodeURIComponent(activity.id)}`} className="inline-block min-h-10 py-2 text-xs font-semibold text-lime">Comentarios y novedades</Link>}
               </div>
             </article>
           </div>

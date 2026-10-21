@@ -12,6 +12,7 @@ import MapPointLink from "@/components/MapPointLink";
 import type { Prisma, Shop } from "@prisma/client";
 import { lureLabel } from "@/lib/lures";
 import Welcome from "@/components/Welcome";
+import CatchSocial from "@/components/CatchSocial";
 
 const publicAuthor = { select: { username: true, avatarUrl: true } } as const;
 type CatchRecord = Prisma.CatchGetPayload<{ include: { user: typeof publicAuthor } }>;
@@ -153,7 +154,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
                     <p className="text-lime text-[10px] font-medium">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
                 </div>
               )}
-              <div className="space-y-2 px-2 pb-2">{lureLabel(c.lureType) && <p className="truncate text-[10px] text-light-gray/60">Con: {lureLabel(c.lureType)}</p>}<MapPointLink type="catch" point={c} /></div>
+              <div className="space-y-2 px-2 pb-2">{lureLabel(c.lureType) && <p className="truncate text-[10px] text-light-gray/60">Con: {lureLabel(c.lureType)}</p>}<MapPointLink type="catch" point={c} /><CatchSocial id={c.id} /></div>
             </div>
           ))}
           {recentCatches.length === 0 && <div className="col-span-2 text-center p-4 text-light-gray/60">No hay capturas aún.</div>}
@@ -197,6 +198,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
                   <p className="text-light-gray/60 text-xs truncate">{c.userId === userId ? "Pescado por ti" : `Pescado por ${c.user?.username || 'Amigo'}`}</p>
                   {lureLabel(c.lureType) && <p className="mt-1 text-xs text-light-gray/60">Con: {lureLabel(c.lureType)}</p>}
                   <div className="mt-2"><MapPointLink type="catch" point={c} /></div>
+                  <div className="mt-2"><CatchSocial id={c.id} /></div>
                 </div>
                 {c.imageUrl && (
                   <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">

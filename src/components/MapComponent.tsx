@@ -10,6 +10,8 @@ import { useEffect, useRef, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
 import { hasCoordinates, type MapTarget, type MapPointType } from "@/lib/mapLinks";
 import { lureLabel } from "@/lib/lures";
+import Link from "next/link";
+import CatchSocial from "./CatchSocial";
 
 // Ícono grande tipo "Pin" o "Lágrima" para las capturas
 const catchIcon = L.divIcon({
@@ -225,6 +227,8 @@ function PointMarker({ point, type, interactive, focused = false }: {
           </div>
           <p className="mt-1 text-[10px] text-light-gray/60">Toca para ampliar</p>
         </div>}
+        {type === "catch" && <div className="mt-3"><CatchSocial id={point.id} /></div>}
+        {(type === "spot" || type === "hazard") && <Link href={`/points/${type}/${encodeURIComponent(point.id)}`} className="mt-3 inline-block rounded-full border border-forest-green/40 px-3 py-2 text-xs font-semibold text-lime">Ver comentarios y novedades</Link>}
       </div>
     </Popup>}
   </Marker>;
