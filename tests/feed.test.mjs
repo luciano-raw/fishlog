@@ -4,7 +4,7 @@ import { hasCoordinates, mapPointHref } from "../src/lib/mapLinks.ts";
 import { mergeFriendActivity } from "../src/lib/activityFeed.ts";
 
 test("map links identify all three record types and preserve the Friends origin", () => {
-  for (const type of ["catch", "spot", "hazard"]) {
+  for (const type of ["catch", "spot", "hazard", "shop"]) {
     const url = new URL(mapPointHref(type, "id with / symbols", true), "https://fishlog.test");
     assert.equal(url.pathname, "/map");
     assert.equal(url.searchParams.get(`${type}Id`), "id with / symbols");

@@ -21,6 +21,7 @@ interface MapProps {
   catches: any[];
   spots?: any[];
   hazards?: any[];
+  shops?: any[];
   interactive?: boolean;
   target?: MapTarget;
 }

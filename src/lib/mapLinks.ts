@@ -1,4 +1,4 @@
-export type MapPointType = "catch" | "spot" | "hazard";
+export type MapPointType = "catch" | "spot" | "hazard" | "shop";
 
 export interface MapTarget {
   type: MapPointType;

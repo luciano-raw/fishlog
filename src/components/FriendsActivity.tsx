@@ -3,6 +3,7 @@ import Link from "next/link";
 import ImageWithFullscreen from "./ImageWithFullscreen";
 import MapPointLink from "./MapPointLink";
 import type { FriendActivity } from "@/lib/activityFeed";
+import { lureLabel } from "@/lib/lures";
 
 const dateFormat = new Intl.DateTimeFormat("es-CL", { timeZone: "America/Santiago", day: "numeric", month: "long", year: "numeric" });
 const timeFormat = new Intl.DateTimeFormat("es-CL", { timeZone: "America/Santiago", hour: "2-digit", minute: "2-digit" });
@@ -38,6 +39,7 @@ export default function FriendsActivity({ activities, signedIn, hasFriends, next
                 <time dateTime={activity.createdAt.toISOString()} className="text-xs text-light-gray/50">{timeFormat.format(activity.createdAt)}</time>
                 <p className="text-sm leading-relaxed text-light-gray"><span className="font-semibold text-white">{activity.username || "Un amigo"}</span> {action} <span className={`font-semibold ${color}`}>{activity.name}</span></p>
                 {activity.detail && <p className="whitespace-pre-wrap break-words text-sm text-light-gray/65">{activity.detail}</p>}
+                {lureLabel(activity.lureType) && <p className="text-xs text-lime/80">Con: {lureLabel(activity.lureType)}</p>}
                 {activity.imageUrl && <div className="overflow-hidden rounded-xl"><ImageWithFullscreen src={activity.imageUrl} alt={activity.name} className="aspect-[4/3] max-h-72 w-full object-cover" /></div>}
                 <MapPointLink type={activity.type} point={activity} fromFriends />
               </div>

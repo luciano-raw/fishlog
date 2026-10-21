@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import HistoryClient from "./HistoryClient";
 import { redirect } from "next/navigation";
+import { lureLabel } from "@/lib/lures";
 
 export default async function HistoryPage() {
   const { userId } = await auth();
@@ -31,7 +32,7 @@ export default async function HistoryPage() {
       id: c.id,
       type: 'catch' as const,
       title: c.species,
-      subtitle: `${c.weight ? `${c.weight}kg` : ''} ${c.length ? `• ${c.length}cm` : ''}`.trim() || 'Captura',
+      subtitle: [c.weight ? `${c.weight} kg` : null, c.length ? `${c.length} cm` : null, lureLabel(c.lureType)].filter(Boolean).join(' · ') || 'Captura',
       date: new Date(c.createdAt).toLocaleDateString(),
       createdAt: c.createdAt,
       imageUrl: c.imageUrl

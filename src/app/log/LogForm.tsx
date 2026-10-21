@@ -8,6 +8,7 @@ import Cropper from "react-easy-crop";
 import getCroppedImg from "@/lib/cropImage";
 import { saveCatch } from "./actions";
 import LocationPickerDynamic from "@/components/LocationPickerDynamic";
+import { LURE_TYPES } from "@/lib/lures";
 
 export default function LogForm() {
   const router = useRouter();
@@ -198,6 +199,14 @@ export default function LogForm() {
             className="w-full bg-charcoal text-white rounded-2xl py-4 pl-12 pr-4 outline-none border border-forest-green/20 focus:border-lime transition-colors"
           />
         </div>
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="lureType" className="text-sm font-medium text-light-gray/70">¿Con qué lo capturaste? <span className="text-light-gray/40">(opcional)</span></label>
+        <select id="lureType" name="lureType" defaultValue="" className="w-full rounded-2xl border border-forest-green/20 bg-charcoal p-4 text-white outline-none focus:border-lime">
+          <option value="">Sin especificar</option>
+          {LURE_TYPES.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+        </select>
       </div>
 
       {/* Dimensions (Length & Weight) */}

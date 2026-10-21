@@ -9,7 +9,8 @@ import HomeTabs from "@/components/HomeTabs";
 import FriendsActivity from "@/components/FriendsActivity";
 import { mergeFriendActivity, type FriendActivity } from "@/lib/activityFeed";
 import MapPointLink from "@/components/MapPointLink";
-import type { Prisma } from "@prisma/client";
+import type { Prisma, Shop } from "@prisma/client";
+import { lureLabel } from "@/lib/lures";
 
 const publicAuthor = { select: { username: true, avatarUrl: true } } as const;
 type CatchRecord = Prisma.CatchGetPayload<{ include: { user: typeof publicAuthor } }>;
@@ -47,9 +48,10 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
   let hazards: HazardRecord[] = [];
   let activities: FriendActivity[] = [];
   let personalCatchCount = 0;
+  let shops: Shop[] = [];
 
   if (userId) {
-    [recentCatches, spots, hazards, personalCatchCount] = await Promise.all([prisma.catch.findMany({
+    [recentCatches, spots, hazards, personalCatchCount, shops] = await Promise.all([prisma.catch.findMany({
       include: { user: publicAuthor },
       orderBy: { createdAt: "desc" },
       take: 20, // Más datos para poblar el mapa
@@ -61,7 +63,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
       include: { user: publicAuthor },
       orderBy: { createdAt: "desc" },
       take: 20,
-    }), prisma.catch.count({ where: { userId } })]);
+    }), prisma.catch.count({ where: { userId } }), prisma.shop.findMany({ orderBy: { name: "asc" } })]);
   }
 
   if (userId && friendIds.length > 0) {
@@ -149,7 +151,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
                     <p className="text-lime text-[10px] font-medium">{c.weight ? `${c.weight}kg` : ''} {c.length ? `• ${c.length}cm` : ''}</p>
                 </div>
               )}
-              <div className="px-2 pb-2"><MapPointLink type="catch" point={c} /></div>
+              <div className="space-y-2 px-2 pb-2">{lureLabel(c.lureType) && <p className="truncate text-[10px] text-light-gray/60">Con: {lureLabel(c.lureType)}</p>}<MapPointLink type="catch" point={c} /></div>
             </div>
           ))}
           {recentCatches.length === 0 && <div className="col-span-2 text-center p-4 text-light-gray/60">No hay capturas aún.</div>}
@@ -160,7 +162,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
       <section className="relative w-full h-56 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/20 shrink-0">
         {/* Dynamic Client-Side Map */}
         <div className="absolute inset-0 z-0 opacity-60">
-          <MapDynamic catches={recentCatches} spots={spots} hazards={hazards} interactive={false} />
+          <MapDynamic catches={recentCatches} spots={spots} hazards={hazards} shops={shops} interactive={false} />
         </div>
         
         {/* Overlay gradient so text is readable */}
@@ -191,6 +193,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
                 <div className="flex-1 min-w-0">
                   <h3 className="text-white font-bold truncate">{c.species}</h3>
                   <p className="text-light-gray/60 text-xs truncate">{c.userId === userId ? "Pescado por ti" : `Pescado por ${c.user?.username || 'Amigo'}`}</p>
+                  {lureLabel(c.lureType) && <p className="mt-1 text-xs text-light-gray/60">Con: {lureLabel(c.lureType)}</p>}
                   <div className="mt-2"><MapPointLink type="catch" point={c} /></div>
                 </div>
                 {c.imageUrl && (

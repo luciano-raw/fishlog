@@ -2,6 +2,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { RedirectToSignIn } from "@clerk/nextjs";
 import { Users, Shield } from "lucide-react";
+import Link from "next/link";
 import { 
   InviteButtons, 
   ClerkSettingsToggle, 
@@ -21,7 +22,7 @@ export default async function ProfilePage() {
   const avatarUrl = clerkUser?.imageUrl;
 
   // Asegurar que el usuario existe en nuestra BD (Upsert)
-  await prisma.user.upsert({
+  const profileUser = await prisma.user.upsert({
     where: { id: userId },
     update: {
       email,
@@ -64,6 +65,7 @@ export default async function ProfilePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-deep-black pb-32">
+      {profileUser.role === "ADMIN" && <Link href="/admin/shops" className="mx-4 mt-4 rounded-2xl border border-amber-300/30 bg-charcoal p-4 text-sm font-semibold text-amber-300">Administración · Tiendas de pesca</Link>}
       {/* Cabecera del Perfil */}
       <div className="p-6 bg-charcoal border-b border-forest-green/20">
         <div className="flex items-center gap-4">

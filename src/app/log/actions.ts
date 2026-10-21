@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { sendPushToFriends } from "@/lib/pushNotifications";
+import { parseLureType } from "@/lib/lures";
 
 export async function saveCatch(formData: FormData) {
   // 1. Verificar Autenticación
@@ -19,6 +20,7 @@ export async function saveCatch(formData: FormData) {
   // 3. Extraer los datos del formulario
   const file = formData.get("image") as File | null;
   const species = formData.get("species") as string;
+  const lureType = parseLureType(formData.get("lureType"));
   const length = formData.get("length") as string;
   const weight = formData.get("weight") as string;
   const lat = formData.get("lat") as string;
@@ -80,6 +82,7 @@ export async function saveCatch(formData: FormData) {
       data: {
         userId,
         species,
+        lureType,
         length: length ? parseFloat(length) : null,
         weight: weight ? parseFloat(weight) : null,
         imageUrl,

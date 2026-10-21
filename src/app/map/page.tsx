@@ -6,14 +6,19 @@ import Link from "next/link";
 import type { MapTarget } from "@/lib/mapLinks";
 
 export default async function MapPage({ searchParams }: {
-  searchParams: Promise<{ catchId?: string; spotId?: string; hazardId?: string; from?: string }>;
+  searchParams: Promise<{ catchId?: string; spotId?: string; hazardId?: string; shopId?: string; from?: string }>;
 }) {
   const query = await searchParams;
   let target: MapTarget | undefined;
   if (typeof query.catchId === "string") target = { type: "catch", id: query.catchId };
   else if (typeof query.spotId === "string") target = { type: "spot", id: query.spotId };
   else if (typeof query.hazardId === "string") target = { type: "hazard", id: query.hazardId };
+  else if (typeof query.shopId === "string") target = { type: "shop", id: query.shopId };
   const { userId } = await auth();
+  const shops = await prisma.shop.findMany({
+    select: { id: true, name: true, description: true, address: true, website: true, locationLat: true, locationLng: true },
+    orderBy: { createdAt: "desc" },
+  });
   
   let catches: any[] = [];
   let spots: any[] = [];
@@ -48,7 +53,7 @@ export default async function MapPage({ searchParams }: {
 
       {/* Mapa Interactivo */}
       <main className="flex-1">
-        <MapDynamic catches={catches} spots={spots} hazards={hazards} interactive={true} target={target} />
+        <MapDynamic catches={catches} spots={spots} hazards={hazards} shops={shops} interactive={true} target={target} />
       </main>
     </div>
   );

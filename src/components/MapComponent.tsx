@@ -9,6 +9,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { useEffect, useRef, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
 import { hasCoordinates, type MapTarget, type MapPointType } from "@/lib/mapLinks";
+import { lureLabel } from "@/lib/lures";
 
 // Ícono grande tipo "Pin" o "Lágrima" para las capturas
 const catchIcon = L.divIcon({
@@ -61,6 +62,12 @@ const hazardIcon = L.divIcon({
   iconAnchor: [12, 24],
 });
 
+const shopIcon = L.divIcon({
+  className: "bg-transparent",
+  html: '<div style="width:34px;height:34px;border-radius:12px;background:#fcd34d;border:2px solid #1A1F1B;box-shadow:0 2px 10px #0008;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1F1B" stroke-width="2"><path d="M3 10h18l-2-6H5l-2 6Z"/><path d="M4 10v10h16V10M9 20v-6h6v6"/><path d="M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></svg></div>',
+  iconSize: [34, 34], iconAnchor: [17, 34],
+});
+
 
 const createClusterCustomIcon = function (cluster: { getChildCount(): number }) {
   return L.divIcon({
@@ -74,6 +81,7 @@ interface MapProps {
   catches: PointRecord[];
   spots?: PointRecord[];
   hazards?: PointRecord[];
+  shops?: PointRecord[];
   interactive?: boolean;
   target?: MapTarget;
 }
@@ -165,6 +173,10 @@ interface PointRecord {
   locationLng: number | null;
   name?: string;
   species?: string;
+  lureType?: string | null;
+  description?: string | null;
+  address?: string | null;
+  website?: string | null;
   weight?: number | null;
   length?: number | null;
   speciesSeen?: string | null;
@@ -191,14 +203,20 @@ function PointMarker({ point, type, interactive, focused = false }: {
 
   if (!hasCoordinates(point)) return null;
   const title = type === "catch" ? point.species : point.name;
-  const color = type === "catch" ? "text-lime" : type === "spot" ? "text-blue-400" : "text-red-400";
+  const color = type === "catch" ? "text-lime" : type === "spot" ? "text-blue-400" : type === "shop" ? "text-amber-300" : "text-red-400";
   const author = point.user?.username || "Pescador";
-  return <Marker ref={marker} position={[locationLat!, locationLng!]} icon={type === "catch" ? catchIcon : type === "spot" ? spotIcon : hazardIcon}>
+  return <Marker ref={marker} position={[locationLat!, locationLng!]} icon={type === "catch" ? catchIcon : type === "spot" ? spotIcon : type === "shop" ? shopIcon : hazardIcon}>
     {interactive && <Popup className="fishlog-popup">
       <div className="text-center font-sans">
         <p className={`text-lg font-bold leading-tight ${color}`}>{title}</p>
-        <p className={`mb-1 text-xs ${color}`}>{type === "spot" ? `Spot de ${author}` : type === "hazard" ? `Reportado por ${author}` : author}</p>
+        <p className={`mb-1 text-xs ${color}`}>{type === "shop" ? "Tienda / artículos de pesca" : type === "spot" ? `Spot de ${author}` : type === "hazard" ? `Reportado por ${author}` : author}</p>
         {type === "catch" && <p className="mb-2 text-sm text-gray-400">{[point.weight != null ? `${point.weight} kg` : null, point.length != null ? `${point.length} cm` : null].filter(Boolean).join(" · ")}</p>}
+        {type === "catch" && lureLabel(point.lureType) && <p className="mb-2 text-xs text-lime/80">Con: {lureLabel(point.lureType)}</p>}
+        {type === "shop" && <div className="space-y-2 text-sm text-gray-300">
+          {point.description && <p className="whitespace-pre-wrap break-words">{point.description}</p>}
+          {point.address && <p>{point.address}</p>}
+          {point.website && /^https?:\/\//i.test(point.website) && <a href={point.website} target="_blank" rel="noopener noreferrer" className="inline-block text-amber-300 underline">Sitio web / contacto</a>}
+        </div>}
         {type === "spot" && point.speciesSeen && <p className="mb-2 text-sm text-gray-400">Visto: {point.speciesSeen}</p>}
         {point.note && <p className="mt-2 whitespace-pre-wrap break-words rounded-lg bg-deep-black p-2 text-sm text-gray-300">{point.note}</p>}
         {point.imageUrl && <div className="mt-2">
@@ -212,11 +230,12 @@ function PointMarker({ point, type, interactive, focused = false }: {
   </Marker>;
 }
 
-export default function MapComponent({ catches, spots = [], hazards = [], interactive = true, target }: MapProps) {
+export default function MapComponent({ catches, spots = [], hazards = [], shops = [], interactive = true, target }: MapProps) {
   const records = [
     ...catches.map(point => ({ type: "catch" as const, point })),
     ...spots.map(point => ({ type: "spot" as const, point })),
     ...hazards.map(point => ({ type: "hazard" as const, point })),
+    ...shops.map(point => ({ type: "shop" as const, point })),
   ].filter(({ point }) => hasCoordinates(point));
   const selected = interactive ? records.find(({ type, point }) => type === target?.type && point.id === target.id) : undefined;
   // Centro por defecto (o última captura/spot)
