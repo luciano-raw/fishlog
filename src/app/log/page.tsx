@@ -4,15 +4,7 @@ import LogForm from "./LogForm";
 import { auth } from "@clerk/nextjs/server";
 
 export default async function LogCatchPage() {
-  const { userId } = await auth();
-  if (!userId) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-white p-4 text-center">
-        <h2 className="text-xl font-bold mb-4">Debes iniciar sesión</h2>
-        <p className="text-light-gray/70">Para registrar una pesca necesitas una cuenta.</p>
-      </div>
-    );
-  }
+  await auth.protect();
 
   return (
     <div className="flex flex-col min-h-full bg-deep-black">
@@ -21,7 +13,7 @@ export default async function LogCatchPage() {
         <Link href="/" className="p-2 -ml-2 text-light-gray hover:text-white transition-colors">
           <ChevronLeft size={24} />
         </Link>
-        <h1 className="text-lg font-medium text-white">Log Catch</h1>
+        <h1 className="text-lg font-medium text-white">Compartir captura</h1>
         <div className="w-10"></div> {/* Spacer for centering */}
       </header>
 

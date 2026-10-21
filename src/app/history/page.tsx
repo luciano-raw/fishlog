@@ -1,14 +1,10 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import HistoryClient from "./HistoryClient";
-import { redirect } from "next/navigation";
 import { lureLabel } from "@/lib/lures";
 
 export default async function HistoryPage() {
-  const { userId } = await auth();
-  if (!userId) {
-    redirect("/");
-  }
+  const { userId } = await auth.protect();
 
   // Fetch solo lo de este usuario (es su LOG personal)
   const catches = await prisma.catch.findMany({

@@ -11,6 +11,7 @@ import { mergeFriendActivity, type FriendActivity } from "@/lib/activityFeed";
 import MapPointLink from "@/components/MapPointLink";
 import type { Prisma, Shop } from "@prisma/client";
 import { lureLabel } from "@/lib/lures";
+import Welcome from "@/components/Welcome";
 
 const publicAuthor = { select: { username: true, avatarUrl: true } } as const;
 type CatchRecord = Prisma.CatchGetPayload<{ include: { user: typeof publicAuthor } }>;
@@ -23,6 +24,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ a
   const activityPage = Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, 100) : 1;
   const activityLimit = activityPage * 30;
   const { userId } = await auth();
+  if (!userId) return <Welcome />;
   const user = await currentUser();
   const userName = user?.firstName || user?.username || "Angler";
 

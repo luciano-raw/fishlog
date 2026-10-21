@@ -1,4 +1,4 @@
-import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
+import { ClerkProvider, Show } from "@clerk/nextjs";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -80,12 +80,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </Link>
                 </Show>
                 <Show when="signed-out">
-                  <SignInButton mode="modal">
-                    <button className="flex flex-col items-center">
+                  <Link href="/feed" className="flex flex-col items-center">
                       <User size={24} />
-                      <span className="text-[10px] mt-1 font-medium">Log in</span>
-                    </button>
-                  </SignInButton>
+                      <span className="text-[10px] mt-1 font-medium">Entrar</span>
+                  </Link>
                 </Show>
               </div>
             </div>

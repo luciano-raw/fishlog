@@ -4,6 +4,7 @@ import MapDynamic from "@/components/MapDynamic";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import type { MapTarget } from "@/lib/mapLinks";
+import { publicCatchFields, publicSpotFields, publicHazardFields, publicShopFields } from "@/lib/publicMapFields";
 
 export default async function MapPage({ searchParams }: {
   searchParams: Promise<{ catchId?: string; spotId?: string; hazardId?: string; shopId?: string; from?: string }>;
@@ -15,31 +16,12 @@ export default async function MapPage({ searchParams }: {
   else if (typeof query.hazardId === "string") target = { type: "hazard", id: query.hazardId };
   else if (typeof query.shopId === "string") target = { type: "shop", id: query.shopId };
   const { userId } = await auth();
-  const shops = await prisma.shop.findMany({
-    select: { id: true, name: true, description: true, address: true, website: true, locationLat: true, locationLng: true },
-    orderBy: { createdAt: "desc" },
-  });
-  
-  let catches: any[] = [];
-  let spots: any[] = [];
-  let hazards: any[] = [];
-
-  if (userId) {
-    catches = await prisma.catch.findMany({
-      include: { user: true },
-      orderBy: { createdAt: "desc" },
-    });
-
-    spots = await prisma.spot.findMany({
-      include: { user: true },
-      orderBy: { createdAt: "desc" },
-    });
-
-    hazards = await prisma.hazard.findMany({
-      include: { user: true },
-      orderBy: { createdAt: "desc" },
-    });
-  }
+  const [catches, spots, hazards, shops] = await Promise.all([
+    prisma.catch.findMany({ select: publicCatchFields, where: { locationLat: { not: null }, locationLng: { not: null } }, orderBy: { createdAt: "desc" } }),
+    prisma.spot.findMany({ select: publicSpotFields, orderBy: { createdAt: "desc" } }),
+    prisma.hazard.findMany({ select: publicHazardFields, orderBy: { createdAt: "desc" } }),
+    prisma.shop.findMany({ select: publicShopFields, orderBy: { createdAt: "desc" } }),
+  ]);
 
   return (
     <div className="flex flex-col min-h-screen bg-deep-black relative">
@@ -49,6 +31,7 @@ export default async function MapPage({ searchParams }: {
           <ChevronLeft size={24} />
         </Link>
         <h1 className="text-lg font-bold text-white drop-shadow-md ml-3">Explorar Hitos</h1>
+        {!userId && <Link href="/log" className="pointer-events-auto ml-auto rounded-full border border-lime/40 bg-charcoal/90 px-3 py-2 text-xs font-semibold text-lime backdrop-blur-sm">Compartir captura</Link>}
       </header>
 
       {/* Mapa Interactivo */}
