@@ -12,6 +12,7 @@ import { hasCoordinates, type MapTarget, type MapPointType } from "@/lib/mapLink
 import { lureLabel } from "@/lib/lures";
 import Link from "next/link";
 import CatchSocial from "./CatchSocial";
+import { clusterHtml } from "@/lib/mapCluster";
 
 // Ícono grande tipo "Pin" o "Lágrima" para las capturas
 const catchIcon = L.divIcon({
@@ -71,11 +72,16 @@ const shopIcon = L.divIcon({
 });
 
 
-const createClusterCustomIcon = function (cluster: { getChildCount(): number }) {
+const createClusterCustomIcon = function (cluster: { getAllChildMarkers(): L.Marker[] }) {
+  const types = cluster.getAllChildMarkers().map(marker => {
+    const icon = marker.options.icon;
+    return icon === spotIcon ? "spot" as const : icon === hazardIcon ? "hazard" as const : icon === shopIcon ? "shop" as const : "catch" as const;
+  });
   return L.divIcon({
-    html: `<div class="w-10 h-10 bg-[#a4ff3d] border-2 border-[#1A1F1B] text-[#1A1F1B] font-bold text-base rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(164,255,61,0.6)]"><span>${cluster.getChildCount()}</span></div>`,
-    className: 'custom-marker-cluster',
-    iconSize: L.point(40, 40, true),
+    html: clusterHtml(types),
+    className: "custom-marker-cluster",
+    iconSize: L.point(44, 44),
+    iconAnchor: L.point(22, 22),
   });
 };
 
