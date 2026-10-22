@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "rea
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "@tomickigrzegorz/leaflet-rotate";
-import { LocateFixed, Loader2, Navigation2 } from "lucide-react";
+import { LocateFixed, Loader2, Navigation2, TriangleAlert } from "lucide-react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { useEffect, useRef, useState } from "react";
 import ImageWithFullscreen from "./ImageWithFullscreen";
@@ -184,6 +184,7 @@ interface PointRecord {
   speciesSeen?: string | null;
   note?: string | null;
   imageUrl?: string | null;
+  thumbnailUrl?: string | null;
   user?: { username: string | null };
 }
 
@@ -222,11 +223,12 @@ function PointMarker({ point, type, interactive, focused = false }: {
         {type === "spot" && point.speciesSeen && <p className="mb-2 text-sm text-gray-400">Visto: {point.speciesSeen}</p>}
         {point.note && <p className="mt-2 whitespace-pre-wrap break-words rounded-lg bg-deep-black p-2 text-sm text-gray-300">{point.note}</p>}
         {point.imageUrl && <div className="mt-2">
-          <div className="mx-auto h-32 w-32 overflow-hidden rounded-xl border border-forest-green/30">
-            <ImageWithFullscreen src={point.imageUrl} alt={title || "Foto del registro"} className="h-full w-full object-cover" />
+          <div className="mx-auto aspect-[4/3] w-48 max-w-full overflow-hidden rounded-xl border border-forest-green/30">
+            <ImageWithFullscreen src={point.imageUrl} thumbnailSrc={point.thumbnailUrl} alt={title || "Foto del registro"} className="h-full w-full object-cover" />
           </div>
           <p className="mt-1 text-[10px] text-light-gray/60">Toca para ampliar</p>
         </div>}
+        {type === "hazard" && !point.imageUrl && <TriangleAlert size={40} className="mx-auto my-3 text-red-400" aria-label="Peligro reportado sin foto" />}
         {type === "catch" && <div className="mt-3"><CatchSocial id={point.id} /></div>}
         {(type === "spot" || type === "hazard") && <Link href={`/points/${type}/${encodeURIComponent(point.id)}`} className="mt-3 inline-block rounded-full border border-forest-green/40 px-3 py-2 text-xs font-semibold text-lime">Ver comentarios y novedades</Link>}
       </div>

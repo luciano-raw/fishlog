@@ -7,12 +7,12 @@ export const publicCatchFields = {
 } as const satisfies Prisma.CatchSelect;
 
 export const publicSpotFields = {
-  id: true, name: true, speciesSeen: true, imageUrl: true,
+  id: true, name: true, speciesSeen: true, imageUrl: true, thumbnailUrl: true,
   locationLat: true, locationLng: true, user: author,
 } as const satisfies Prisma.SpotSelect;
 
 export const publicHazardFields = {
-  id: true, name: true, note: true, locationLat: true, locationLng: true, user: author,
+  id: true, name: true, note: true, imageUrl: true, thumbnailUrl: true, locationLat: true, locationLng: true, user: author,
 } as const satisfies Prisma.HazardSelect;
 
 export const publicShopFields = {

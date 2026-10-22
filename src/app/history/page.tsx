@@ -40,7 +40,8 @@ export default async function HistoryPage() {
       subtitle: s.speciesSeen ? `Visto: ${s.speciesSeen}` : 'Lugar marcado',
       date: new Date(s.createdAt).toLocaleDateString(),
       createdAt: s.createdAt,
-      imageUrl: s.imageUrl
+      imageUrl: s.imageUrl,
+      thumbnailUrl: s.thumbnailUrl
     })),
     ...hazards.map(h => ({
       id: h.id,
@@ -49,7 +50,8 @@ export default async function HistoryPage() {
       subtitle: h.note || 'Peligro',
       date: new Date(h.createdAt).toLocaleDateString(),
       createdAt: h.createdAt,
-      imageUrl: null
+      imageUrl: h.imageUrl,
+      thumbnailUrl: h.thumbnailUrl
     }))
   ];
 

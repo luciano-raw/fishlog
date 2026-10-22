@@ -61,6 +61,7 @@ model Spot {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   name        String
   speciesSeen String?
+  thumbnailUrl String?
   imageUrl    String?
   locationLat Float
   locationLng Float
@@ -75,6 +76,8 @@ model Hazard {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   name        String
   note        String?
+  imageUrl    String?
+  thumbnailUrl String?
   locationLat Float
   locationLng Float
   createdAt   DateTime @default(now())

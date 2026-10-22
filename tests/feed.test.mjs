@@ -41,3 +41,12 @@ test("empty activity and captures without location or measurements are supported
   assert.equal(activity.detail, null);
   assert.equal(hasCoordinates(activity), false);
 });
+
+test("point activity retains both full photos and chosen thumbnails, including optional hazard photos", () => {
+  const base = { createdAt: new Date(), locationLat: 0, locationLng: 0, user: { username: "Test" }, imageUrl: "full.jpg", thumbnailUrl: "preview.jpg" };
+  const activities = mergeFriendActivity([], [{ ...base, id: "spot", name: "Poza", speciesSeen: null }], [{ ...base, id: "hazard", name: "Rocas", note: null }]);
+  for (const activity of activities) {
+    assert.equal(activity.imageUrl, "full.jpg");
+    assert.equal(activity.thumbnailUrl, "preview.jpg");
+  }
+});

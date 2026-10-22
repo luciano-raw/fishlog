@@ -1,5 +1,6 @@
 "use client";
 
+import ImageWithFullscreen from "@/components/ImageWithFullscreen";
 import { useState } from "react";
 import { Fish, MapPin, AlertTriangle, Trash2, X, Loader2 } from "lucide-react";
 import { deleteItem } from "./actions";
@@ -11,6 +12,7 @@ interface HistoryItem {
   subtitle: string;
   date: string;
   imageUrl?: string | null;
+  thumbnailUrl?: string | null;
 }
 
 export default function HistoryClient({ items, stats }: { items: HistoryItem[], stats: any }) {
@@ -87,7 +89,7 @@ export default function HistoryClient({ items, stats }: { items: HistoryItem[], 
               {item.imageUrl && (
                 <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={item.imageUrl} alt="" className="w-full h-full object-cover" />
+                  <ImageWithFullscreen src={item.imageUrl} thumbnailSrc={item.thumbnailUrl} alt={item.title} className="w-full h-full object-cover" />
                 </div>
               )}
 

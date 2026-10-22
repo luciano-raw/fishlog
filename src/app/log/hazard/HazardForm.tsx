@@ -4,12 +4,16 @@ import { useState } from "react";
 import { Loader2, MapPin, AlertTriangle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { saveHazard } from "./actions";
+import PointPhotoInput, { type PointPhoto } from "@/components/PointPhotoInput";
 import LocationPickerDynamic from "@/components/LocationPickerDynamic";
 
 export default function HazardForm() {
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [isManualLocation, setIsManualLocation] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const [photo, setPhoto] = useState<PointPhoto | null>(null);
+  const [photoBusy, setPhotoBusy] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleLocation = () => {
@@ -28,18 +32,22 @@ export default function HazardForm() {
   };
 
   const handleSubmit = async (formData: FormData) => {
+    if (isPending || photoBusy) return;
+    setError("");
     setIsPending(true);
     try {
+      if (photo) { formData.set("image", photo.image); formData.set("thumbnail", photo.thumbnail); }
       const result = await saveHazard(formData);
       if (result.success) {
         alert("Peligro reportado con éxito.");
         router.push("/");
+        router.refresh();
       } else {
-        alert("Hubo un error al reportar el peligro.");
+        setError(result.error);
       }
     } catch (error) {
       console.error(error);
-      alert("Error inesperado.");
+      setError("No pudimos guardar el peligro. Revisa tu conexión y vuelve a intentarlo.");
     } finally {
       setIsPending(false);
     }
@@ -51,13 +59,15 @@ export default function HazardForm() {
         <AlertTriangle size={32} />
         <h1 className="text-2xl font-bold text-white">Reportar Peligro</h1>
       </div>
-      <form action={handleSubmit} className="space-y-5">
+      <form onSubmit={event => { event.preventDefault(); void handleSubmit(new FormData(event.currentTarget)); }} className="space-y-5">
         {coords && (
           <>
             <input type="hidden" name="lat" value={coords.lat} />
             <input type="hidden" name="lng" value={coords.lng} />
           </>
         )}
+
+        <PointPhotoInput hazard onChange={setPhoto} onBusyChange={setPhotoBusy} />
 
         <div className="space-y-2">
           <label className="text-sm font-medium">Tipo de Peligro</label>
@@ -96,7 +106,8 @@ export default function HazardForm() {
           )}
         </div>
 
-        <button type="submit" disabled={isPending || !coords} className="w-full bg-red-600 text-white font-bold text-lg py-4 rounded-2xl flex justify-center items-center gap-2 mt-4 shadow-[0_0_15px_rgba(220,38,38,0.3)] disabled:opacity-50 transition-opacity">
+        {error && <p role="alert" className="rounded-xl border border-red-400/30 p-3 text-sm text-red-300">{error}</p>}
+        <button type="submit" disabled={isPending || photoBusy || !coords} className="w-full bg-red-600 text-white font-bold text-lg py-4 rounded-2xl flex justify-center items-center gap-2 mt-4 shadow-[0_0_15px_rgba(220,38,38,0.3)] disabled:opacity-50 transition-opacity">
           {isPending ? <><Loader2 className="animate-spin" /> Reportando...</> : "Reportar Peligro"}
         </button>
       </form>

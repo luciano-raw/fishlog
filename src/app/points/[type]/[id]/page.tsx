@@ -1,3 +1,4 @@
+import { TriangleAlert } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -13,8 +14,8 @@ export default async function PointPage({ params, searchParams }: { params: Prom
   const query = await searchParams;
   const page = Math.min(100, Math.max(1, Math.floor(Number(query.page) || 1)));
   const point = type === "spot"
-    ? await prisma.spot.findUnique({ where: { id }, select: { id: true, name: true, speciesSeen: true, imageUrl: true, locationLat: true, locationLng: true, createdAt: true, updatedAt: true } })
-    : await prisma.hazard.findUnique({ where: { id }, select: { id: true, name: true, note: true, locationLat: true, locationLng: true, createdAt: true, updatedAt: true } });
+    ? await prisma.spot.findUnique({ where: { id }, select: { id: true, name: true, speciesSeen: true, imageUrl: true, thumbnailUrl: true, locationLat: true, locationLng: true, createdAt: true, updatedAt: true } })
+    : await prisma.hazard.findUnique({ where: { id }, select: { id: true, name: true, note: true, imageUrl: true, thumbnailUrl: true, locationLat: true, locationLng: true, createdAt: true, updatedAt: true } });
   if (!point) notFound();
   const { userId } = await auth();
   const [comments, viewer] = await Promise.all([
@@ -24,7 +25,8 @@ export default async function PointPage({ params, searchParams }: { params: Prom
   return <div className="mx-auto max-w-xl space-y-6 p-5">
     <Link href="/map" className="inline-block py-2 text-sm text-lime">← Volver al mapa</Link>
     <header className="space-y-2"><p className={`text-xs font-semibold uppercase ${type === "spot" ? "text-blue-400" : "text-red-400"}`}>{type === "spot" ? "Spot" : "Peligro"}</p><h1 className="text-2xl font-bold text-white">{point.name}</h1><p className="text-xs text-light-gray/50">Creado: {format.format(point.createdAt)}</p><p className="text-xs text-light-gray/50">Última edición del punto: {format.format(point.updatedAt)}</p></header>
-    {"imageUrl" in point && point.imageUrl && <ImageWithFullscreen src={point.imageUrl} alt={point.name} className="max-h-80 w-full rounded-2xl object-cover" />}
+    {"imageUrl" in point && point.imageUrl && <ImageWithFullscreen src={point.imageUrl} thumbnailSrc={point.thumbnailUrl} alt={point.name} className="aspect-[4/3] max-h-80 w-full rounded-2xl object-cover" />}
+    {type === "hazard" && !point.imageUrl && <div className="flex h-40 items-center justify-center rounded-2xl bg-red-500/10"><TriangleAlert size={64} className="text-red-400" aria-label="Peligro reportado sin foto" /></div>}
     {"speciesSeen" in point && point.speciesSeen && <p className="text-sm">Especies observadas: {point.speciesSeen}</p>}
     {"note" in point && point.note && <p className="whitespace-pre-wrap text-sm">{point.note}</p>}
     <MapPointLink type={type} point={point} />

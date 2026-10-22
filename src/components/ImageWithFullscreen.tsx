@@ -8,9 +8,10 @@ interface Props {
   src: string;
   alt: string;
   className?: string;
+  thumbnailSrc?: string | null;
 }
 
-export default function ImageWithFullscreen({ src, alt, className }: Props) {
+export default function ImageWithFullscreen({ src, alt, className, thumbnailSrc }: Props) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -72,7 +73,7 @@ export default function ImageWithFullscreen({ src, alt, className }: Props) {
       {/* Imagen Normal / Miniatura */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img 
-        src={src} 
+        src={thumbnailSrc || src}
         alt={alt}
         className={`${className} cursor-pointer hover:opacity-90 active:scale-95 transition-all`}
         onClick={(e) => {

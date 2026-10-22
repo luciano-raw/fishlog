@@ -8,7 +8,7 @@ const withSerwist = withSerwistInit({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: { serverActions: { bodySizeLimit: "2mb" } },
 };
 
 export default withSerwist(nextConfig);

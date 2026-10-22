@@ -1,5 +1,7 @@
 # Existing database updates
 
+`20261022_point_photos.sql` adds nullable spot thumbnails and optional hazard photos/thumbnails. Run `node scripts/apply-point-photos.mjs --check`, then `--apply` before deploying the new client. Existing records retain their original photos or the no-photo warning symbol. It does not modify existing data.
+
 This project started without a Prisma migration baseline. Do not run `migrate reset` or assume `migrate deploy` will initialize the existing populated database.
 
 `20261020_lures_admin_shops.sql` adds nullable catch lure types, a user role (default `USER`), and shops. Existing catches remain valid without a lure selection.

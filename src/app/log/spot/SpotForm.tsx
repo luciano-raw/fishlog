@@ -1,17 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, MapPin, Camera } from "lucide-react";
+import { Loader2, MapPin } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { saveSpot } from "./actions";
+import PointPhotoInput, { type PointPhoto } from "@/components/PointPhotoInput";
 import LocationPickerDynamic from "@/components/LocationPickerDynamic";
 
 export default function SpotForm() {
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [isManualLocation, setIsManualLocation] = useState(false);
   const [isPending, setIsPending] = useState(false);
-  const [preview, setPreview] = useState<string | null>(null);
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [photo, setPhoto] = useState<PointPhoto | null>(null);
+  const [photoBusy, setPhotoBusy] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleLocation = () => {
@@ -29,31 +31,23 @@ export default function SpotForm() {
     }
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-      const url = URL.createObjectURL(file);
-      setPreview(url);
-    }
-  };
-
   const handleSubmit = async (formData: FormData) => {
+    if (isPending || photoBusy) return;
+    setError("");
     setIsPending(true);
     try {
-      if (imageFile) {
-        formData.set("image", imageFile);
-      }
+      if (photo) { formData.set("image", photo.image); formData.set("thumbnail", photo.thumbnail); }
       const result = await saveSpot(formData);
       if (result.success) {
         alert("Lugar guardado con éxito.");
         router.push("/");
+        router.refresh();
       } else {
-        alert("Hubo un error al guardar el lugar.");
+        setError(result.error);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert(error?.message || "Error inesperado al guardar el lugar.");
+      setError("No pudimos guardar el lugar. Revisa tu conexión y vuelve a intentarlo.");
     } finally {
       setIsPending(false);
     }
@@ -62,7 +56,7 @@ export default function SpotForm() {
   return (
     <div className="flex flex-col min-h-screen bg-deep-black p-4 text-light-gray pb-32">
       <h1 className="text-2xl font-bold text-white mb-6">Guardar Spot (Lugar)</h1>
-      <form action={handleSubmit} className="space-y-5">
+      <form onSubmit={event => { event.preventDefault(); void handleSubmit(new FormData(event.currentTarget)); }} className="space-y-5">
         {coords && (
           <>
             <input type="hidden" name="lat" value={coords.lat} />
@@ -70,18 +64,7 @@ export default function SpotForm() {
           </>
         )}
 
-        <div className="relative w-full h-40 bg-charcoal rounded-3xl overflow-hidden border border-forest-green/30 flex flex-col items-center justify-center">
-          {preview ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={preview} alt="Preview" className="w-full h-full object-cover" />
-          ) : (
-            <div className="flex flex-col items-center text-forest-green">
-              <Camera size={40} className="mb-2" />
-              <span className="text-sm font-medium">Foto del Lugar (Opcional)</span>
-            </div>
-          )}
-          <input type="file" name="image" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleImageChange} />
-        </div>
+        <PointPhotoInput onChange={setPhoto} onBusyChange={setPhotoBusy} />
 
         <div className="space-y-2">
           <label className="text-sm font-medium">Nombre del Lugar</label>
@@ -120,7 +103,8 @@ export default function SpotForm() {
           )}
         </div>
 
-        <button type="submit" disabled={isPending || !coords} className="w-full bg-[#3b82f6] text-white font-bold text-lg py-4 rounded-2xl flex justify-center items-center gap-2 mt-4 shadow-[0_0_15px_rgba(59,130,246,0.3)] disabled:opacity-50 transition-opacity">
+        {error && <p role="alert" className="rounded-xl border border-red-400/30 p-3 text-sm text-red-300">{error}</p>}
+        <button type="submit" disabled={isPending || photoBusy || !coords} className="w-full bg-[#3b82f6] text-white font-bold text-lg py-4 rounded-2xl flex justify-center items-center gap-2 mt-4 shadow-[0_0_15px_rgba(59,130,246,0.3)] disabled:opacity-50 transition-opacity">
           {isPending ? <><Loader2 className="animate-spin" /> Guardando...</> : "Guardar Lugar"}
         </button>
       </form>

@@ -41,7 +41,8 @@ export default function FriendsActivity({ activities, signedIn, hasFriends, next
                 <p className="text-sm leading-relaxed text-light-gray"><span className="font-semibold text-white">{activity.username || "Un amigo"}</span> {action} <span className={`font-semibold ${color}`}>{activity.name}</span></p>
                 {activity.detail && <p className="whitespace-pre-wrap break-words text-sm text-light-gray/65">{activity.detail}</p>}
                 {lureLabel(activity.lureType) && <p className="text-xs text-lime/80">Con: {lureLabel(activity.lureType)}</p>}
-                {activity.imageUrl && <div className="overflow-hidden rounded-xl"><ImageWithFullscreen src={activity.imageUrl} alt={activity.name} className="aspect-[4/3] max-h-72 w-full object-cover" /></div>}
+                {activity.imageUrl && <div className="overflow-hidden rounded-xl"><ImageWithFullscreen src={activity.imageUrl} thumbnailSrc={activity.thumbnailUrl} alt={activity.name} className="aspect-[4/3] max-h-72 w-full object-cover" /></div>}
+                {activity.type === "hazard" && !activity.imageUrl && <div className="flex h-24 items-center justify-center rounded-xl bg-red-500/10"><TriangleAlert size={36} className="text-red-400" aria-label="Peligro reportado sin foto" /></div>}
                 <MapPointLink type={activity.type} point={activity} fromFriends />
                 {activity.type === "catch" ? <CatchSocial id={activity.id} /> : <Link href={`/points/${activity.type}/${encodeURIComponent(activity.id)}`} className="inline-block min-h-10 py-2 text-xs font-semibold text-lime">Comentarios y novedades</Link>}
               </div>
