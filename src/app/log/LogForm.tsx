@@ -2,15 +2,18 @@
 
 import { useState, useTransition, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Camera, MapPin, Ruler, Weight, Fish, Loader2, Check, X } from "lucide-react";
+import { Camera, MapPin, Ruler, Weight, Loader2, Check, X } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "@/lib/cropImage";
 import { saveCatch } from "./actions";
 import LocationPickerDynamic from "@/components/LocationPickerDynamic";
+import SpeciesInput from "@/components/SpeciesInput";
+import type { SpeciesOption } from "@/lib/speciesSuggestions";
 import { LURE_TYPES } from "@/lib/lures";
 
-export default function LogForm() {
+export default function LogForm({ speciesOptions }: { speciesOptions: SpeciesOption[] }) {
+  const [species, setSpecies] = useState("");
   const router = useRouter();
   
   // States para el formulario
@@ -184,22 +187,7 @@ export default function LogForm() {
         />
       </div>
 
-      {/* Species */}
-      <div className="space-y-2">
-        <label className="text-sm text-light-gray/70 font-medium">Especie</label>
-        <div className="relative">
-          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-forest-green">
-            <Fish size={20} />
-          </div>
-          <input 
-            type="text" 
-            name="species"
-            required
-            placeholder="ej. Trucha, Lenguado"
-            className="w-full bg-charcoal text-white rounded-2xl py-4 pl-12 pr-4 outline-none border border-forest-green/20 focus:border-lime transition-colors"
-          />
-        </div>
-      </div>
+      <SpeciesInput value={species} onChange={setSpecies} options={speciesOptions} />
 
       <div className="space-y-2">
         <label htmlFor="lureType" className="text-sm font-medium text-light-gray/70">¿Con qué lo capturaste? <span className="text-light-gray/40">(opcional)</span></label>

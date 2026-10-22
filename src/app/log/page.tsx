@@ -1,6 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import LogForm from "./LogForm";
+import { encyclopediaData } from "@/lib/encyclopediaData";
 import { auth } from "@clerk/nextjs/server";
 
 export default async function LogCatchPage() {
@@ -19,7 +20,7 @@ export default async function LogCatchPage() {
 
       {/* Form Content */}
       <main className="flex-1 p-4 pt-0">
-        <LogForm />
+        <LogForm speciesOptions={encyclopediaData.map(({ id, name, scientificName }) => ({ id, name, scientificName }))} />
       </main>
     </div>
   );
